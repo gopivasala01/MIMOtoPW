@@ -49,7 +49,9 @@ public class PropertyWare
 		RunnerClass.driver.get(AppConfig.URL);
         RunnerClass.driver.findElement(Locators.userName).sendKeys(AppConfig.username); 
         RunnerClass.driver.findElement(Locators.password).sendKeys(AppConfig.password);
+        Thread.sleep(2000);
         RunnerClass.driver.findElement(Locators.signMeIn).click();
+        Thread.sleep(3000);
         RunnerClass.actions = new Actions(RunnerClass.driver);
         RunnerClass.js = (JavascriptExecutor)RunnerClass.driver;
         RunnerClass.driver.manage().timeouts().implicitlyWait(2,TimeUnit.SECONDS);
@@ -76,12 +78,27 @@ public class PropertyWare
 	
 	public static boolean selectBuilding()
 	{
+		//Check company name contains HomeRiver Group Prefix
+		if(RunnerClass.company.toLowerCase().contains("home"))
+		{
+			for(int i=0;i<AppConfig.companyNames.length;i++)
+			{
+				if(RunnerClass.company.contains(AppConfig.companyNames[i]))
+				{
+					RunnerClass.company = AppConfig.companyNames[i].trim();
+					break;
+				}
+			}
+		}
+		
 		try
 		{
 			RunnerClass.driver.manage().timeouts().implicitlyWait(100,TimeUnit.SECONDS);
 	        RunnerClass.wait = new WebDriverWait(RunnerClass.driver, Duration.ofSeconds(100));
 	        RunnerClass.driver.navigate().refresh();
 	        PropertyWare.intermittentPopUp();
+	        //if(PropertyWare.checkIfBuildingIsDeactivated()==true)
+	        	//return false;
 	        RunnerClass.driver.findElement(Locators.marketDropdown).click();
 	        String marketName = "HomeRiver Group - "+RunnerClass.company;
 	        Select marketDropdownList = new Select(RunnerClass.driver.findElement(Locators.marketDropdown));
@@ -89,6 +106,9 @@ public class PropertyWare
 	        String buildingPageURL = AppConfig.buildingPageURL+RunnerClass.unitEntityID;
 	        RunnerClass.driver.navigate().to(buildingPageURL);
 	        PropertyWare.intermittentPopUp();
+	        if(PropertyWare.checkIfBuildingIsDeactivated()==true)
+	        	return false;
+	        
 	        return true;
 	        /*
 	        String buildingAddress = RunnerClass.driver.findElement(Locators.buildingTitle).getText();
@@ -103,7 +123,7 @@ public class PropertyWare
 		}
 		catch(Exception e)
 		{
-			
+			RunnerClass.failedReason= "Building not found";
 			return false;
 		}
 	}
@@ -130,6 +150,7 @@ public class PropertyWare
 	        		leaseList.get(i).click();
 	        		PropertyWare.intermittentPopUp();
 	        		leaseAvailibilityCheck = true;
+	        		break;
 	        	}
 	        		
 	        }
@@ -179,6 +200,35 @@ public class PropertyWare
 			        RunnerClass.wait = new WebDriverWait(RunnerClass.driver, Duration.ofSeconds(5));
 				}
 				catch(Exception e) {}
+			
+	}
+	
+	public static boolean checkIfBuildingIsDeactivated()
+	{
+		//Pop up after clicking lease name
+				try
+				{
+					RunnerClass.driver.manage().timeouts().implicitlyWait(1,TimeUnit.SECONDS);
+			        RunnerClass.wait = new WebDriverWait(RunnerClass.driver, Duration.ofSeconds(1));
+			        try
+			        {
+					if(RunnerClass.driver.findElement(Locators.buildingDeactivatedMessage).isDisplayed())
+					{
+						System.out.println("Building is Deactivated");
+						RunnerClass.failedReason = "Building is Deactivated";
+						RunnerClass.driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
+				        RunnerClass.wait = new WebDriverWait(RunnerClass.driver, Duration.ofSeconds(5));
+			        	return true;
+					}
+			        }
+			        catch(Exception e) {}
+			        
+					RunnerClass.driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
+			        RunnerClass.wait = new WebDriverWait(RunnerClass.driver, Duration.ofSeconds(5));
+			        return false;
+				}
+				catch(Exception e) {}
+				return false;
 				
 	}
 

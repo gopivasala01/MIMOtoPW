@@ -11,6 +11,7 @@ public class Locators
 	
 	public static By marketDropdown = By.id("switchAccountSelect");
 	public static By buildingTitle = By.id("summaryTitleBuilding");
+	public static By buildingDeactivatedMessage = By.xpath("//*[text()='This Building has been deactivated']");
 	public static By leasesTab = By.xpath("//*[@class='tabbedSection']/a[4]");	
     public static By leasesTab2 = By.xpath("(//a[text()='Leases'])[2]");
     public static By tenantContact = By.xpath("//*[@id='buildingLeaseList']/tbody/tr/td[2]/a");
@@ -26,7 +27,7 @@ public class Locators
     public static By filter_Other = By.xpath("//*[text()='Filter - Other']/following::input[1]");
     public static By MOIInspectionDate = By.xpath("//*[text()='MOI Inspection Date']/following::input[1]");
     public static By turnOverHandledBy = By.xpath("//*[text()='Turnover Handled By']/following::Select[1]");
-    public static By turnEstimateSubmissionDate = By.xpath("//*[text()='Turn Estimate Submission Date']/following::Select[1]");
+    public static By turnEstimateSubmissionDate = By.xpath("//*[text()='Turn Estimate Submission Date']/following::input[1]");
     public static By turnEstimateCost = By.xpath("//*[text()='Turn Estimate Cost']/following::input[1]");
     public static By turnApprovalDate = By.xpath("//*[text()='Turn Approval Date']/following::input[1]");
     public static By turnStartDate = By.xpath("//*[text()='Turn Start Date']/following::input[1]");

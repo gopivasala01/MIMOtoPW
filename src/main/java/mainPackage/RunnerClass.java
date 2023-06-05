@@ -57,8 +57,11 @@ public class RunnerClass
 	public static String turnQCCompletedDate;
 	public static String codeBoxActive;
 	public static String lastVacantVisit;
+	
+	public static String[][] completedLeasesList;
 	public static void main(String args[]) throws Exception
 	{
+		
 		//Get all Pending Leases
 		DataBase.getBuildingsList(AppConfig.pendingLeasesQuery);
 		
@@ -83,22 +86,32 @@ public class RunnerClass
 			Utility_ConnectionRequest = pendingLeases[i][6];
 			lockBoxCode = pendingLeases[i][7];
 			filter_Other = pendingLeases[i][8];
-			MOIInspectionDate = pendingLeases[i][9];
+			MOIInspectionDate = pendingLeases[i][9].trim();//.split(" ")[0].replace("-", "/");
 			turnOverHandledBy = pendingLeases[i][10];
-			turnEstimateSubmissionDate = pendingLeases[i][11];
+			turnEstimateSubmissionDate = pendingLeases[i][11].trim();//.split(" ")[0].replace("-", "/");
 			turnEstimateCost = pendingLeases[i][12];
-			turnApprovalDate = pendingLeases[i][13];
-			turnStartDate = pendingLeases[i][14];
-			turnTargetCompletionDate = pendingLeases[i][15];
-			turnActualCompletionDate = pendingLeases[i][16];
+			turnApprovalDate = pendingLeases[i][13].trim();//.split(" ")[0].replace("-", "/");
+			turnStartDate = pendingLeases[i][14].trim();//.split("")[0].replace("-", "/");
+			turnTargetCompletionDate = pendingLeases[i][15].trim();//.split(" ")[0].replace("-", "/");
+			turnActualCompletionDate = pendingLeases[i][16].trim();//.split(" ")[0].replace("-", "/");
 			turnActualCost = pendingLeases[i][17];
-			turnQCCompletedDate = pendingLeases[i][18];
+			turnQCCompletedDate = pendingLeases[i][18].trim();//.split(" ")[0].replace("-", "/");
 			codeBoxActive = pendingLeases[i][19];
 			lastVacantVisit = pendingLeases[i][20];
 			
+			//Convert Dates
+			MOIInspectionDate = CommonMethods.convertDate(MOIInspectionDate);
+			turnEstimateSubmissionDate = CommonMethods.convertDate(turnEstimateSubmissionDate);
+			turnApprovalDate = CommonMethods.convertDate(turnApprovalDate);
+			turnStartDate = CommonMethods.convertDate(turnStartDate);
+			turnTargetCompletionDate = CommonMethods.convertDate(turnTargetCompletionDate);
+			turnActualCompletionDate = CommonMethods.convertDate(turnActualCompletionDate);
+			turnQCCompletedDate = CommonMethods.convertDate(turnQCCompletedDate);
+		
+			
 			//System.out.println(ID+" | "+company+" | "+unitEntityID+" | "+address+" | "+current_Resident_FirstName+" | "+Current_Resident_LastName+" | "+Utility_ConnectionRequest+" | "+lockBoxCode+" | "+filter_Other+" | "+MOIInspectionDate+" | "+turnOverHandledBy+" | "+turnEstimateSubmissionDate+" | "+turnEstimateCost+" | "+turnApprovalDate+" | "+turnStartDate+" | "+turnTargetCompletionDate+" | "+turnActualCompletionDate+" | "+turnActualCost+" | "+turnQCCompletedDate+" | "+codeBoxActive+" | "+lastVacantVisit);
 			System.out.println(ID+" | "+company+" | "+unitEntityID+" | "+address);
-			/*
+			 /*uncomment this for production run
 			if(Utility_ConnectionRequest==null&&lockBoxCode==null&&filter_Other==null&&MOIInspectionDate==null&&turnOverHandledBy==null&&turnEstimateSubmissionDate==null&&turnEstimateCost==null&&turnApprovalDate==null&&turnStartDate==null&&turnTargetCompletionDate==null&&turnActualCompletionDate==null&&turnActualCost==null&&turnQCCompletedDate==null&&codeBoxActive==null&&lastVacantVisit==null)
 			{
 				System.out.println("All values are null");
@@ -154,9 +167,9 @@ public class RunnerClass
 			}
 			
 			
-			
 		}
-		
+		//Create Excel File 
+		MailActivities.createExcelFileWithProcessedData();
 		
 	}
 }

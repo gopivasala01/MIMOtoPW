@@ -3,6 +3,8 @@ package mainPackage;
 import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -17,6 +19,7 @@ public class UpdateValuesInPW
         RunnerClass.driver.findElement(Locators.summaryEditButton).click();
         
         //Utility Connection Request
+        
         if(RunnerClass.Utility_ConnectionRequest!=null)
         {
         try
@@ -69,9 +72,10 @@ public class UpdateValuesInPW
         try
         {
         	RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.lockBoxCode)).build().perform();
-        	RunnerClass.driver.findElement(Locators.utilityConnectionRequest).click();
-        	RunnerClass.driver.findElement(Locators.utilityConnectionRequest).clear();
-        	RunnerClass.driver.findElement(Locators.utilityConnectionRequest).sendKeys(RunnerClass.lockBoxCode);
+        	RunnerClass.js.executeScript("window.scrollBy(0,100)");
+        	RunnerClass.driver.findElement(Locators.lockBoxCode).click();
+        	RunnerClass.driver.findElement(Locators.lockBoxCode).clear();
+        	RunnerClass.driver.findElement(Locators.lockBoxCode).sendKeys(RunnerClass.lockBoxCode);
         }
         catch(Exception e)
         {
@@ -85,6 +89,7 @@ public class UpdateValuesInPW
         try
         {
         	RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.filter_Other)).build().perform();
+        	RunnerClass.js.executeScript("window.scrollBy(0,100)");
         	RunnerClass.driver.findElement(Locators.filter_Other).click();
         	RunnerClass.driver.findElement(Locators.filter_Other).clear();
         	RunnerClass.driver.findElement(Locators.filter_Other).sendKeys(RunnerClass.filter_Other);
@@ -101,9 +106,11 @@ public class UpdateValuesInPW
         try
         {
         	RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.MOIInspectionDate)).build().perform();
+        	RunnerClass.js.executeScript("window.scrollBy(0,100)");
         	RunnerClass.driver.findElement(Locators.MOIInspectionDate).click();
         	RunnerClass.driver.findElement(Locators.MOIInspectionDate).clear();
         	RunnerClass.driver.findElement(Locators.MOIInspectionDate).sendKeys(RunnerClass.MOIInspectionDate);
+        	RunnerClass.actions.sendKeys(Keys.ESCAPE).build().perform();
         }
         catch(Exception e)
         {
@@ -117,6 +124,7 @@ public class UpdateValuesInPW
         try
         {
         	RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.turnOverHandledBy)).build().perform();
+        	RunnerClass.js.executeScript("window.scrollBy(0,100)");
         	Select utilityConnectionRequest = new Select(RunnerClass.driver.findElement(Locators.turnOverHandledBy));
         	utilityConnectionRequest.selectByVisibleText(RunnerClass.turnOverHandledBy);
         }
@@ -132,11 +140,18 @@ public class UpdateValuesInPW
         try
         {
         	RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.turnEstimateSubmissionDate)).build().perform();
-        	Select utilityConnectionRequest = new Select(RunnerClass.driver.findElement(Locators.turnEstimateSubmissionDate));
-        	utilityConnectionRequest.selectByVisibleText(RunnerClass.turnEstimateSubmissionDate);
+        	RunnerClass.js.executeScript("window.scrollBy(0,50)");
+        	//RunnerClass.driver.findElement(By.xpath("//*[text()='Turn Estimate Submission Date']")).click();
+        	RunnerClass.driver.findElement(Locators.turnEstimateSubmissionDate).click();
+        	//RunnerClass.actions.click(RunnerClass.driver.findElement(Locators.turnEstimateSubmissionDate)).sendKeys(Keys.CLEAR).build().perform();
+        	//RunnerClass.js.executeScript("document.getElementById('pass').value = 'mukeshotwani';");
+        	RunnerClass.driver.findElement(Locators.turnEstimateSubmissionDate).clear();
+        	RunnerClass.driver.findElement(Locators.turnEstimateSubmissionDate).sendKeys(RunnerClass.turnEstimateSubmissionDate);
+        	RunnerClass.actions.sendKeys(Keys.ESCAPE).build().perform();
         }
         catch(Exception e)
         {
+        	
         	e.printStackTrace();
         	RunnerClass.failedReason = RunnerClass.failedReason + ", Turn Estimate Submission Date";
         }
@@ -147,6 +162,7 @@ public class UpdateValuesInPW
         try
         {
         	RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.turnEstimateCost)).build().perform();
+        	RunnerClass.js.executeScript("window.scrollBy(0,100)");
         	RunnerClass.driver.findElement(Locators.turnEstimateCost).click();
         	RunnerClass.driver.findElement(Locators.turnEstimateCost).clear();
         	RunnerClass.driver.findElement(Locators.turnEstimateCost).sendKeys(RunnerClass.turnEstimateCost);
@@ -163,9 +179,11 @@ public class UpdateValuesInPW
         try
         {
         	RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.turnApprovalDate)).build().perform();
+        	RunnerClass.js.executeScript("window.scrollBy(0,100)");
         	RunnerClass.driver.findElement(Locators.turnApprovalDate).click();
         	RunnerClass.driver.findElement(Locators.turnApprovalDate).clear();
         	RunnerClass.driver.findElement(Locators.turnApprovalDate).sendKeys(RunnerClass.turnApprovalDate);
+        	RunnerClass.actions.sendKeys(Keys.ESCAPE).build().perform();
         }
         catch(Exception e)
         {
@@ -179,9 +197,11 @@ public class UpdateValuesInPW
         try
         {
         	RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.turnStartDate)).build().perform();
+        	RunnerClass.js.executeScript("window.scrollBy(0,100)");
         	RunnerClass.driver.findElement(Locators.turnStartDate).click();
         	RunnerClass.driver.findElement(Locators.turnStartDate).clear();
         	RunnerClass.driver.findElement(Locators.turnStartDate).sendKeys(RunnerClass.turnStartDate);
+        	RunnerClass.actions.sendKeys(Keys.ESCAPE).build().perform();
         }
         catch(Exception e)
         {
@@ -195,9 +215,11 @@ public class UpdateValuesInPW
         try
         {
         	RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.turnTargetCompletionDate)).build().perform();
+        	RunnerClass.js.executeScript("window.scrollBy(0,100)");
         	RunnerClass.driver.findElement(Locators.turnTargetCompletionDate).click();
         	RunnerClass.driver.findElement(Locators.turnTargetCompletionDate).clear();
         	RunnerClass.driver.findElement(Locators.turnTargetCompletionDate).sendKeys(RunnerClass.turnTargetCompletionDate);
+        	RunnerClass.actions.sendKeys(Keys.ESCAPE).build().perform();
         }
         catch(Exception e)
         {
@@ -211,9 +233,11 @@ public class UpdateValuesInPW
         try
         {
         	RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.turnActualCompletionDate)).build().perform();
+        	RunnerClass.js.executeScript("window.scrollBy(0,100)");
         	RunnerClass.driver.findElement(Locators.turnActualCompletionDate).click();
         	RunnerClass.driver.findElement(Locators.turnActualCompletionDate).clear();
         	RunnerClass.driver.findElement(Locators.turnActualCompletionDate).sendKeys(RunnerClass.turnActualCompletionDate);
+        	RunnerClass.actions.sendKeys(Keys.ESCAPE).build().perform();
         }
         catch(Exception e)
         {
@@ -227,6 +251,7 @@ public class UpdateValuesInPW
         try
         {
         	RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.turnActualCost)).build().perform();
+        	RunnerClass.js.executeScript("window.scrollBy(0,100)");
         	RunnerClass.driver.findElement(Locators.turnActualCost).click();
         	RunnerClass.driver.findElement(Locators.turnActualCost).clear();
         	RunnerClass.driver.findElement(Locators.turnActualCost).sendKeys(RunnerClass.turnActualCost);
@@ -243,9 +268,11 @@ public class UpdateValuesInPW
         try
         {
         	RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.turnQCCompletedDate)).build().perform();
+        	RunnerClass.js.executeScript("window.scrollBy(0,100)");
         	RunnerClass.driver.findElement(Locators.turnQCCompletedDate).click();
         	RunnerClass.driver.findElement(Locators.turnQCCompletedDate).clear();
         	RunnerClass.driver.findElement(Locators.turnQCCompletedDate).sendKeys(RunnerClass.turnQCCompletedDate);
+        	RunnerClass.actions.sendKeys(Keys.ESCAPE).build().perform();
         }
         catch(Exception e)
         {
@@ -259,6 +286,7 @@ public class UpdateValuesInPW
         try
         {
         	RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.codeBoxActive)).build().perform();
+        	RunnerClass.js.executeScript("window.scrollBy(0,100)");
         	RunnerClass.driver.findElement(Locators.codeBoxActive).click();
         	RunnerClass.driver.findElement(Locators.codeBoxActive).clear();
         	RunnerClass.driver.findElement(Locators.codeBoxActive).sendKeys(RunnerClass.codeBoxActive);
@@ -275,6 +303,7 @@ public class UpdateValuesInPW
         try
         {
         	RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.lastVacantVisit)).build().perform();
+        	RunnerClass.js.executeScript("window.scrollBy(0,100)");
         	RunnerClass.driver.findElement(Locators.lastVacantVisit).click();
         	RunnerClass.driver.findElement(Locators.lastVacantVisit).clear();
         	RunnerClass.driver.findElement(Locators.lastVacantVisit).sendKeys(RunnerClass.lastVacantVisit);
