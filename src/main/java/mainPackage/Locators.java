@@ -20,6 +20,7 @@ public class Locators
     public static By scheduledMaintanancePopUp = By.xpath("//*[text()='Scheduled Maintenance Notification']");
     public static By scheduledMaintanancePopUpOkButton = By.id("alertDoNotShow");
     public static By popupClose = By.xpath("//*[@id='editStickyBtnDiv']/input[2]");
+    public static By permissionDenied = By.xpath("//*[contains(text(),'Permission Denied')]");
     
     public static By summaryEditButton = By.xpath("//*[@value='Edit']");
     public static By utilityConnectionRequest = By.xpath("//*[text()='Utility Connection Request']/following::Select[1]");

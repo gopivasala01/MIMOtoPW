@@ -15,6 +15,7 @@ import org.apache.pdfbox.pdmodel.interactive.form.PDField;
 import org.apache.pdfbox.pdmodel.interactive.form.PDPushButton;
 import org.apache.pdfbox.pdmodel.interactive.form.PDRadioButton;
 import org.apache.pdfbox.pdmodel.interactive.form.PDTextField;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -33,6 +34,7 @@ public class RunnerClass
 	public static Actions actions;
 	public static JavascriptExecutor js;
 	public static WebDriverWait wait;
+	public static Alert alert;
 	
 	public static String failedReason;
 	
@@ -70,7 +72,9 @@ public class RunnerClass
 		
 		//Login to PW
 		PropertyWare.signIn();
-		
+		int j=0;
+		while(j<5)
+		{
 		//Loop over leases
 		for(int i=0;i<pendingLeases.length;i++)
 		{
@@ -97,7 +101,7 @@ public class RunnerClass
 			turnActualCost = pendingLeases[i][17];
 			turnQCCompletedDate = pendingLeases[i][18].trim();//.split(" ")[0].replace("-", "/");
 			codeBoxActive = pendingLeases[i][19];
-			lastVacantVisit = pendingLeases[i][20];
+			lastVacantVisit = pendingLeases[i][20].trim();//.split(" ")[0].replace("-", "/");
 			
 			//Convert Dates
 			MOIInspectionDate = CommonMethods.convertDate(MOIInspectionDate);
@@ -107,7 +111,7 @@ public class RunnerClass
 			turnTargetCompletionDate = CommonMethods.convertDate(turnTargetCompletionDate);
 			turnActualCompletionDate = CommonMethods.convertDate(turnActualCompletionDate);
 			turnQCCompletedDate = CommonMethods.convertDate(turnQCCompletedDate);
-		
+			lastVacantVisit = CommonMethods.convertDate(lastVacantVisit);
 			
 			//System.out.println(ID+" | "+company+" | "+unitEntityID+" | "+address+" | "+current_Resident_FirstName+" | "+Current_Resident_LastName+" | "+Utility_ConnectionRequest+" | "+lockBoxCode+" | "+filter_Other+" | "+MOIInspectionDate+" | "+turnOverHandledBy+" | "+turnEstimateSubmissionDate+" | "+turnEstimateCost+" | "+turnApprovalDate+" | "+turnStartDate+" | "+turnTargetCompletionDate+" | "+turnActualCompletionDate+" | "+turnActualCost+" | "+turnQCCompletedDate+" | "+codeBoxActive+" | "+lastVacantVisit);
 			System.out.println(ID+" | "+company+" | "+unitEntityID+" | "+address);
@@ -119,6 +123,9 @@ public class RunnerClass
 			}
 			*/
 			failedReason = "";
+			
+			//Check if Permission Denied page appears
+			//PropertyWare.permissionDeniedPage();
 			
 			if(PropertyWare.selectBuilding()==false)
 			{
@@ -168,8 +175,17 @@ public class RunnerClass
 			
 			
 		}
+		//Loop for Failed Leases
+		DataBase.getBuildingsList(AppConfig.failedLeasesQuery);
+		
+		System.out.println((j+1)+ " Time");
+		if(pendingLeases.length>0)
+		j++;
+		else break;
+		
+		}
 		//Create Excel File 
-		MailActivities.createExcelFileWithProcessedData();
+		//MailActivities.createExcelFileWithProcessedData();
 		
 	}
 }

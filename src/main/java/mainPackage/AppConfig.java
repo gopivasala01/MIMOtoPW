@@ -47,12 +47,33 @@ public class AppConfig
 	   		+ "LeasingLockbox_SerialNumber,\r\n"
 	   		+ "Last_vacantVisit from Automation.MIMOtoPW \r\n"
 	   		+ "	   where CompanyName is not NULL and companyName <>'' and Automation_Status='Pending'  \r\n" //and CompanyName like '%Home%'
-	   		+ "	   and  CompanyName <>'HomeRiver Group'\r\n"
-	   		+ "	   and AsofDate = (Select MAX(AsofDate) from Automation.MIMOToPw) order by CompanyName";
+	   		+ "	   and  CompanyName <>'HomeRiver Group'";
+	   	//	+ "	   and AsofDate = (Select MAX(AsofDate) from Automation.MIMOToPw)  order by CompanyName";
 	   
 	   
 	   
-	   public static String failedLeasesQuery = "Select Company, Building,leaseName from Automation.InitialRentsUpdate where Status ='Failed' and Company ='North Carolina' and (Notes ='Building Not Found' or  Notes = ',Unable to Click Lease Onwer Name')"; 
+	   public static String failedLeasesQuery = "Select ID,\r\n"
+		   		+ "CompanyName,\r\n"
+		   		+ "Unit_Entity_ID,\r\n"
+		   		+ "Address,\r\n"
+		   		+ "Current_Resident_FirstName,\r\n"
+		   		+ "Current_Resident_LastName,\r\n"
+		   		+ "Utility_ConnectionRequest,\r\n"
+		   		+ "SetConstruction_Codeto,\r\n"
+		   		+ "FilterSize,\r\n"
+		   		+ "PossesionConfirmedDate,\r\n"
+		   		+ "TurnOver_HandledBy,\r\n"
+		   		+ "TurnEstimate_SubmissionDate,\r\n"
+		   		+ "TurnEstimatedCost,\r\n"
+		   		+ "TurnApprovalDate,\r\n"
+		   		+ "TurnStateDate,\r\n"
+		   		+ "TurnEstimated_CompletionDate,\r\n"
+		   		+ "TurnActual_CompletionDate,\r\n"
+		   		+ "TurnActualCost,\r\n"
+		   		+ "Turn_QCCompletedDate,\r\n"
+		   		+ "LeasingLockbox_SerialNumber,\r\n"
+		   		+ "Last_vacantVisit from Automation.MIMOtoPW \r\n"
+		   		+ "	   where Automation_Status='Pending' and Automation_Notes='Building not found' "; 
 	   
 	   public static String getLeasesWithStatusforCurrentDay = "Select CompanyName,Unit_Entity_ID,Address,Current_Resident_FirstName,Current_Resident_LastName\r\n"
 		   		+ ",Utility_ConnectionRequest,SetConstruction_Codeto,FilterSize,PossesionConfirmedDate,TurnOver_HandledBy,TurnEstimate_SubmissionDate,TurnEstimatedCost,\r\n"

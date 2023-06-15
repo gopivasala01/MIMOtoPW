@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -103,8 +104,15 @@ public class PropertyWare
 	        String marketName = "HomeRiver Group - "+RunnerClass.company;
 	        Select marketDropdownList = new Select(RunnerClass.driver.findElement(Locators.marketDropdown));
 	        marketDropdownList.selectByVisibleText(marketName);
+	        Thread.sleep(3000);
 	        String buildingPageURL = AppConfig.buildingPageURL+RunnerClass.unitEntityID;
 	        RunnerClass.driver.navigate().to(buildingPageURL);
+	        if(PropertyWare.permissionDeniedPage()==true)
+	        {
+	        	System.out.println("Wrong Unit Entity ID");
+	        	RunnerClass.failedReason = "Wrong Unit Entity ID";
+	        	return false;
+	        }
 	        PropertyWare.intermittentPopUp();
 	        if(PropertyWare.checkIfBuildingIsDeactivated()==true)
 	        	return false;
@@ -230,6 +238,26 @@ public class PropertyWare
 				catch(Exception e) {}
 				return false;
 				
+	}
+	public static boolean permissionDeniedPage()
+	{
+		try
+		{
+		RunnerClass.driver.manage().timeouts().implicitlyWait(1,TimeUnit.SECONDS);
+        RunnerClass.wait = new WebDriverWait(RunnerClass.driver, Duration.ofSeconds(1));
+        if(RunnerClass.driver.findElement(Locators.permissionDenied).isDisplayed())
+        {
+        	RunnerClass.driver.navigate().back();
+        	return true;
+        }
+        RunnerClass.driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
+        RunnerClass.wait = new WebDriverWait(RunnerClass.driver, Duration.ofSeconds(5));
+		}
+		catch(Exception e)
+		{
+			return false;
+		}
+		return false;
 	}
 
 }
