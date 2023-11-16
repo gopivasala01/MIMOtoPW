@@ -2,7 +2,7 @@ package mainPackage;
 
 public class AppConfig 
 {
-	 public static boolean saveButtonOnAndOff= false;
+	 public static boolean saveButtonOnAndOff= true;
 		
 	   public static String URL ="https://app.propertyware.com/pw/login.jsp";
 	   public static String username ="mds0418@gmail.com";
@@ -58,6 +58,7 @@ public class AppConfig
 	   		+ "    AND Company_Name <> 'HomeRiver Group'\n"
 	   		+ "    AND Vacating_Resident_Lease_Entity_ID IS NOT NULL\n"
 	   		+ "    AND Last_vacant_visit IS NOT NULL\n"
+	   		+ "   AND cast(AsofDate as Date) = cast(getdate()-1 as Date)\n"
 	   		+ ""
 			    ;
 			   
