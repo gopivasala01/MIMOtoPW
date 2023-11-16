@@ -41,6 +41,7 @@ public class RunnerClass
     public static String ID;
 	public static String company;
 	public static String unitEntityID;
+	public static String leaseEntityID;
 	public static String address;
 	public static String current_Resident_FirstName;
 	public static String Current_Resident_LastName;
@@ -59,6 +60,7 @@ public class RunnerClass
 	public static String turnQCCompletedDate;
 	public static String codeBoxActive;
 	public static String lastVacantVisit;
+	public static String automationStatus;
 	
 	public static String[][] completedLeasesList;
 	public static void main(String args[]) throws Exception
@@ -76,32 +78,34 @@ public class RunnerClass
 		while(j<5)
 		{
 		//Loop over leases
-		for(int i=0;i<pendingLeases.length;i++)
+		for(int i=0;i<25 ;i++) //pendingLeases.length
 		{
 			System.out.println("Lease ---- "+(i+1));
 			try
 			{
-			ID = pendingLeases[i][0];
-			company = pendingLeases[i][1];
-			unitEntityID = pendingLeases[i][2];
-			address = pendingLeases[i][3];
-			current_Resident_FirstName = pendingLeases[i][4];
-			Current_Resident_LastName = pendingLeases[i][5];
-			Utility_ConnectionRequest = pendingLeases[i][6];
-			lockBoxCode = pendingLeases[i][7];
-			filter_Other = pendingLeases[i][8];
-			MOIInspectionDate = pendingLeases[i][9].trim();//.split(" ")[0].replace("-", "/");
-			turnOverHandledBy = pendingLeases[i][10];
-			turnEstimateSubmissionDate = pendingLeases[i][11].trim();//.split(" ")[0].replace("-", "/");
-			turnEstimateCost = pendingLeases[i][12];
-			turnApprovalDate = pendingLeases[i][13].trim();//.split(" ")[0].replace("-", "/");
-			turnStartDate = pendingLeases[i][14].trim();//.split("")[0].replace("-", "/");
-			turnTargetCompletionDate = pendingLeases[i][15].trim();//.split(" ")[0].replace("-", "/");
-			turnActualCompletionDate = pendingLeases[i][16].trim();//.split(" ")[0].replace("-", "/");
-			turnActualCost = pendingLeases[i][17];
-			turnQCCompletedDate = pendingLeases[i][18].trim();//.split(" ")[0].replace("-", "/");
-			codeBoxActive = pendingLeases[i][19];
-			lastVacantVisit = pendingLeases[i][20].trim();//.split(" ")[0].replace("-", "/");
+				ID = RunnerClass.pendingLeases[i][0];
+				company = RunnerClass.pendingLeases[i][2];
+				unitEntityID = RunnerClass.pendingLeases[i][1];
+				leaseEntityID = RunnerClass.pendingLeases[i][3];
+				address = RunnerClass.pendingLeases[i][4];
+				current_Resident_FirstName = RunnerClass.pendingLeases[i][5];
+				Current_Resident_LastName = RunnerClass.pendingLeases[i][6];
+				Utility_ConnectionRequest = RunnerClass.pendingLeases[i][7];
+				lockBoxCode = RunnerClass.pendingLeases[i][20];
+				filter_Other = RunnerClass.pendingLeases[i][9];
+				MOIInspectionDate = RunnerClass.pendingLeases[i][10].trim();//.split(" ")[0].replace("-", "/");
+				turnOverHandledBy = RunnerClass.pendingLeases[i][11];
+				turnEstimateSubmissionDate = RunnerClass.pendingLeases[i][12].trim();//.split(" ")[0].replace("-", "/");
+				turnEstimateCost = RunnerClass.pendingLeases[i][13];
+				turnApprovalDate = RunnerClass.pendingLeases[i][14].trim();//.split(" ")[0].replace("-", "/");
+				turnStartDate = RunnerClass.pendingLeases[i][15].trim();//.split("")[0].replace("-", "/");
+				turnTargetCompletionDate = RunnerClass.pendingLeases[i][16].trim();//.split(" ")[0].replace("-", "/");
+				turnActualCompletionDate = RunnerClass.pendingLeases[i][17].trim();//.split(" ")[0].replace("-", "/");
+				turnActualCost = RunnerClass.pendingLeases[i][18];
+				turnQCCompletedDate = RunnerClass.pendingLeases[i][19].trim();//.split(" ")[0].replace("-", "/");
+				codeBoxActive = RunnerClass.pendingLeases[i][8];
+				lastVacantVisit = RunnerClass.pendingLeases[i][21].trim();//.split(" ")[0].replace("-", "/");
+
 			
 			//Convert Dates
 			MOIInspectionDate = CommonMethods.convertDate(MOIInspectionDate);
@@ -113,7 +117,7 @@ public class RunnerClass
 			turnQCCompletedDate = CommonMethods.convertDate(turnQCCompletedDate);
 			lastVacantVisit = CommonMethods.convertDate(lastVacantVisit);
 			
-			//System.out.println(ID+" | "+company+" | "+unitEntityID+" | "+address+" | "+current_Resident_FirstName+" | "+Current_Resident_LastName+" | "+Utility_ConnectionRequest+" | "+lockBoxCode+" | "+filter_Other+" | "+MOIInspectionDate+" | "+turnOverHandledBy+" | "+turnEstimateSubmissionDate+" | "+turnEstimateCost+" | "+turnApprovalDate+" | "+turnStartDate+" | "+turnTargetCompletionDate+" | "+turnActualCompletionDate+" | "+turnActualCost+" | "+turnQCCompletedDate+" | "+codeBoxActive+" | "+lastVacantVisit);
+			System.out.println(ID+" | "+company+" | "+unitEntityID+" | "+address+" | "+current_Resident_FirstName+" | "+Current_Resident_LastName+" | "+Utility_ConnectionRequest+" | "+lockBoxCode+" | "+filter_Other+" | "+MOIInspectionDate+" | "+turnOverHandledBy+" | "+turnEstimateSubmissionDate+" | "+turnEstimateCost+" | "+turnApprovalDate+" | "+turnStartDate+" | "+turnTargetCompletionDate+" | "+turnActualCompletionDate+" | "+turnActualCost+" | "+turnQCCompletedDate+" | "+codeBoxActive+" | "+lastVacantVisit);
 			System.out.println(ID+" | "+company+" | "+unitEntityID+" | "+address);
 			 /*uncomment this for production run
 			if(Utility_ConnectionRequest==null&&lockBoxCode==null&&filter_Other==null&&MOIInspectionDate==null&&turnOverHandledBy==null&&turnEstimateSubmissionDate==null&&turnEstimateCost==null&&turnApprovalDate==null&&turnStartDate==null&&turnTargetCompletionDate==null&&turnActualCompletionDate==null&&turnActualCost==null&&turnQCCompletedDate==null&&codeBoxActive==null&&lastVacantVisit==null)
@@ -127,44 +131,44 @@ public class RunnerClass
 			//Check if Permission Denied page appears
 			//PropertyWare.permissionDeniedPage();
 			
-			if(PropertyWare.selectBuilding()==false)
+			if (PropertyWare.selectBuilding() == false) 
 			{
-				String query = "Update Automation.MIMOtoPW set Automation_Status='Failed',Automation_Notes='"+failedReason+"',Automation_CompletionDate =getdate() where ID = '"+ID+"'";
-				DataBase.updateTable(query);
-				continue;
+			    String query = "UPDATE Automation.MIMOToPw_Prod SET AutomationStatus='Failed', Note='" + failedReason + "' WHERE ID = '" + ID + "'";
+			    DataBase.updateTable(query);
+			    continue;
 			}
-			
-			if(UpdateValuesInPW.updateFieldsInBuildingPagePage()==false)
+
+			if (UpdateValuesInPW.updateFieldsInBuildingPagePage() == false) 
 			{
-				String query = "Update Automation.MIMOtoPW set Automation_Status='Failed',Automation_Notes='"+failedReason+"',Automation_CompletionDate =getdate() where ID = '"+ID+"'";
-				DataBase.updateTable(query);
-				continue;
+			    String query = "UPDATE Automation.MIMOToPw_Prod SET AutomationStatus='Failed', Note='" + failedReason + "' WHERE ID = '" + ID + "'";
+			    DataBase.updateTable(query);
+			    continue;
 			}
-			
-			if(PropertyWare.selectLease()==false)
+
+			if (PropertyWare.selectLease() == false) 
 			{
-				String query = "Update Automation.MIMOtoPW set Automation_Status='Failed',Automation_Notes='"+failedReason+"',Automation_CompletionDate =getdate() where ID = '"+ID+"'";
-				DataBase.updateTable(query);
-				continue;
+			    String query = "UPDATE Automation.MIMOToPw_Prod SET AutomationStatus='Failed', Note='" + failedReason + "' WHERE ID = '" + ID + "'";
+			    DataBase.updateTable(query);
+			    continue;
 			}
-			
-			if(UpdateValuesInPW.updateFieldsInLeasePage()==false)
-			{
-				String query = "Update Automation.MIMOtoPW set Automation_Status='Failed',Automation_Notes='"+failedReason+"',Automation_CompletionDate =getdate() where ID = '"+ID+"'";
-				DataBase.updateTable(query);
-				continue;
+
+			if (UpdateValuesInPW.updateFieldsInLeasePage() == false) {
+			    String query = "UPDATE Automation.MIMOToPw_Prod SET AutomationStatus='Failed', Note='" + failedReason + "' WHERE ID = '" + ID + "'";
+			    DataBase.updateTable(query);
+			    continue;
 			}
+
 			String query = "";
-			//Update record as Completed
-			if(failedReason.equals(""))
-			query = "Update Automation.MIMOtoPW set Automation_Status='Completed',Automation_CompletionDate =getdate() where ID = '"+ID+"'";
-			else
-			{
-				if(failedReason.charAt(0)==',')
-					failedReason = failedReason.substring(1, failedReason.length());
-				query = "Update Automation.MIMOtoPW set Automation_Status='Review',Automation_Notes='"+failedReason+"',Automation_CompletionDate =getdate() where ID = '"+ID+"'";
+			// Update record as Completed
+			if (failedReason.equals(""))
+			    query = "UPDATE Automation.MIMOToPw_Prod SET AutomationStatus='Completed' WHERE ID = '" + ID + "'";
+			else {
+			    if (failedReason.charAt(0) == ',')
+			        failedReason = failedReason.substring(1, failedReason.length());
+			    query = "UPDATE Automation.MIMOToPw_Prod SET AutomationStatus='Review', Note='" + failedReason + "' WHERE ID = '" + ID + "'";
 			}
 			DataBase.updateTable(query);
+
 			
 			}
 			catch(Exception e)

@@ -8,257 +8,270 @@ import java.sql.Statement;
 
 public class DataBase 
 {
-	public static boolean getBuildingsList(String pendingLeasesQuery)
+	public static boolean getBuildingsList(String pendingLeasesQuery) 
 	{
-		try
-		{
-		        Connection con = null;
-		        Statement stmt = null;
-		        ResultSet rs = null;
-		            //Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-		            con = DriverManager.getConnection(AppConfig.connectionUrl);
-		            String SQL = pendingLeasesQuery;
-		            stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-		           // stmt = con.createStatement();
-		            rs = stmt.executeQuery(SQL);
-		            int rows =0;
-		            if (rs.last()) 
-		            {
-		            	rows = rs.getRow();
-		            	// Move to beginning
-		            	rs.beforeFirst();
-		            }
-		            System.out.println("No of Rows = "+rows);
-		            RunnerClass.pendingLeases = new String[rows][21];
-		           int  i=0;
-		            while(rs.next())
-		            {
-		            	String 	ID =  rs.getObject(1).toString();
-		            	String 	company =  (String) rs.getObject(2);
-		                String  unitEntityID = (String) rs.getObject(3);
-		                String  Address = (String) rs.getObject(4);
-		                String  current_Resident_FirstName = (String) rs.getObject(5);
-		                String  Current_Resident_LastName = (String) rs.getObject(6);
-		                String  Utility_ConnectionRequest = (String) rs.getObject(7);
-		                String  SetConstruction_Codeto = (String) rs.getObject(8);
-		                String  FilterSize = (String) rs.getObject(9);
-		                String  PossesionConfirmedDate = (String) rs.getObject(10);
-		                String  TurnOver_HandledBy = (String) rs.getObject(11);
-		                String  TurnEstimate_SubmissionDate = (String) rs.getObject(12);
-		                String  TurnEstimatedCost = (String) rs.getObject(13);
-		                String  TurnApprovalDate = (String) rs.getObject(14);
-		                String  TurnStateDate = (String) rs.getObject(15);
-		                String  TurnEstimated_CompletionDate = (String) rs.getObject(16);
-		                String  TurnActual_CompletionDate = (String) rs.getObject(17);
-		                String  TurnActualCost = (String) rs.getObject(18);
-		                String  Turn_QCCompletedDate = (String) rs.getObject(19);
-		                String  LeasingLockbox_SerialNumber = (String) rs.getObject(20);
-		                String  Last_vacantVisit = (String) rs.getObject(21);
-		               // System.out.println(company +" |  "+buildingAbbreviation+"  --> "+ownerName);
-		                
-		    			//ID
-		                try 
-		                {
-		    				RunnerClass.pendingLeases[i][0] = ID;
-		                }
-		                catch(Exception e)
-		                {
-		                	RunnerClass.pendingLeases[i][0] = "";
-		                }
-		              //Company
-		                try 
-		                {
-		    				RunnerClass.pendingLeases[i][1] = company;
-		                }
-		                catch(Exception e)
-		                {
-		                	RunnerClass.pendingLeases[i][1] = "";
-		                }
-		              //unitEntityID
-		                try 
-		                {
-		    				RunnerClass.pendingLeases[i][2] = unitEntityID;
-		                }
-		                catch(Exception e)
-		                {
-		                	RunnerClass.pendingLeases[i][2] = "";
-		                }
-		              //Address
-		                try 
-		                {
-		    				RunnerClass.pendingLeases[i][3] = Address;
-		                }
-		                catch(Exception e)
-		                {
-		                	RunnerClass.pendingLeases[i][3] = "";
-		                }
-		              //current_Resident_FirstName
-		                try 
-		                {
-		    				RunnerClass.pendingLeases[i][4] = current_Resident_FirstName;
-		                }
-		                catch(Exception e)
-		                {
-		                	RunnerClass.pendingLeases[i][4] = "";
-		                }
-		              //Current_Resident_LastName
-		                try 
-		                {
-		    				RunnerClass.pendingLeases[i][5] = Current_Resident_LastName;
-		                }
-		                catch(Exception e)
-		                {
-		                	RunnerClass.pendingLeases[i][5] = "";
-		                }
-		              //Utility_ConnectionRequest
-		                try 
-		                {
-		    				RunnerClass.pendingLeases[i][6] = Utility_ConnectionRequest;
-		                }
-		                catch(Exception e)
-		                {
-		                	RunnerClass.pendingLeases[i][6] = "";
-		                }
-		              //SetConstruction_Codeto
-		                try 
-		                {
-		    				RunnerClass.pendingLeases[i][7] = SetConstruction_Codeto;
-		                }
-		                catch(Exception e)
-		                {
-		                	RunnerClass.pendingLeases[i][7] = "";
-		                }
-		              //FilterSize
-		                try 
-		                {
-		    				RunnerClass.pendingLeases[i][8] = FilterSize;
-		                }
-		                catch(Exception e)
-		                {
-		                	RunnerClass.pendingLeases[i][8] = "";
-		                }
-		              //PossesionConfirmedDate
-		                try 
-		                {
-		    				RunnerClass.pendingLeases[i][9] = PossesionConfirmedDate;
-		                }
-		                catch(Exception e)
-		                {
-		                	RunnerClass.pendingLeases[i][9] = "";
-		                }
-		              //TurnOver_HandledBy
-		                try 
-		                {
-		    				RunnerClass.pendingLeases[i][10] = TurnOver_HandledBy;
-		                }
-		                catch(Exception e)
-		                {
-		                	RunnerClass.pendingLeases[i][10] = "";
-		                }
-		              //TurnEstimate_SubmissionDate
-		                try 
-		                {
-		    				RunnerClass.pendingLeases[i][11] = TurnEstimate_SubmissionDate;
-		                }
-		                catch(Exception e)
-		                {
-		                	RunnerClass.pendingLeases[i][11] = "";
-		                }
-		              //TurnEstimatedCost
-		                try 
-		                {
-		    				RunnerClass.pendingLeases[i][12] = TurnEstimatedCost;
-		                }
-		                catch(Exception e)
-		                {
-		                	RunnerClass.pendingLeases[i][12] = "";
-		                }
-		              //TurnApprovalDate
-		                try 
-		                {
-		    				RunnerClass.pendingLeases[i][13] = TurnApprovalDate;
-		                }
-		                catch(Exception e)
-		                {
-		                	RunnerClass.pendingLeases[i][13] = "";
-		                }
-		              //TurnStateDate
-		                try 
-		                {
-		    				RunnerClass.pendingLeases[i][14] = TurnStateDate;
-		                }
-		                catch(Exception e)
-		                {
-		                	RunnerClass.pendingLeases[i][14] = "";
-		                }
-		              //TurnEstimated_CompletionDate
-		                try 
-		                {
-		    				RunnerClass.pendingLeases[i][15] = TurnEstimated_CompletionDate;
-		                }
-		                catch(Exception e)
-		                {
-		                	RunnerClass.pendingLeases[i][15] = "";
-		                }
-		              //TurnActual_CompletionDate
-		                try 
-		                {
-		    				RunnerClass.pendingLeases[i][16] = TurnActual_CompletionDate;
-		                }
-		                catch(Exception e)
-		                {
-		                	RunnerClass.pendingLeases[i][16] = "";
-		                }
-		              //TurnActualCost
-		                try 
-		                {
-		    				RunnerClass.pendingLeases[i][17] = TurnActualCost;
-		                }
-		                catch(Exception e)
-		                {
-		                	RunnerClass.pendingLeases[i][17] = "";
-		                }
-		              //Turn_QCCompletedDate
-		                try 
-		                {
-		    				RunnerClass.pendingLeases[i][18] = Turn_QCCompletedDate;
-		                }
-		                catch(Exception e)
-		                {
-		                	RunnerClass.pendingLeases[i][18] = "";
-		                }
-		              //LeasingLockbox_SerialNumber
-		                try 
-		                {
-		    				RunnerClass.pendingLeases[i][19] = LeasingLockbox_SerialNumber;
-		                }
-		                catch(Exception e)
-		                {
-		                	RunnerClass.pendingLeases[i][19] = "";
-		                }
-		              //Last_vacantVisit
-		                try 
-		                {
-		    				RunnerClass.pendingLeases[i][20] = Last_vacantVisit;
-		                }
-		                catch(Exception e)
-		                {
-		                	RunnerClass.pendingLeases[i][20] = "";
-		                }
-		    				i++;
-		            }	
-		            System.out.println("Total Pending Leases  = " +RunnerClass.pendingLeases.length);
-		            rs.close();
-		            stmt.close();
-		            con.close();
-		 return true;
-		}
-		catch(Exception e) 
-		{
-			e.printStackTrace();
-		 return false;
-		}
+	    try 
+	    {
+	        Connection con = null;
+	        Statement stmt = null;
+	        ResultSet rs = null;
+	        con = DriverManager.getConnection(AppConfig.connectionUrl);
+	        String SQL = pendingLeasesQuery;
+	        stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+	        rs = stmt.executeQuery(SQL);
+	        int rows = 0;
+	        if (rs.last()) 
+	        {
+	            rows = rs.getRow();
+	            // Move to beginning
+	            rs.beforeFirst();
+	        }
+	        System.out.println("No of Rows = " + rows);
+	        RunnerClass.pendingLeases = new String[rows][23];
+	        int i = 0;
+	        while (rs.next()) 
+	        {
+	        	 String ID;
+	            String unitEntityID;
+	            String company;
+	            String leaseEntityID;
+	            String address;
+	            String current_Resident_FirstName;
+	            String current_Resident_LastName;
+	            String utility_ConnectionRequest;
+	            String setConstruction_Codeto;
+	            String filterSize;
+	            String possesionConfirmedDate;
+	            String turnOver_HandledBy;
+	            String turnEstimate_SubmissionDate;
+	            String turnEstimatedCost;
+	            String turnApprovalDate;
+	            String turnStateDate;
+	            String turnEstimated_CompletionDate;
+	            String turnActual_CompletionDate;
+	            String turnActualCost;
+	            String turn_QCCompletedDate;
+	            String leasingLockbox_SerialNumber;
+	            String last_vacantVisit;
+	            String automationStatus;
+
+	           
+	            try {
+	                ID = rs.getString("ID");
+	            } catch (Exception e) {
+	                ID = "";
+	            }
+	            try 
+	            {
+	                unitEntityID = rs.getString("Unit_Entity_ID");
+	            } catch (Exception e) 
+	            {
+	                unitEntityID = "";
+	            }
+
+	            try 
+	            {
+	                company = rs.getString("Company_Name");
+	            } catch (Exception e) 
+	            {
+	                company = "";
+	            }
+
+	            try 
+	            {
+	                leaseEntityID = rs.getString("New_Resident_Lease_Entity_ID");
+	            } catch (Exception e) 
+	            {
+	                leaseEntityID = "";
+	            }
+
+	            try 
+	            {
+	                address = rs.getString("Address");
+	            } catch (Exception e) 
+	            {
+	                address = "";
+	            }
+
+	            try 
+	            {
+	                current_Resident_FirstName = rs.getString("Current_Resident_First_Name");
+	            } catch (Exception e)
+	            {
+	                current_Resident_FirstName = "";
+	            }
+
+	            try 
+	            {
+	                current_Resident_LastName = rs.getString("Current_Resident_Last_Name");
+	            } catch (Exception e) 
+	            {
+	                current_Resident_LastName = "";
+	            }
+
+	            try {
+	                utility_ConnectionRequest = rs.getString("Utility_Connection_Request_RC");
+	            } catch (Exception e) 
+	            {
+	                utility_ConnectionRequest = "";
+	            }
+
+	            try 
+	            {
+	                setConstruction_Codeto = rs.getString("Set_Construction_Lockbox_Code_To_TC");
+	            } catch (Exception e) 
+	            {
+	                setConstruction_Codeto = "";
+	            }
+
+	            try 
+	            {
+	                filterSize = rs.getString("Filter_Size_FI");
+	            } catch (Exception e) 
+	            {
+	                filterSize = "";
+	            }
+
+	            try 
+	            {
+	                possesionConfirmedDate = rs.getString("Possession_Confirmed_Date");
+	            } catch (Exception e) 
+	            {
+	                possesionConfirmedDate = "";
+	            }
+
+	            try 
+	            {
+	                turnOver_HandledBy = rs.getString("Turn_Over_Handled_By_TC");
+	            } catch (Exception e) 
+	            {
+	                turnOver_HandledBy = "";
+	            }
+
+	            try 
+	            {
+	                turnEstimate_SubmissionDate = rs.getString("Turn_Estimate_Submission_Date");
+	            } catch (Exception e) 
+	            {
+	                turnEstimate_SubmissionDate = "";
+	            }
+
+	            try 
+	            {
+	                turnEstimatedCost = rs.getString("Turn_Estimated_Cost_TC");
+	            } catch (Exception e) 
+	            {
+	                turnEstimatedCost = "";
+	            }
+
+	            try 
+	            {
+	                turnApprovalDate = rs.getString("Turn_Approval_Date_TC");
+	            } catch (Exception e)
+	            {
+	                turnApprovalDate = "";
+	            }
+
+	            try 
+	            {
+	                turnStateDate = rs.getString("Turn_Start_Date_TC");
+	            } catch (Exception e) 
+	            {
+	                turnStateDate = "";
+	            }
+
+	            try 
+	            {
+	                turnEstimated_CompletionDate = rs.getString("Turn_Estimated_Completion_Date_TC");
+	            } catch (Exception e)
+	            {
+	                turnEstimated_CompletionDate = "";
+	            }
+
+	            try 
+	            {
+	                turnActual_CompletionDate = rs.getString("Turn_Actual_Completion_Date_TC");
+	            } catch (Exception e) 
+	            {
+	                turnActual_CompletionDate = "";
+	            }
+
+	            try 
+	            {
+	                turnActualCost = rs.getString("Turn_Actual_Cost_TC");
+	            } catch (Exception e) 
+	            {
+	                turnActualCost = "";
+	            }
+
+	            try 
+	            {
+	                turn_QCCompletedDate = rs.getString("Turn_QC_Completed_Date_FI");
+	            } catch (Exception e) 
+	            {
+	                turn_QCCompletedDate = "";
+	            }
+
+	            try 
+	            {
+	                leasingLockbox_SerialNumber = rs.getString("Leasing_Lockbox_Serial_Number_FI");
+	            } catch (Exception e)
+	            {
+	                leasingLockbox_SerialNumber = "";
+	            }
+
+	            try 
+	            {
+	                last_vacantVisit = rs.getString("Last_vacant_visit");
+	            } catch (Exception e) 
+	            {
+	                last_vacantVisit = "";
+	            }
+	            try 
+	            {
+	                automationStatus = rs.getString("AutomationStatus");
+	            } catch (Exception e)
+	            {
+	            	automationStatus = "";
+	            }
+
+	            
+	            RunnerClass.pendingLeases[i][0] = ID;
+	            RunnerClass.pendingLeases[i][1] = unitEntityID;
+	            RunnerClass.pendingLeases[i][2] = company;
+	            RunnerClass.pendingLeases[i][3] = leaseEntityID;
+	            RunnerClass.pendingLeases[i][4] = address;
+	            RunnerClass.pendingLeases[i][5] = current_Resident_FirstName;
+	            RunnerClass.pendingLeases[i][6] = current_Resident_LastName;
+	            RunnerClass.pendingLeases[i][7] = utility_ConnectionRequest;
+	            RunnerClass.pendingLeases[i][8] = setConstruction_Codeto;
+	            RunnerClass.pendingLeases[i][9] = filterSize;
+	            RunnerClass.pendingLeases[i][10] = possesionConfirmedDate;
+	            RunnerClass.pendingLeases[i][11] = turnOver_HandledBy;
+	            RunnerClass.pendingLeases[i][12] = turnEstimate_SubmissionDate;
+	            RunnerClass.pendingLeases[i][13] = turnEstimatedCost;
+	            RunnerClass.pendingLeases[i][14] = turnApprovalDate;
+	            RunnerClass.pendingLeases[i][15] = turnStateDate;
+	            RunnerClass.pendingLeases[i][16] = turnEstimated_CompletionDate;
+	            RunnerClass.pendingLeases[i][17] = turnActual_CompletionDate;
+	            RunnerClass.pendingLeases[i][18] = turnActualCost;
+	            RunnerClass.pendingLeases[i][19] = turn_QCCompletedDate;
+	            RunnerClass.pendingLeases[i][20] = leasingLockbox_SerialNumber;
+	            RunnerClass.pendingLeases[i][21] = last_vacantVisit;
+	            RunnerClass.pendingLeases[i][22] = automationStatus;
+	            i++;
+	        }
+	        System.out.println("Total Pending Leases = " + RunnerClass.pendingLeases.length);
+	        rs.close();
+	        stmt.close();
+	        con.close();
+	        return true;
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        return false;
+	    }
 	}
+
 	public static void updateTable(String query)
 	 {
 		    try (Connection conn = DriverManager.getConnection(AppConfig.connectionUrl);
@@ -274,102 +287,88 @@ public class DataBase
 		    }
 	 }
 	
-	public static boolean getCompletedBuildingsList()
+	public static boolean getCompletedBuildingsList() 
 	{
-		try
-		{
-		        Connection con = null;
-		        Statement stmt = null;
-		        ResultSet rs = null;
-		            //Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-		            con = DriverManager.getConnection(AppConfig.connectionUrl);
-		            String SQL = AppConfig.getLeasesWithStatusforCurrentDay;
-		            stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-		           // stmt = con.createStatement();
-		            rs = stmt.executeQuery(SQL);
-		            int rows =0;
-		            if (rs.last()) {
-		            	rows = rs.getRow();
-		            	// Move to beginning
-		            	rs.beforeFirst();
-		            }
-		            System.out.println("No of buildings with status = "+rows);
-		            RunnerClass.completedLeasesList = new String[rows][22];
-		           int  i=0;
-		            while(rs.next())
-		            {
-		            	
-		            	String 	company =  (String) rs.getObject(1);
-		                String  Unit_Entity_ID = (String) rs.getObject(2);
-		                String  Address = (String) rs.getObject(3);
-		                String  Current_Resident_FirstName = (String) rs.getObject(4);
-		                String  Current_Resident_LastName = (String) rs.getObject(5);
-		                String  Utility_ConnectionRequest = (String) rs.getObject(6);
-		                String  SetConstruction_Codeto = (String) rs.getObject(7);
-		                String  FilterSize = (String) rs.getObject(8);
-		                String  PossesionConfirmedDate = (String) rs.getObject(9);
-		                String  TurnOver_HandledBy = (String) rs.getObject(10);
-		                String  TurnEstimate_SubmissionDate = (String) rs.getObject(11);
-		                String  TurnEstimatedCost = (String) rs.getObject(12);
-		                String  TurnApprovalDate = (String) rs.getObject(13);
-		                String  TurnStateDate = (String) rs.getObject(14);
-		                String  TurnEstimated_CompletionDate = (String) rs.getObject(15);
-		                String  TurnActual_CompletionDate = (String) rs.getObject(16);
-		                String  TurnActualCost = (String) rs.getObject(17);
-		                String  Turn_QCCompletedDate = (String) rs.getObject(18);
-		                String  LeasingLockbox_SerialNumber = (String) rs.getObject(19);
-		                String  Last_vacantVisit = (String) rs.getObject(20);
-		                String  Automation_Status = (String) rs.getObject(21);
-		                String  Automation_Notes = (String) rs.getObject(22);
-		                
-		    				//Company
-		    				RunnerClass.completedLeasesList[i][0] = company;
-		    				//Port folio
-		    				RunnerClass.completedLeasesList[i][1] = Unit_Entity_ID;
-		    				//Third Party Unit ID
-		    				RunnerClass.completedLeasesList[i][2] = Address;
-		    				//Third Party Unit ID
-		    				RunnerClass.completedLeasesList[i][3] = Current_Resident_FirstName;
-		    				//Lease Name
-		    				RunnerClass.completedLeasesList[i][4] = Current_Resident_LastName;
-		    				//Lease Name
-		    				RunnerClass.completedLeasesList[i][5] = Utility_ConnectionRequest;
-		    				//Target Deposit
-		    				RunnerClass.completedLeasesList[i][6] = SetConstruction_Codeto;
-		    				//Listing Agent
-		    				RunnerClass.completedLeasesList[i][7] = FilterSize;
-		    				//Status
-		    				RunnerClass.completedLeasesList[i][8] = PossesionConfirmedDate;
-		    				//Notes
-		    				RunnerClass.completedLeasesList[i][9] = TurnOver_HandledBy;
-		    				//Notes
-		    				RunnerClass.completedLeasesList[i][10] = TurnEstimate_SubmissionDate;
-		    				//Notes
-		    				RunnerClass.completedLeasesList[i][11] = TurnEstimatedCost;
-		    				//Notes
-		    				RunnerClass.completedLeasesList[i][12] = TurnApprovalDate;
-		    				//Notes
-		    				RunnerClass.completedLeasesList[i][13] = TurnStateDate;
-		    				RunnerClass.completedLeasesList[i][14] = TurnEstimated_CompletionDate;
-		    				RunnerClass.completedLeasesList[i][15] = TurnActual_CompletionDate;
-		    				RunnerClass.completedLeasesList[i][16] = TurnActualCost;
-		    				RunnerClass.completedLeasesList[i][17] = Turn_QCCompletedDate;
-		    				RunnerClass.completedLeasesList[i][18] = LeasingLockbox_SerialNumber;
-		    				RunnerClass.completedLeasesList[i][19] = Last_vacantVisit;
-		    				RunnerClass.completedLeasesList[i][20] = Automation_Status;
-		    				RunnerClass.completedLeasesList[i][21] = Automation_Notes;
-		    				i++;
-		            }	
-		            rs.close();
-		            stmt.close();
-		            con.close();
-		 return true;
-		}
-		catch(Exception e) 
-		{
-			e.printStackTrace();
-		 return false;
-		}
+	    try 
+	    {
+	        Connection con = null;
+	        Statement stmt = null;
+	        ResultSet rs = null;
+	        con = DriverManager.getConnection(AppConfig.connectionUrl);
+	        String SQL = AppConfig.getLeasesWithStatusforCurrentDay;
+	        stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+	        rs = stmt.executeQuery(SQL);
+	        int rows = 0;
+	        if (rs.last()) 
+	        {
+	            rows = rs.getRow();
+	            // Move to beginning
+	            rs.beforeFirst();
+	        }
+	        System.out.println("No of buildings with status = " + rows);
+	        RunnerClass.completedLeasesList = new String[rows][24];
+	        int i = 0;
+	        while (rs.next()) 
+	        {
+	        	String ID = rs.getString("ID");
+	            String company = rs.getString("Company_Name");
+	            String leaseEntityID = rs.getString("Lease_Entity_ID");
+	            String unitEntityID = rs.getString("Unit_Entity_ID");
+	            String address = rs.getString("Address");
+	            String current_Resident_FirstName = rs.getString("Current_Resident_First_Name");
+	            String current_Resident_LastName = rs.getString("Current_Resident_Last_Name");
+	            String utility_ConnectionRequest = rs.getString("Utility_Connection_Request_RC");
+	            String setConstruction_Codeto = rs.getString("Set_Construction_Lockbox_Code_To_TC");
+	            String filterSize = rs.getString("Filter_Size_FI");
+	            String possesionConfirmedDate = rs.getString("Possession_Confirmed_Date");
+	            String turnOver_HandledBy = rs.getString("Turn_Over_Handled_By_TC");
+	            String turnEstimate_SubmissionDate = rs.getString("Turn_Estimate_Submission_Date");
+	            String turnEstimatedCost = rs.getString("Turn_Estimated_Cost_TC");
+	            String turnApprovalDate = rs.getString("Turn_Approval_Date_TC");
+	            String turnStateDate = rs.getString("Turn_Start_Date_TC");
+	            String turnEstimated_CompletionDate = rs.getString("Turn_Estimated_Completion_Date_TC");
+	            String turnActual_CompletionDate = rs.getString("Turn_Actual_Completion_Date_TC");
+	            String turnActualCost = rs.getString("Turn_Actual_Cost_TC");
+	            String turn_QCCompletedDate = rs.getString("Turn_QC_Completed_Date_FI");
+	            String leasingLockbox_SerialNumber = rs.getString("Leasing_Lockbox_Serial_Number_FI");
+	            String last_vacantVisit = rs.getString("Last_vacant_visit");
+	            String automationStatus = rs.getString("AutomationStatus");
+	            String automation_Notes = rs.getString("Note");
+
+	            RunnerClass.completedLeasesList[i][0] = ID;
+	            RunnerClass.completedLeasesList[i][1] = company;
+	            RunnerClass.completedLeasesList[i][2] = leaseEntityID;
+	            RunnerClass.completedLeasesList[i][3] = unitEntityID;
+	            RunnerClass.completedLeasesList[i][4] = address;
+	            RunnerClass.completedLeasesList[i][5] = current_Resident_FirstName;
+	            RunnerClass.completedLeasesList[i][6] = current_Resident_LastName;
+	            RunnerClass.completedLeasesList[i][7] = utility_ConnectionRequest;
+	            RunnerClass.completedLeasesList[i][8] = setConstruction_Codeto;
+	            RunnerClass.completedLeasesList[i][9] = filterSize;
+	            RunnerClass.completedLeasesList[i][10] = possesionConfirmedDate;
+	            RunnerClass.completedLeasesList[i][11] = turnOver_HandledBy;
+	            RunnerClass.completedLeasesList[i][12] = turnEstimate_SubmissionDate;
+	            RunnerClass.completedLeasesList[i][13] = turnEstimatedCost;
+	            RunnerClass.completedLeasesList[i][14] = turnApprovalDate;
+	            RunnerClass.completedLeasesList[i][15] = turnStateDate;
+	            RunnerClass.completedLeasesList[i][16] = turnEstimated_CompletionDate;
+	            RunnerClass.completedLeasesList[i][17] = turnActual_CompletionDate;
+	            RunnerClass.completedLeasesList[i][18] = turnActualCost;
+	            RunnerClass.completedLeasesList[i][19] = turn_QCCompletedDate;
+	            RunnerClass.completedLeasesList[i][20] = leasingLockbox_SerialNumber;
+	            RunnerClass.completedLeasesList[i][21] = last_vacantVisit;
+	            RunnerClass.completedLeasesList[i][22] = automationStatus;
+	            RunnerClass.completedLeasesList[i][23] = automation_Notes;
+	            i++;
+	        }
+	        rs.close();
+	        stmt.close();
+	        con.close();
+	        return true;
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        return false;
+	    }
 	}
 
 
