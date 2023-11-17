@@ -58,7 +58,7 @@ public class AppConfig
 	   		+ "    AND Company_Name <> 'HomeRiver Group'\n"
 	   		+ "    AND Vacating_Resident_Lease_Entity_ID IS NOT NULL\n"
 	   		+ "    AND Last_vacant_visit IS NOT NULL\n"
-	   		+ "   AND cast(AsofDate as Date) = cast(getdate() as Date)\n"
+	   		+ "   AND cast(AsofDate as Date) = cast(getdate() -1 as Date)\n"
 	   		+ ""
 			    ;
 			   
