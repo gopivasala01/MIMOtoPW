@@ -56,7 +56,7 @@ public class AppConfig
 	   		+ "    FROM Automation.MIMOToPw_Prod\n"
 	   		+ "    WHERE Company_Name IS NOT NULL\n"
 	   		+ "    AND Company_Name <> ''\n"
-	   		+ "    AND AutomationStatus = 'Pending'\n"
+	   		+ "    AND AutomationStatus = 'Failed'\n"
 	   		+ "    AND Company_Name <> 'HomeRiver Group'\n"
 	   		+ "    AND Vacating_Resident_Lease_Entity_ID IS NOT NULL\n"
 	   		+ "    AND Asofdate = (Select MAX(ASofdate) from Automation.MIMOToPw_Prod)"
