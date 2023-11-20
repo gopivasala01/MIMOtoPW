@@ -89,6 +89,7 @@ public class PropertyWare
 			RunnerClass.driver.manage().timeouts().implicitlyWait(100,TimeUnit.SECONDS);
 	        RunnerClass.wait = new WebDriverWait(RunnerClass.driver, Duration.ofSeconds(100));
 	        RunnerClass.driver.navigate().refresh();
+	        Thread.sleep(2000);
 	        PropertyWare.intermittentPopUp();
 	        //if(PropertyWare.checkIfBuildingIsDeactivated()==true)
 	        	//return false;
@@ -124,7 +125,7 @@ public class PropertyWare
 		catch(Exception e)
 		{
 			RunnerClass.failedReason= "Building not found";
-			e.printStackTrace();
+			
 			return false;
 		}
 	}

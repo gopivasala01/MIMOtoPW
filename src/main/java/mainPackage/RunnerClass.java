@@ -159,7 +159,7 @@ public class RunnerClass
 			String query = "";
 			// Update record as Completed
 			if (failedReason.equals(""))
-			    query = "UPDATE Automation.MIMOToPw_Prod SET AutomationStatus='Completed' WHERE ID = '" + ID + "'";
+			    query = "UPDATE Automation.MIMOToPw_Prod SET AutomationStatus='Completed', Note= Null  WHERE ID = '" + ID + "'";
 			else {
 			    if (failedReason.charAt(0) == ',')
 			        failedReason = failedReason.substring(1, failedReason.length());
