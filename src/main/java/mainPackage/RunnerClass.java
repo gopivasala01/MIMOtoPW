@@ -69,11 +69,9 @@ public class RunnerClass
 		//Get all Pending Leases
 		DataBase.getBuildingsList(AppConfig.pendingLeasesQuery);
 		
-		//Initial Browser
-		PropertyWare.initiateBrowser();
-		
-		//Login to PW
 		PropertyWare.signIn();
+		
+		
 		int j=0;
 		while(j<5)
 		{
