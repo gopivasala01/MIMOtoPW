@@ -38,14 +38,6 @@ public class PropertyWare
 	        options.setPageLoadStrategy(PageLoadStrategy.NORMAL); // Or PageLoadStrategy.EAGER if needed
 	        options.setPageLoadTimeout(Duration.ofSeconds(500));
 	        RunnerClass.driver.manage().window().maximize();
-	        RunnerClass.driver.get(AppConfig.URL);
-	        RunnerClass.driver.findElement(Locators.userName).sendKeys(AppConfig.username); 
-	        RunnerClass.driver.findElement(Locators.password).sendKeys(AppConfig.password);
-	        RunnerClass.driver.findElement(Locators.signMeIn).click();
-	        RunnerClass.actions = new Actions(RunnerClass.driver);
-	        RunnerClass.js = (JavascriptExecutor)RunnerClass.driver;
-	        RunnerClass.driver.manage().timeouts().implicitlyWait(2,TimeUnit.SECONDS);
-	        RunnerClass.wait = new WebDriverWait(RunnerClass.driver, Duration.ofSeconds(2));
 		return true;
 		}
 		catch(Exception e)
