@@ -65,13 +65,16 @@ public class PropertyWare
 			return false;
         }
         }
-        catch(Exception e) {}
+        catch(Exception e) {
+        	e.printStackTrace();
+        }
         RunnerClass.driver.manage().timeouts().implicitlyWait(100,TimeUnit.SECONDS);
         RunnerClass.wait = new WebDriverWait(RunnerClass.driver, Duration.ofSeconds(100));
         return true;
 		}
 		catch(Exception e)
 		{
+			e.printStackTrace();
 			System.out.println("Login failed");
 			return false;
 		}

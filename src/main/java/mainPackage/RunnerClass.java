@@ -78,7 +78,7 @@ public class RunnerClass
 		while(j<5)
 		{
 		//Loop over leases
-		for(int i=0;i<pendingLeases.length ;i++) //pendingLeases.length
+		for(int i=0;i<5;i++) //pendingLeases.length
 		{
 			System.out.println("Lease ---- "+(i+1));
 			try
