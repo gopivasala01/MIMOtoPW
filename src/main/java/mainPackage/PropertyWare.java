@@ -20,68 +20,70 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class PropertyWare 
 {
-	public static boolean initiateBrowser()
-	{
-		try
-		{
-			RunnerClass.downloadFilePath = AppConfig.downloadFilePath;
-			Map<String, Object> prefs = new HashMap<String, Object>();
-		    // Use File.separator as it will work on any OS
-		    prefs.put("download.default_directory",
-		    		RunnerClass.downloadFilePath);
-	        // Adding cpabilities to ChromeOptions
+	public static boolean initiateBrowser() {
+	    try {
+	        RunnerClass.downloadFilePath = AppConfig.downloadFilePath;
+
+	        Map<String, Object> prefs = new HashMap<>();
+	        prefs.put("download.default_directory", RunnerClass.downloadFilePath);
+
 	        ChromeOptions options = new ChromeOptions();
 	        options.setExperimentalOption("prefs", prefs);
 	        options.addArguments("--remote-allow-origins=*");
+
 	        WebDriverManager.chromedriver().clearDriverCache().setup();
-	        RunnerClass.driver= new ChromeDriver(options);
-	        options.setPageLoadStrategy(PageLoadStrategy.NORMAL); // Or PageLoadStrategy.EAGER if needed
+	        RunnerClass.driver = new ChromeDriver(options);
+
+	        // Set page load strategy and timeout
+	        options.setPageLoadStrategy(PageLoadStrategy.NORMAL);
 	        options.setPageLoadTimeout(Duration.ofSeconds(500));
+
 	        RunnerClass.driver.manage().window().maximize();
-		return true;
-		}
-		catch(Exception e)
-		{
-			return false;
-		}
+
+	        return true;
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        return false;
+	    } finally {
+	        // Clean up resources if necessary
+	    }
 	}
-	
-	public static boolean signIn()
-	{
-		try
-		{
-		RunnerClass.driver.get(AppConfig.URL);
-        RunnerClass.driver.findElement(Locators.userName).sendKeys(AppConfig.username); 
-        RunnerClass.driver.findElement(Locators.password).sendKeys(AppConfig.password);
-        Thread.sleep(2000);
-        RunnerClass.driver.findElement(Locators.signMeIn).click();
-        Thread.sleep(3000);
-        RunnerClass.actions = new Actions(RunnerClass.driver);
-        RunnerClass.js = (JavascriptExecutor)RunnerClass.driver;
-        RunnerClass.driver.manage().timeouts().implicitlyWait(2,TimeUnit.SECONDS);
-        RunnerClass.wait = new WebDriverWait(RunnerClass.driver, Duration.ofSeconds(2));
-        try
-        {
-        if(RunnerClass.driver.findElement(Locators.loginError).isDisplayed())
-        {
-        	System.out.println("Login failed");
-			return false;
-        }
-        }
-        catch(Exception e) {
-        	e.printStackTrace();
-        }
-        RunnerClass.driver.manage().timeouts().implicitlyWait(100,TimeUnit.SECONDS);
-        RunnerClass.wait = new WebDriverWait(RunnerClass.driver, Duration.ofSeconds(100));
-        return true;
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-			System.out.println("Login failed");
-			return false;
-		}
+
+	public static boolean signIn() {
+	    try {
+	        RunnerClass.driver.get(AppConfig.URL);
+	        RunnerClass.driver.findElement(Locators.userName).sendKeys(AppConfig.username);
+	        RunnerClass.driver.findElement(Locators.password).sendKeys(AppConfig.password);
+	        Thread.sleep(2000);
+	        RunnerClass.driver.findElement(Locators.signMeIn).click();
+	        Thread.sleep(3000);
+
+	        RunnerClass.actions = new Actions(RunnerClass.driver);
+	        RunnerClass.js = (JavascriptExecutor) RunnerClass.driver;
+	        RunnerClass.driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+	        RunnerClass.wait = new WebDriverWait(RunnerClass.driver, Duration.ofSeconds(2));
+
+	        try {
+	            if (RunnerClass.driver.findElement(Locators.loginError).isDisplayed()) {
+	                System.out.println("Login failed");
+	                return false;
+	            }
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        }
+
+	        RunnerClass.driver.manage().timeouts().implicitlyWait(100, TimeUnit.SECONDS);
+	        RunnerClass.wait = new WebDriverWait(RunnerClass.driver, Duration.ofSeconds(100));
+
+	        return true;
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        System.out.println("Login failed");
+	        return false;
+	    }
 	}
+
+
 	
 	public static boolean selectBuilding()
 	{
