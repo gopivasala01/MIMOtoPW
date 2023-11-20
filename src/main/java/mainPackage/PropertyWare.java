@@ -8,6 +8,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -23,18 +24,28 @@ public class PropertyWare
 	{
 		try
 		{
-		RunnerClass.downloadFilePath = AppConfig.downloadFilePath;
-		Map<String, Object> prefs = new HashMap<String, Object>();
-	    // Use File.separator as it will work on any OS
-	    prefs.put("download.default_directory",
-	    		RunnerClass.downloadFilePath);
-        // Adding cpabilities to ChromeOptions
-        ChromeOptions options = new ChromeOptions();
-        options.setExperimentalOption("prefs", prefs);
-        options.addArguments("--remote-allow-origins=*");
-		WebDriverManager.chromedriver().setup();
-        RunnerClass.driver= new ChromeDriver(options);
-        RunnerClass.driver.manage().window().maximize();
+			RunnerClass.downloadFilePath = AppConfig.downloadFilePath;
+			Map<String, Object> prefs = new HashMap<String, Object>();
+		    // Use File.separator as it will work on any OS
+		    prefs.put("download.default_directory",
+		    		RunnerClass.downloadFilePath);
+	        // Adding cpabilities to ChromeOptions
+	        ChromeOptions options = new ChromeOptions();
+	        options.setExperimentalOption("prefs", prefs);
+	        options.addArguments("--remote-allow-origins=*");
+	        WebDriverManager.chromedriver().clearDriverCache().setup();
+	        RunnerClass.driver= new ChromeDriver(options);
+	        options.setPageLoadStrategy(PageLoadStrategy.NORMAL); // Or PageLoadStrategy.EAGER if needed
+	        options.setPageLoadTimeout(Duration.ofSeconds(500));
+	        RunnerClass.driver.manage().window().maximize();
+	        RunnerClass.driver.get(AppConfig.URL);
+	        RunnerClass.driver.findElement(Locators.userName).sendKeys(AppConfig.username); 
+	        RunnerClass.driver.findElement(Locators.password).sendKeys(AppConfig.password);
+	        RunnerClass.driver.findElement(Locators.signMeIn).click();
+	        RunnerClass.actions = new Actions(RunnerClass.driver);
+	        RunnerClass.js = (JavascriptExecutor)RunnerClass.driver;
+	        RunnerClass.driver.manage().timeouts().implicitlyWait(2,TimeUnit.SECONDS);
+	        RunnerClass.wait = new WebDriverWait(RunnerClass.driver, Duration.ofSeconds(2));
 		return true;
 		}
 		catch(Exception e)
