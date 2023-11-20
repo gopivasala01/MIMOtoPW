@@ -15,7 +15,7 @@ public class AppConfig
 	   public static String fromEmailPassword = "Welcome@123";
 	   
 	   public static String toEmail = "gopi.v@beetlerim.com";
-	   public static String CCEmail = "gopi.v@beetlerim.com";
+	   public static String CCEmail = "santosh.p@beetlerim.com";
 	   
 	   public static String mailSubject = "MIMO to PW Report  ";
 	   
@@ -25,7 +25,7 @@ public class AppConfig
 	   
 	  // public static String leaseFetchQuery  = "Select Company, Building,leaseName from Automation.InitialRentsUpdate where Status ='Pending' and Company ='Georgia'";
 	   
-	   public static String pendingLeasesQuery = "SELECT ID,\n"
+	   public static String pendingLeasesQuery = "	SELECT ID,\n"
 	   		+ "    Unit_Entity_ID,\n"
 	   		+ "    Vacating_Resident_Lease_Entity_ID,\n"
 	   		+ "    Status,\n"
@@ -50,15 +50,16 @@ public class AppConfig
 	   		+ "    Turn_QC_Completed_Date_FI,\n"
 	   		+ "    Leasing_Lockbox_Serial_Number_FI,\n"
 	   		+ "    Last_vacant_visit,\n"
-	   		+ "    AutomationStatus\n"
+	   		+ "    AutomationStatus,\n"
+	   		+ "	   AsOfDate,\n"
+	   		+ "	   Note\n"
 	   		+ "    FROM Automation.MIMOToPw_Prod\n"
 	   		+ "    WHERE Company_Name IS NOT NULL\n"
 	   		+ "    AND Company_Name <> ''\n"
-	   		+ "    AND AutomationStatus = 'Failed'\n"
+	   		+ "    AND AutomationStatus = 'Pending'\n"
 	   		+ "    AND Company_Name <> 'HomeRiver Group'\n"
 	   		+ "    AND Vacating_Resident_Lease_Entity_ID IS NOT NULL\n"
-	   		//+ "    AND Last_vacant_visit IS NOT NULL\n"
-	   		+ "    AND Asofdate = (Select MAX(ASofdate) from Automation.MIMOToPw_Prod)\n"
+	   		+ "    AND Asofdate = (Select MAX(ASofdate) from Automation.MIMOToPw_Prod)"
 	   		+ ""
 			    ;
 			   

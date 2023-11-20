@@ -29,268 +29,245 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 public class MailActivities 
 {
 	//Create Excel File with processed data
-			public static void createExcelFileWithProcessedData()
-			{
-				//Get Today's date in MMddyyyy format
-				LocalDate dateObj = LocalDate.now();
-		        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMddyyyy");
-		        String date = dateObj.format(formatter);
-		        System.out.println(date);
-		        String filename ;
-				try   
-				{  
-				filename = AppConfig.excelFileLocation+"\\MIMOtoPW_"+date+".xlsx";  
-				File file = new File(filename);
-				if(!file.exists())
-					file.mkdirs();
-				//if file exists, delete and re create it
-				if(file.exists())
-				{
-					file.delete();
-				}
-				Workbook wb = new XSSFWorkbook();
-				Sheet sheet1 = wb.createSheet("Sheet 1");
-				Row header = sheet1.createRow(0);
-				header.createCell(0).setCellValue("Company");
-				header.createCell(1).setCellValue("Unit Entity ID");
-				header.createCell(2).setCellValue("Address");
-				header.createCell(3).setCellValue("Current Resident FirstName");
-				header.createCell(4).setCellValue("Current Resident LastName");
-				header.createCell(5).setCellValue("Utility ConnectionRequest");
-				header.createCell(6).setCellValue("Set Construction Code to");
-				header.createCell(7).setCellValue("Filter Size");
-				header.createCell(8).setCellValue("Possesion Confirmed Date");
-				header.createCell(9).setCellValue("Turn Over Handled By");
-				header.createCell(10).setCellValue("Turn Estimate Submission Date");
-				header.createCell(11).setCellValue("Turn Estimated Cost");
-				header.createCell(12).setCellValue("Turn Approval Date");
-				header.createCell(13).setCellValue("Turn State Date");
-				header.createCell(14).setCellValue("Turn Estimated Completion Date");
-				header.createCell(15).setCellValue("Turn Actual Completion Date");
-				header.createCell(16).setCellValue("Turn Actual Cost");
-				header.createCell(17).setCellValue("Turn QC Completed Date");
-				header.createCell(18).setCellValue("Leasing Lockbox Serial Number");
-				header.createCell(19).setCellValue("Last_vacantVisit");
-				header.createCell(20).setCellValue("Automation Status");
-				header.createCell(21).setCellValue("Automation Notes");
-				//int totalCurrentDayBuildings = RunnerClass.successBuildings.size()+RunnerClass.failedBuildings.size();
-				//sheet1.createRow(sheet1.getLastRowNum()+totalCurrentDayBuildings);
-				boolean getBuildings =  DataBase.getCompletedBuildingsList();
-				if(getBuildings==true&&RunnerClass.completedLeasesList!=null)
-				{
-					for(int i=0;i<RunnerClass.completedLeasesList.length;i++)
-					{
-						String company = RunnerClass.completedLeasesList[i][0];
-						String Unit_Entity_ID = RunnerClass.completedLeasesList[i][1];
-						String Address = RunnerClass.completedLeasesList[i][2];
-						String Current_Resident_FirstName = RunnerClass.completedLeasesList[i][3];
-						String Current_Resident_LastName = RunnerClass.completedLeasesList[i][4];
-						String Utility_ConnectionRequest = RunnerClass.completedLeasesList[i][5];
-						String SetConstruction_Codeto = RunnerClass.completedLeasesList[i][6];
-						String FilterSize = RunnerClass.completedLeasesList[i][7];
-						String PossesionConfirmedDate = RunnerClass.completedLeasesList[i][8];
-						String TurnOver_HandledBy = RunnerClass.completedLeasesList[i][9];
-						String TurnEstimate_SubmissionDate = RunnerClass.completedLeasesList[i][10];
-						String TurnEstimatedCost = RunnerClass.completedLeasesList[i][11];
-						String TurnApprovalDate = RunnerClass.completedLeasesList[i][12];
-						String TurnStateDate = RunnerClass.completedLeasesList[i][13];
-						String TurnEstimated_CompletionDate = RunnerClass.completedLeasesList[i][14];
-						String TurnActual_CompletionDate = RunnerClass.completedLeasesList[i][15];
-						String TurnActualCost = RunnerClass.completedLeasesList[i][16];
-						String Turn_QCCompletedDate = RunnerClass.completedLeasesList[i][17];
-						String LeasingLockbox_SerialNumber = RunnerClass.completedLeasesList[i][18];
-						String Last_vacantVisit = RunnerClass.completedLeasesList[i][19];
-						String Automation_Status = RunnerClass.completedLeasesList[i][20];
-						String Automation_Notes = RunnerClass.completedLeasesList[i][21];
-						Row row = sheet1.createRow(1+i);
-						try
-						{
-						row.createCell(0).setCellValue(company);
-						}
-						catch(Exception e) 
-						{company ="";}
-						try
-						{
-						row.createCell(1).setCellValue(Unit_Entity_ID);
-						}
-						catch(Exception e) 
-						{Unit_Entity_ID ="";};
-						try
-						{
-							row.createCell(2).setCellValue(Address);
-						}
-						catch(Exception e)
-						{
-							Address = "";
-						}
-						
-						try
-						{
-						row.createCell(3).setCellValue(Current_Resident_FirstName);
-						}catch(Exception e) 
-						{Current_Resident_FirstName = "";}
-						try
-						{
-							row.createCell(4).setCellValue(Current_Resident_LastName);
-						}
-						catch(Exception e)
-						{
-							Current_Resident_LastName = "";
-						}
-						try
-						{
-						row.createCell(5).setCellValue(Utility_ConnectionRequest);
-						}
-						catch(Exception e)
-						{
-							Utility_ConnectionRequest = "";
-						}
-						try
-						{
-						row.createCell(6).setCellValue(SetConstruction_Codeto);
-						}
-						catch(Exception e)
-						{
-							SetConstruction_Codeto = "";
-						}
-						try
-						{
-						row.createCell(7).setCellValue(FilterSize);
-						}
-						catch(Exception e)
-						{
-							FilterSize = "";
-						}
-						try
-						{
-						row.createCell(8).setCellValue(PossesionConfirmedDate);
-						}
-						catch(Exception e)
-						{
-							PossesionConfirmedDate = "";
-						}
-						try
-						{
-						row.createCell(9).setCellValue(TurnOver_HandledBy);
-						}
-						catch(Exception e)
-						{
-							TurnOver_HandledBy = "";
-						}
-						try
-						{
-						row.createCell(10).setCellValue(TurnEstimate_SubmissionDate);
-						}
-						catch(Exception e)
-						{
-							TurnEstimate_SubmissionDate = "";
-						}
-						try
-						{
-						row.createCell(11).setCellValue(TurnEstimatedCost);
-						}
-						catch(Exception e)
-						{
-							TurnEstimatedCost = "";
-						}
-						try
-						{
-						row.createCell(12).setCellValue(TurnApprovalDate);
-						}
-						catch(Exception e)
-						{
-							TurnApprovalDate = "";
-						}
-						try
-						{
-						row.createCell(13).setCellValue(TurnStateDate);
-						}
-						catch(Exception e)
-						{
-							TurnStateDate = "";
-						}
-						try
-						{
-						row.createCell(14).setCellValue(TurnEstimated_CompletionDate);
-						}
-						catch(Exception e)
-						{
-							TurnEstimated_CompletionDate = "";
-						}
-						try
-						{
-						row.createCell(15).setCellValue(TurnActual_CompletionDate);
-						}
-						catch(Exception e)
-						{
-							TurnActual_CompletionDate = "";
-						}
-						try
-						{
-						row.createCell(16).setCellValue(TurnActualCost);
-						}
-						catch(Exception e)
-						{
-							TurnActualCost = "";
-						}
-						try
-						{
-						row.createCell(17).setCellValue(Turn_QCCompletedDate);
-						}
-						catch(Exception e)
-						{
-							Turn_QCCompletedDate = "";
-						}
-						try
-						{
-						row.createCell(18).setCellValue(LeasingLockbox_SerialNumber);
-						}
-						catch(Exception e)
-						{
-							LeasingLockbox_SerialNumber = "";
-						}
-						try
-						{
-						row.createCell(19).setCellValue(Last_vacantVisit);
-						}
-						catch(Exception e)
-						{
-							Last_vacantVisit = "";
-						}
-						try
-						{
-						row.createCell(20).setCellValue(Automation_Status);
-						}
-						catch(Exception e)
-						{
-							Automation_Status = "";
-						}
-						try
-						{
-						row.createCell(21).setCellValue(Automation_Notes);
-						}
-						catch(Exception e)
-						{
-							Automation_Notes = "";
-						}
-					}
-				
-				}
-				
-				System.out.println("Last row in the sheet = "+sheet1.getLastRowNum());
-				FileOutputStream fileOut = new FileOutputStream(filename);  
-				wb.write(fileOut);
-				wb.close();
-				fileOut.close();  
-				System.out.println("Excel file has been generated successfully.");  
-				MailActivities.sendFileToMail(filename);
-				}   
-				catch (Exception e)   
-				{  
-				e.printStackTrace();  
-				}  
-				
-			}
+	public static void createExcelFileWithProcessedData() {
+        LocalDate dateObj = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd-yyyy");
+        String date = dateObj.format(formatter);
+        System.out.println(date);
+        String filename;
+        try {
+            filename = AppConfig.excelFileLocation + "\\MIMOtoPW_" + date + ".xlsx";
+            File file = new File(filename);
+            if (!file.exists())
+                file.mkdirs();
+
+            // If the file exists, delete and recreate it
+            if (file.exists()) {
+                file.delete();
+            }
+
+            Workbook wb = new XSSFWorkbook();
+            Sheet sheet1 = wb.createSheet("Sheet 1");
+            Row header = sheet1.createRow(0);
+
+            String[] headers = { "ID", "Company", "Unit Entity ID", "Lease Entity ID", "Address",
+                    "Current Resident First Name", "Current Resident Last Name", "Utility Connection Request",
+                    "Lock Box Code", "Filter Other", "MOI Inspection Date", "Turn Over Handled By",
+                    "Turn Estimate Submission Date", "Turn Estimate Cost", "Turn Approval Date", "Turn Start Date",
+                    "Turn Target Completion Date", "Turn Actual Completion Date", "Turn Actual Cost",
+                    "Turn QC Completed Date", "Code Box Active", "Last Vacant Visit" };
+
+            for (int i = 0; i < headers.length; i++) {
+                header.createCell(i).setCellValue(headers[i]);
+            }
+
+            boolean getBuildings = DataBase.getCompletedBuildingsList();
+
+            if (getBuildings && RunnerClass.pendingLeases != null) {
+                for (int i = 0; i < RunnerClass.pendingLeases.length; i++) {
+                    String ID = RunnerClass.pendingLeases[i][0];
+                    String company = RunnerClass.pendingLeases[i][2];
+                    String unitEntityID = RunnerClass.pendingLeases[i][1];
+                    String leaseEntityID = RunnerClass.pendingLeases[i][3];
+                    String address = RunnerClass.pendingLeases[i][4];
+                    String currentResidentFirstName = RunnerClass.pendingLeases[i][5];
+                    String currentResidentLastName = RunnerClass.pendingLeases[i][6];
+                    String utilityConnectionRequest = RunnerClass.pendingLeases[i][7];
+                    String lockBoxCode = RunnerClass.pendingLeases[i][20];
+                    String filterOther = RunnerClass.pendingLeases[i][9];
+                    String MOIInspectionDate = RunnerClass.pendingLeases[i][10].trim();
+                    String turnOverHandledBy = RunnerClass.pendingLeases[i][11];
+                    String turnEstimateSubmissionDate = RunnerClass.pendingLeases[i][12].trim();
+                    String turnEstimateCost = RunnerClass.pendingLeases[i][13];
+                    String turnApprovalDate = RunnerClass.pendingLeases[i][14].trim();
+                    String turnStartDate = RunnerClass.pendingLeases[i][15].trim();
+                    String turnTargetCompletionDate = RunnerClass.pendingLeases[i][16].trim();
+                    String turnActualCompletionDate = RunnerClass.pendingLeases[i][17].trim();
+                    String turnActualCost = RunnerClass.pendingLeases[i][18];
+                    String turnQCCompletedDate = RunnerClass.pendingLeases[i][19].trim();
+                    String codeBoxActive = RunnerClass.pendingLeases[i][8];
+                    String lastVacantVisit = RunnerClass.pendingLeases[i][21].trim();
+
+                 // Inside the loop where rows are created
+                    
+                        // Previous code for extracting data from the array
+
+                 // Inside the loop where rows are created
+                    
+                        // Previous code for extracting data from the array
+
+                        Row row = sheet1.createRow(1 + i);
+
+                        try {
+                            row.createCell(0).setCellValue(ID);
+                        } catch (Exception e) {
+                            ID = "";
+                            row.createCell(0).setCellValue(ID);
+                        }
+
+                        try {
+                            row.createCell(1).setCellValue(company);
+                        } catch (Exception e) {
+                            company = "";
+                            row.createCell(1).setCellValue(company);
+                        }
+
+                        try {
+                            row.createCell(2).setCellValue(unitEntityID);
+                        } catch (Exception e) {
+                            unitEntityID = "";
+                            row.createCell(2).setCellValue(unitEntityID);
+                        }
+
+                        try {
+                            row.createCell(3).setCellValue(leaseEntityID);
+                        } catch (Exception e) {
+                            leaseEntityID = "";
+                            row.createCell(3).setCellValue(leaseEntityID);
+                        }
+
+                        try {
+                            row.createCell(4).setCellValue(address);
+                        } catch (Exception e) {
+                            address = "";
+                            row.createCell(4).setCellValue(address);
+                        }
+
+                        try {
+                            row.createCell(5).setCellValue(currentResidentFirstName);
+                        } catch (Exception e) {
+                            currentResidentFirstName = "";
+                            row.createCell(5).setCellValue(currentResidentFirstName);
+                        }
+
+                        try {
+                            row.createCell(6).setCellValue(currentResidentLastName);
+                        } catch (Exception e) {
+                            currentResidentLastName = "";
+                            row.createCell(6).setCellValue(currentResidentLastName);
+                        }
+
+                        try {
+                            row.createCell(7).setCellValue(utilityConnectionRequest);
+                        } catch (Exception e) {
+                            utilityConnectionRequest = "";
+                            row.createCell(7).setCellValue(utilityConnectionRequest);
+                        }
+
+                        try {
+                            row.createCell(8).setCellValue(lockBoxCode);
+                        } catch (Exception e) {
+                            lockBoxCode = "";
+                            row.createCell(8).setCellValue(lockBoxCode);
+                        }
+
+                        try {
+                            row.createCell(9).setCellValue(filterOther);
+                        } catch (Exception e) {
+                            filterOther = "";
+                            row.createCell(9).setCellValue(filterOther);
+                        }
+
+                        try {
+                            row.createCell(10).setCellValue(MOIInspectionDate);
+                        } catch (Exception e) {
+                            MOIInspectionDate = "";
+                            row.createCell(10).setCellValue(MOIInspectionDate);
+                        }
+
+                        try {
+                            row.createCell(11).setCellValue(turnOverHandledBy);
+                        } catch (Exception e) {
+                            turnOverHandledBy = "";
+                            row.createCell(11).setCellValue(turnOverHandledBy);
+                        }
+
+                        try {
+                            row.createCell(12).setCellValue(turnEstimateSubmissionDate);
+                        } catch (Exception e) {
+                            turnEstimateSubmissionDate = "";
+                            row.createCell(12).setCellValue(turnEstimateSubmissionDate);
+                        }
+
+                        try {
+                            row.createCell(13).setCellValue(turnEstimateCost);
+                        } catch (Exception e) {
+                            turnEstimateCost = "";
+                            row.createCell(13).setCellValue(turnEstimateCost);
+                        }
+
+                        try {
+                            row.createCell(14).setCellValue(turnApprovalDate);
+                        } catch (Exception e) {
+                            turnApprovalDate = "";
+                            row.createCell(14).setCellValue(turnApprovalDate);
+                        }
+
+                        try {
+                            row.createCell(15).setCellValue(turnStartDate);
+                        } catch (Exception e) {
+                            turnStartDate = "";
+                            row.createCell(15).setCellValue(turnStartDate);
+                        }
+
+                        try {
+                            row.createCell(16).setCellValue(turnTargetCompletionDate);
+                        } catch (Exception e) {
+                            turnTargetCompletionDate = "";
+                            row.createCell(16).setCellValue(turnTargetCompletionDate);
+                        }
+
+                        try {
+                            row.createCell(17).setCellValue(turnActualCompletionDate);
+                        } catch (Exception e) {
+                            turnActualCompletionDate = "";
+                            row.createCell(17).setCellValue(turnActualCompletionDate);
+                        }
+
+                        try {
+                            row.createCell(18).setCellValue(turnActualCost);
+                        } catch (Exception e) {
+                            turnActualCost = "";
+                            row.createCell(18).setCellValue(turnActualCost);
+                        }
+
+                        try {
+                            row.createCell(19).setCellValue(turnQCCompletedDate);
+                        } catch (Exception e) {
+                            turnQCCompletedDate = "";
+                            row.createCell(19).setCellValue(turnQCCompletedDate);
+                        }
+
+                        try {
+                            row.createCell(20).setCellValue(codeBoxActive);
+                        } catch (Exception e) {
+                            codeBoxActive = "";
+                            row.createCell(20).setCellValue(codeBoxActive);
+                        }
+
+                        try {
+                            row.createCell(21).setCellValue(lastVacantVisit);
+                        } catch (Exception e) {
+                            lastVacantVisit = "";
+                            row.createCell(21).setCellValue(lastVacantVisit);
+                        }
+                    }
+            }
+
+
+
+            System.out.println("Last row in the sheet = " + sheet1.getLastRowNum());
+            FileOutputStream fileOut = new FileOutputStream(filename);
+            wb.write(fileOut);
+            wb.close();
+            fileOut.close();
+            System.out.println("Excel file has been generated successfully.");
+            MailActivities.sendFileToMail(filename);
+         
+            }catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 			
 			public static void sendFileToMail(String fileName) 
 			   {
