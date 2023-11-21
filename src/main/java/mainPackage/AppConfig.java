@@ -57,7 +57,7 @@ public class AppConfig
 	   		+ "    AND Company_Name <> ''\n"
 	   		+ "    AND AutomationStatus = 'Pending'\n"
 	   		+ "    AND Company_Name <> 'HomeRiver Group'\n"
-	   		+ "    AND Asofdate = (Select MAX(ASofdate) from Automation.MIMOToPw_Prod)"
+	   		+ "    AND AsOfDate ='2023-11-20 07:00:07'"
 		   		+ ""
 				    ;
 			   
