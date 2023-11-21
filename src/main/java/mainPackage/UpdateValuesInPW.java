@@ -97,7 +97,7 @@ public class UpdateValuesInPW
         	e.printStackTrace();
         	RunnerClass.failedReason = RunnerClass.failedReason + ", Lock Box Code";
         }
-       //Filter - Other
+      /* //Filter - Other
         try
         {
         	if(RunnerClass.filter_Other==null)//||!RunnerClass.filter_Other.equals(""))
@@ -298,7 +298,7 @@ public class UpdateValuesInPW
         {
         	e.printStackTrace();
         	RunnerClass.failedReason = RunnerClass.failedReason + ", Turn QC Completed Date";
-        }
+        }*/
       //Code box Active
         try
         {
@@ -316,7 +316,7 @@ public class UpdateValuesInPW
         	e.printStackTrace();
         	RunnerClass.failedReason = RunnerClass.failedReason + ", Code box Active";
         }
-      //Last Vacant Visit
+     /* //Last Vacant Visit
         try
         {
         	if(RunnerClass.lastVacantVisit==null)//!RunnerClass.lastVacantVisit.equals(""))
@@ -332,7 +332,7 @@ public class UpdateValuesInPW
         {
         	e.printStackTrace();
         	RunnerClass.failedReason = RunnerClass.failedReason + ", Last Vacant Visit";
-        }
+        }*/
         try
         {
         //Save Building
