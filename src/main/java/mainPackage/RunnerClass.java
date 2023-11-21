@@ -89,7 +89,7 @@ public class RunnerClass
 				current_Resident_FirstName = RunnerClass.pendingLeases[i][5];
 				Current_Resident_LastName = RunnerClass.pendingLeases[i][6];
 				Utility_ConnectionRequest = RunnerClass.pendingLeases[i][7];
-				lockBoxCode = RunnerClass.pendingLeases[i][20];
+				codeBoxActive = RunnerClass.pendingLeases[i][8];
 				filter_Other = RunnerClass.pendingLeases[i][9];
 				MOIInspectionDate = RunnerClass.pendingLeases[i][10].trim().split(" ")[0].replaceAll("[a-zA-Z]", "");
 				turnOverHandledBy = RunnerClass.pendingLeases[i][11];
@@ -101,7 +101,7 @@ public class RunnerClass
 				turnActualCompletionDate = RunnerClass.pendingLeases[i][17].trim().split(" ")[0].replaceAll("[a-zA-Z]", "");
 				turnActualCost = RunnerClass.pendingLeases[i][18];
 				turnQCCompletedDate = RunnerClass.pendingLeases[i][19].trim().split(" ")[0].replaceAll("[a-zA-Z]", "");
-				codeBoxActive = RunnerClass.pendingLeases[i][8];
+				lockBoxCode = RunnerClass.pendingLeases[i][20];
 				lastVacantVisit = RunnerClass.pendingLeases[i][21].trim().split(" ")[0].replaceAll("[a-zA-Z]", "");
 
 			

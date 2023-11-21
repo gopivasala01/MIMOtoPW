@@ -6,6 +6,9 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.NoAlertPresentException;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -52,7 +55,7 @@ public class UpdateValuesInPW
 			 Thread.sleep(2000);
 			 try
 			 {
-				 RunnerClass.driver.switchTo().alert().accept();
+				 handleAlerts();
 			 }
 			 catch(Exception e) {}
 			 try
@@ -97,8 +100,8 @@ public class UpdateValuesInPW
         	e.printStackTrace();
         	RunnerClass.failedReason = RunnerClass.failedReason + ", Lock Box Code";
         }
-      /* //Filter - Other
-        try
+       //Filter - Other
+        /*try
         {
         	if(RunnerClass.filter_Other==null)//||!RunnerClass.filter_Other.equals(""))
         		RunnerClass.filter_Other="";
@@ -264,23 +267,30 @@ public class UpdateValuesInPW
         	RunnerClass.failedReason = RunnerClass.failedReason + ", Turn Actual Completion Date";
         }
       //Turn Actual Cost
-        try
-        {
-        	if(RunnerClass.turnActualCost==null)//!RunnerClass.turnActualCost.equals(""))
-        		RunnerClass.turnActualCost="";
-        	RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.turnActualCost)).build().perform();
-        	RunnerClass.js.executeScript("window.scrollBy(0,100)");
-        	RunnerClass.driver.findElement(Locators.turnActualCost).click();
-        	RunnerClass.driver.findElement(Locators.turnActualCost).clear();
-        	RunnerClass.driver.findElement(Locators.turnActualCost).sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.DELETE));
-        	RunnerClass.driver.findElement(Locators.turnActualCost).sendKeys(RunnerClass.turnActualCost);
-        	Thread.sleep(2000);
+        try {
+            if (RunnerClass.turnActualCost == null) {
+                RunnerClass.turnActualCost = "";
+            }
+
+            WebDriverWait wait = new WebDriverWait(RunnerClass.driver, Duration.ofSeconds(10)); // Use Duration instead of int
+            WebElement turnActualCostElement = wait.until(ExpectedConditions.elementToBeClickable(Locators.turnActualCost));
+
+            RunnerClass.actions.moveToElement(turnActualCostElement).build().perform();
+            RunnerClass.js.executeScript("window.scrollBy(0,100)");
+
+            turnActualCostElement.click();
+            turnActualCostElement.clear();
+            turnActualCostElement.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
+            turnActualCostElement.sendKeys(RunnerClass.turnActualCost);
+
+            Thread.sleep(2000);
+        } catch (Exception e) {
+            e.printStackTrace();
+            RunnerClass.failedReason = RunnerClass.failedReason + ", Turn Actual Cost";
         }
-        catch(Exception e)
-        {
-        	e.printStackTrace();
-        	RunnerClass.failedReason = RunnerClass.failedReason + ", Turn Actual Cost";
-        }
+
+
+
       //Turn QC Completed Date
         try
         {
@@ -298,8 +308,8 @@ public class UpdateValuesInPW
         {
         	e.printStackTrace();
         	RunnerClass.failedReason = RunnerClass.failedReason + ", Turn QC Completed Date";
-        }*/
-      //Code box Active
+        }
+     */ //Code box Active
         try
         {
         	if(RunnerClass.codeBoxActive==null)//!RunnerClass.codeBoxActive.equals(""))
@@ -316,8 +326,8 @@ public class UpdateValuesInPW
         	e.printStackTrace();
         	RunnerClass.failedReason = RunnerClass.failedReason + ", Code box Active";
         }
-     /* //Last Vacant Visit
-        try
+     //Last Vacant Visit
+       /* try
         {
         	if(RunnerClass.lastVacantVisit==null)//!RunnerClass.lastVacantVisit.equals(""))
         		RunnerClass.lastVacantVisit="";
@@ -364,8 +374,15 @@ public class UpdateValuesInPW
         	return false;
         }
         
+        
 	}
 	
-	
-
+	private static void handleAlerts() {
+        try {
+            Alert alert = RunnerClass.driver.switchTo().alert();
+            alert.accept();
+        } catch (NoAlertPresentException ignored) {
+            // Alert not present, continue with the rest of the code
+        }
+	}
 }
