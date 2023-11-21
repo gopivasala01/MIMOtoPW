@@ -101,7 +101,7 @@ public class UpdateValuesInPW
         	RunnerClass.failedReason = RunnerClass.failedReason + ", Lock Box Code";
         }
        //Filter - Other
-        /*try
+        try
         {
         	if(RunnerClass.filter_Other==null)//||!RunnerClass.filter_Other.equals(""))
         		RunnerClass.filter_Other="";
@@ -260,6 +260,8 @@ public class UpdateValuesInPW
         	RunnerClass.driver.findElement(Locators.turnActualCompletionDate).sendKeys(RunnerClass.turnActualCompletionDate);
         	RunnerClass.actions.sendKeys(Keys.ESCAPE).build().perform();
         	Thread.sleep(2000);
+        	RunnerClass.driver.findElement(By.xpath("//*[text()=\"Turn Actual Completion Date\"]")).click();
+
         }
         catch(Exception e)
         {
@@ -309,7 +311,7 @@ public class UpdateValuesInPW
         	e.printStackTrace();
         	RunnerClass.failedReason = RunnerClass.failedReason + ", Turn QC Completed Date";
         }
-     */ //Code box Active
+      //Code box Active
         try
         {
         	if(RunnerClass.codeBoxActive==null)//!RunnerClass.codeBoxActive.equals(""))
@@ -327,7 +329,7 @@ public class UpdateValuesInPW
         	RunnerClass.failedReason = RunnerClass.failedReason + ", Code box Active";
         }
      //Last Vacant Visit
-       /* try
+        try
         {
         	if(RunnerClass.lastVacantVisit==null)//!RunnerClass.lastVacantVisit.equals(""))
         		RunnerClass.lastVacantVisit="";
@@ -342,7 +344,7 @@ public class UpdateValuesInPW
         {
         	e.printStackTrace();
         	RunnerClass.failedReason = RunnerClass.failedReason + ", Last Vacant Visit";
-        }*/
+        }
         try
         {
         //Save Building
