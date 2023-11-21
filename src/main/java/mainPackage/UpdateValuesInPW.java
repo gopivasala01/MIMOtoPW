@@ -89,7 +89,7 @@ public class UpdateValuesInPW
         	RunnerClass.js.executeScript("window.scrollBy(0,100)");
         	RunnerClass.driver.findElement(Locators.lockBoxCode).click();
         	RunnerClass.driver.findElement(Locators.lockBoxCode).clear();
-        	RunnerClass.driver.findElement(Locators.lockBoxCode).sendKeys(RunnerClass.lockBoxCode);
+        	RunnerClass.driver.findElement(Locators.lockBoxCode).sendKeys(RunnerClass.codeBoxActive);
         	Thread.sleep(2000);
         }
         catch(Exception e)
@@ -308,7 +308,7 @@ public class UpdateValuesInPW
         	RunnerClass.js.executeScript("window.scrollBy(0,100)");
         	RunnerClass.driver.findElement(Locators.codeBoxActive).click();
         	RunnerClass.driver.findElement(Locators.codeBoxActive).clear();
-        	RunnerClass.driver.findElement(Locators.codeBoxActive).sendKeys(RunnerClass.codeBoxActive);
+        	RunnerClass.driver.findElement(Locators.codeBoxActive).sendKeys(RunnerClass.lockBoxCode);
         	Thread.sleep(2000);
         }
         catch(Exception e)

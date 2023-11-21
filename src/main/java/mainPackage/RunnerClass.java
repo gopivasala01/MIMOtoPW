@@ -76,7 +76,7 @@ public class RunnerClass
 		while(j<5)
 		{
 		//Loop over leases
-		for(int i=0;i<pendingLeases.length;i++) //pendingLeases.length
+		for(int i=0;i<10;i++) //pendingLeases.length
 		{
 			System.out.println("Lease ---- "+(i+1));
 			try
@@ -91,18 +91,18 @@ public class RunnerClass
 				Utility_ConnectionRequest = RunnerClass.pendingLeases[i][7];
 				lockBoxCode = RunnerClass.pendingLeases[i][20];
 				filter_Other = RunnerClass.pendingLeases[i][9];
-				MOIInspectionDate = RunnerClass.pendingLeases[i][10].trim();//.split(" ")[0].replace("-", "/");
+				MOIInspectionDate = RunnerClass.pendingLeases[i][10].trim().split(" ")[0].replaceAll("[a-zA-Z]", "");
 				turnOverHandledBy = RunnerClass.pendingLeases[i][11];
-				turnEstimateSubmissionDate = RunnerClass.pendingLeases[i][12].trim();//.split(" ")[0].replace("-", "/");
+				turnEstimateSubmissionDate = RunnerClass.pendingLeases[i][12].trim().split(" ")[0].replaceAll("[a-zA-Z]", "");
 				turnEstimateCost = RunnerClass.pendingLeases[i][13];
-				turnApprovalDate = RunnerClass.pendingLeases[i][14].trim();//.split(" ")[0].replace("-", "/");
-				turnStartDate = RunnerClass.pendingLeases[i][15].trim();//.split("")[0].replace("-", "/");
-				turnTargetCompletionDate = RunnerClass.pendingLeases[i][16].trim();//.split(" ")[0].replace("-", "/");
-				turnActualCompletionDate = RunnerClass.pendingLeases[i][17].trim();//.split(" ")[0].replace("-", "/");
+				turnApprovalDate = RunnerClass.pendingLeases[i][14].trim().split(" ")[0].replaceAll("[a-zA-Z]", "");
+				turnStartDate = RunnerClass.pendingLeases[i][15].trim().split(" ")[0].replaceAll("[a-zA-Z]", "");
+				turnTargetCompletionDate = RunnerClass.pendingLeases[i][16].trim().split(" ")[0].replaceAll("[a-zA-Z]", "");
+				turnActualCompletionDate = RunnerClass.pendingLeases[i][17].trim().split(" ")[0].replaceAll("[a-zA-Z]", "");
 				turnActualCost = RunnerClass.pendingLeases[i][18];
-				turnQCCompletedDate = RunnerClass.pendingLeases[i][19].trim();//.split(" ")[0].replace("-", "/");
+				turnQCCompletedDate = RunnerClass.pendingLeases[i][19].trim().split(" ")[0].replaceAll("[a-zA-Z]", "");
 				codeBoxActive = RunnerClass.pendingLeases[i][8];
-				lastVacantVisit = RunnerClass.pendingLeases[i][21].trim();//.split(" ")[0].replace("-", "/");
+				lastVacantVisit = RunnerClass.pendingLeases[i][21].trim().split(" ")[0].replaceAll("[a-zA-Z]", "");
 
 			
 			//Convert Dates
