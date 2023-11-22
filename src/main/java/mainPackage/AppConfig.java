@@ -55,7 +55,7 @@ public class AppConfig
 	   		+ "FROM Automation.MIMOToPw_Prod\n"
 	   		+ "WHERE Company_Name IS NOT NULL\n"
 	   		+ "    AND Company_Name <> ''\n"
-	   		+ "    AND AutomationStatus = 'Failed'\n"
+	   		+ "    AND AutomationStatus = 'Pending'\n"
 	   		+ "    AND Company_Name <> 'HomeRiver Group'\n"
 	   		+ "    AND AsOfDate ='2023-11-20 07:00:07'"
 		   		+ ""
