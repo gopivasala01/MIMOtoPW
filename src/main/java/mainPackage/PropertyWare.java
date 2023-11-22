@@ -86,6 +86,7 @@ public class PropertyWare
 		
 		try
 		{
+			
 			RunnerClass.driver.manage().timeouts().implicitlyWait(100,TimeUnit.SECONDS);
 	        RunnerClass.wait = new WebDriverWait(RunnerClass.driver, Duration.ofSeconds(100));
 	        RunnerClass.driver.navigate().refresh();
@@ -124,8 +125,8 @@ public class PropertyWare
 		}
 		catch(Exception e)
 		{
-			RunnerClass.failedReason= "Building not found";
-			
+;			RunnerClass.failedReason= "Building not found";
+			e.printStackTrace();
 			return false;
 		}
 	}
