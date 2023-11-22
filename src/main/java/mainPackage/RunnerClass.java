@@ -103,7 +103,34 @@ public class RunnerClass
 				turnQCCompletedDate = RunnerClass.pendingLeases[i][19].trim().split(" ")[0].replaceAll("[a-zA-Z]", "");
 				lockBoxCode = RunnerClass.pendingLeases[i][20];
 				lastVacantVisit = RunnerClass.pendingLeases[i][21].trim().split(" ")[0].replaceAll("[a-zA-Z]", "");
-
+				switch(company) 
+				{
+				case "OH":
+				   company= "Ohio";
+				    break;
+				case "Colombus":
+					company= "Ohio";
+					break;
+				case "Missouri":
+				    company = "Columbia - St Louis";
+				    break;
+				case "Indy/IN":
+					company = "Indiana";
+					break;
+				case "Cincinnati":
+					company = "Ohio";
+					break;
+				case "Saint Louis":
+					company = "Columbia - St Louis";
+					break;
+				case "California PFW":
+					company = "California pfw";
+					break;
+				case "Chicago PFW":
+					company = "Chicago pfw";
+					break;
+				
+				}
 			
 			//Convert Dates
 			MOIInspectionDate = CommonMethods.convertDate(MOIInspectionDate);
