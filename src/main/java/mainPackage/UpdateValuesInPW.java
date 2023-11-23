@@ -56,9 +56,10 @@ public class UpdateValuesInPW
 			 Thread.sleep(2000);
 			 try
 			 {
+				 
+				 handleAlerts();
 				 RunnerClass.driver.navigate().refresh();
 			        Thread.sleep(2000);
-				 handleAlerts();
 			 }
 			 
 			 catch(Exception e)
