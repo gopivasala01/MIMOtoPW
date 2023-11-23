@@ -129,7 +129,9 @@ public class RunnerClass
 				case "Chicago PFW":
 					company = "Chicago pfw";
 					break;
-				
+				case "Kansas CIty":
+					company = "Kansas City";
+					break;
 				}
 			
 			//Convert Dates

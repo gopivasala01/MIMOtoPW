@@ -125,6 +125,7 @@ public class PropertyWare
 		catch(Exception e)
 		{
 			RunnerClass.failedReason= "Building not found";
+			e.printStackTrace();
 			
 			return false;
 		}
@@ -159,12 +160,14 @@ public class PropertyWare
 	        if(leaseAvailibilityCheck == false)
 	        {
 	        	RunnerClass.failedReason = "Lease not Found";
+	        	
 	        	return false;
 	        }
 			return true;
 		}
 		catch(Exception e)
 		{
+			e.printStackTrace();
 			return false;
 		}
 	}

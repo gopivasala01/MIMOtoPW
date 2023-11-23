@@ -24,9 +24,45 @@ public class AppConfig
 	   public static String connectionUrl = "jdbc:sqlserver://azrsrv001.database.windows.net;databaseName=HomeRiverDB;user=service_sql02;password=xzqcoK7T;encrypt=true;trustServerCertificate=true;";
 	   
 	  // public static String leaseFetchQuery  = "Select Company, Building,leaseName from Automation.InitialRentsUpdate where Status ='Pending' and Company ='Georgia'";
-	   
-	   public static String pendingLeasesQuery = "EXEC Automation_MIMOtoPWListPull 1"
-				    ;
+	   //  "EXEC Automation_MIMOtoPWListPull 1";
+	   public static String pendingLeasesQuery =  "EXEC Automation_MIMOtoPWListPull 1";
+			   
+			   /*"	Select ID,\r\n"
+	   		+ "    Unit_Entity_ID,\r\n"
+	   		+ "    Vacating_Resident_Lease_Entity_ID,\r\n"
+	   		+ "    Status,\r\n"
+	   		+ "    Address,\r\n"
+	   		+ "    Current_Resident_First_Name,\r\n"
+	   		+ "    Current_Resident_Last_Name,\r\n"
+	   		+ "    Company_Name,\r\n"
+	   		+ "	Leasing_Lockbox_Serial_Number_FI,\r\n"
+	   		+ "    Filter_Size_FI,\r\n"
+	   		+ "    Possession_Confirmed_Date,\r\n"
+	   		+ "    Turn_Over_Handled_By_TC,\r\n"
+	   		+ "    Turn_Estimate_Submission_Date,\r\n"
+	   		+ "    Turn_Estimated_Cost_TC,\r\n"
+	   		+ "    Turn_Approval_Date_TC,\r\n"
+	   		+ "    Turn_Start_Date_TC,\r\n"
+	   		+ "    Turn_Estimated_Completion_Date_TC,\r\n"
+	   		+ "    Turn_Actual_Completion_Date_TC,\r\n"
+	   		+ "    Turn_Actual_Cost_TC,\r\n"
+	   		+ "	Turn_QC_Completed_Date_FI,\r\n"
+	   		+ "    Set_Construction_Lockbox_Code_To_TC,\r\n"
+	   		+ "    Last_vacant_visit,\r\n"
+	   		+ "    AutomationStatus,\r\n"
+	   		+ "	AsOfDate,\r\n"
+	   		+ "	Note from Automation.MIMOToPw_Prod \r\n"
+	   		+ "	--Where AsOfDate = '2023-11-20 07:00:07'\r\n"
+	   		+ "	WHERE Company_Name IS NOT NULL\r\n"
+	   		+ " AND Company_Name <> ''\r\n"
+	   		+ " AND (AutomationStatus = 'Pending' or ( AutomationStatus = 'Failed' And Note = 'Building Not Found'))\r\n"
+	   		+ " AND Company_Name <> 'HomeRiver Group'\r\n"
+	   		+ "	--AND  AutomationStatus = 'Pending' "
+	   		+ " --And Note = 'Building Not Found'\r\n"
+	   		+ " AND Vacating_Resident_Lease_Entity_ID IS NOT NULL\r\n"
+	   		+ " AND Last_vacant_visit IS NOT NULL \r\n"
+	   		+ "	AND Asofdate = '2023-11-21 13:01:07' "  ; */                           
+				    
 			   
 
 
