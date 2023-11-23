@@ -56,8 +56,11 @@ public class UpdateValuesInPW
 			 Thread.sleep(2000);
 			 try
 			 {
+				 RunnerClass.driver.navigate().refresh();
+			        Thread.sleep(2000);
 				 handleAlerts();
 			 }
+			 
 			 catch(Exception e)
 			{e.printStackTrace();}
 			 try
