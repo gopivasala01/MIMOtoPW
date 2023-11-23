@@ -108,7 +108,7 @@ public class RunnerClass
 				case "OH":
 				   company= "Ohio";
 				    break;
-				case "Colombus":
+				case "Columbus":
 					company= "Ohio";
 					break;
 				case "Missouri":
