@@ -58,7 +58,7 @@ public class UpdateValuesInPW
 			 {
 				 
 				 handleAlerts();
-				 RunnerClass.driver.navigate().refresh();
+				 //RunnerClass.driver.navigate().refresh();
 			        Thread.sleep(2000);
 			 }
 			 

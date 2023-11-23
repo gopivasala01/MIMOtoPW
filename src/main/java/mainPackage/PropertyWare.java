@@ -86,7 +86,7 @@ public class PropertyWare
 	        RunnerClass.wait = new WebDriverWait(RunnerClass.driver, Duration.ofSeconds(100));
 
 	        // Refresh the page and handle intermittent pop-ups
-	        RunnerClass.driver.navigate().refresh();
+	       // RunnerClass.driver.navigate().refresh();
 	        Thread.sleep(2000);
 	        PropertyWare.intermittentPopUp();
 

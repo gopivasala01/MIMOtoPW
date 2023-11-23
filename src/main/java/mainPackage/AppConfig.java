@@ -26,9 +26,9 @@ public class AppConfig
 	  // public static String leaseFetchQuery  = "Select Company, Building,leaseName from Automation.InitialRentsUpdate where Status ='Pending' and Company ='Georgia'";
 
 	   //  "EXEC Automation_MIMOtoPWListPull 1";
-	   public static String pendingLeasesQuery =  
+	   public static String pendingLeasesQuery =  "EXEC Automation_MIMOtoPWListPull 1";
 			   
-			   "Select ID,\r\n"
+			   /*"SELECT ID,\r\n"
 			   + "    Unit_Entity_ID,\r\n"
 			   + "    Vacating_Resident_Lease_Entity_ID,\r\n"
 			   + "    Status,\r\n"
@@ -36,7 +36,9 @@ public class AppConfig
 			   + "    Current_Resident_First_Name,\r\n"
 			   + "    Current_Resident_Last_Name,\r\n"
 			   + "    Company_Name,\r\n"
-			   + "	Leasing_Lockbox_Serial_Number_FI,\r\n"
+			   + "	Last_Chance_Save_Renewal_Call_RC,\r\n"
+			   + "    Utility_Connection_Request_RC,\r\n"
+			   + "    Set_Construction_Lockbox_Code_To_TC,\r\n"
 			   + "    Filter_Size_FI,\r\n"
 			   + "    Possession_Confirmed_Date,\r\n"
 			   + "    Turn_Over_Handled_By_TC,\r\n"
@@ -48,24 +50,20 @@ public class AppConfig
 			   + "    Turn_Actual_Completion_Date_TC,\r\n"
 			   + "    Turn_Actual_Cost_TC,\r\n"
 			   + "	Turn_QC_Completed_Date_FI,\r\n"
-			   + "    Set_Construction_Lockbox_Code_To_TC,\r\n"
+			   + "    Leasing_Lockbox_Serial_Number_FI,\r\n"
 			   + "    Last_vacant_visit,\r\n"
 			   + "    AutomationStatus,\r\n"
 			   + "	AsOfDate,\r\n"
-			   + "	Note from Automation.MIMOToPw_Prod \r\n"
-			   + "	Where \r\n"
-			   + "	--AsOfDate = '2023-11-20 07:00:07'\r\n"
-			   + "	Company_Name IS NOT NULL\r\n"
+			   + "	Note\r\n"
+			   + "FROM Automation.MIMOToPw_Prod\r\n"
+			   + "WHERE Company_Name IS NOT NULL\r\n"
 			   + "    AND Company_Name <> ''\r\n"
-			   + "    AND AutomationStatus = 'Failed' And Note = 'Building Not Found'\r\n"
-			   + "    AND Company_Name <> 'HomeRiver Group'\r\n"
-			   + "	--AND  AutomationStatus = 'Pending' \r\n"
+			   + "   AND AutomationStatus = 'Failed'\r\n"
+			   + "   AND (Note = ', Lock Box Code, Filter - Other, MOI Inspection Date, Turnover Handled by, Turn Estimate Submission Date, Turn Estimate Cost, Turn Approval Date, Turn Start Date, Turn Target Completion Date, Turn Actual Completion Date, Turn Actual Cost, Turn QC Completed Date, Code box Active, Last Vacant Visit, Building Fields Could not get updated\r\n"
+			   + "' OR Note = ', Building Fields Could not get updated')\r\n"
 			   + "\r\n"
-			   + "	--And Note = 'Building Not Found'\r\n"
-			   + "    AND Vacating_Resident_Lease_Entity_ID IS NOT NULL\r\n"
-			   + "    AND Last_vacant_visit IS NOT NULL \r\n"
-			   + "	--AND Asofdate = '2023-11-21 13:01:07' \r\n"
-			   + "	AND Asofdate = (Select MAX(ASofdate) from Automation.MIMOToPw_Prod)"  ;                        
+			   + "    AND Company_Name <> 'HomeRiver Group'\r\n"
+			   + "    AND Asofdate = '2023-11-21 13:01:07'"  ;   */                     
 				    
 
 	   
