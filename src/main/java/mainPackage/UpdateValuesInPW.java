@@ -47,11 +47,13 @@ public class UpdateValuesInPW
 		{
 			 RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.cancelLease)).build().perform();
 			 RunnerClass.driver.findElement(Locators.cancelLease).click();
+			 Thread.sleep(2000);
 		}
 		else 
 		{
 			RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.saveLease)).build().perform();
 			 RunnerClass.driver.findElement(Locators.saveLease).click();
+			 Thread.sleep(2000);
 			 
 			 try
 			 {
@@ -93,6 +95,7 @@ public class UpdateValuesInPW
         	RunnerClass.driver.findElement(Locators.lockBoxCode).click();
         	RunnerClass.driver.findElement(Locators.lockBoxCode).clear();
         	RunnerClass.driver.findElement(Locators.lockBoxCode).sendKeys(RunnerClass.codeBoxActive);
+        	Thread.sleep(500);
         	
         }
         catch(Exception e)
@@ -110,7 +113,7 @@ public class UpdateValuesInPW
         	RunnerClass.driver.findElement(Locators.filter_Other).click();
         	RunnerClass.driver.findElement(Locators.filter_Other).clear();
         	RunnerClass.driver.findElement(Locators.filter_Other).sendKeys(RunnerClass.filter_Other);
-        	
+        	Thread.sleep(500);
         }
         catch(Exception e)
         {
@@ -128,7 +131,7 @@ public class UpdateValuesInPW
         	RunnerClass.driver.findElement(Locators.MOIInspectionDate).clear();
         	RunnerClass.driver.findElement(Locators.MOIInspectionDate).sendKeys(RunnerClass.MOIInspectionDate);
         	RunnerClass.actions.sendKeys(Keys.ESCAPE).build().perform();
-        	
+        	Thread.sleep(500);
         }
         catch(Exception e)
         {
@@ -147,7 +150,7 @@ public class UpdateValuesInPW
         		utilityConnectionRequest.selectByValue(RunnerClass.turnOverHandledBy);
         	else
         	utilityConnectionRequest.selectByVisibleText(RunnerClass.turnOverHandledBy);
-        	
+        	Thread.sleep(500);
         }
         catch(Exception e)
         {
@@ -168,7 +171,7 @@ public class UpdateValuesInPW
         	RunnerClass.driver.findElement(Locators.turnEstimateSubmissionDate).clear();
         	RunnerClass.driver.findElement(Locators.turnEstimateSubmissionDate).sendKeys(RunnerClass.turnEstimateSubmissionDate);
         	RunnerClass.actions.sendKeys(Keys.TAB).build().perform();
-        	
+        	Thread.sleep(500);
         }
         catch(Exception e)
         {
@@ -187,7 +190,7 @@ public class UpdateValuesInPW
         	RunnerClass.driver.findElement(Locators.turnEstimateCost).clear();
         	RunnerClass.driver.findElement(Locators.turnEstimateCost).sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.DELETE));
         	RunnerClass.driver.findElement(Locators.turnEstimateCost).sendKeys(RunnerClass.turnEstimateCost);
-        	
+        	Thread.sleep(500);
         }
         catch(Exception e)
         {
@@ -205,7 +208,7 @@ public class UpdateValuesInPW
         	RunnerClass.driver.findElement(Locators.turnApprovalDate).clear();
         	RunnerClass.driver.findElement(Locators.turnApprovalDate).sendKeys(RunnerClass.turnApprovalDate);
         	RunnerClass.actions.sendKeys(Keys.ESCAPE).build().perform();
-        	
+        	Thread.sleep(500);
         }
         catch(Exception e)
         {
@@ -223,7 +226,7 @@ public class UpdateValuesInPW
         	RunnerClass.driver.findElement(Locators.turnStartDate).clear();
         	RunnerClass.driver.findElement(Locators.turnStartDate).sendKeys(RunnerClass.turnStartDate);
         	RunnerClass.actions.sendKeys(Keys.ESCAPE).build().perform();
-        	
+        	Thread.sleep(500);
         }
         catch(Exception e)
         {
@@ -241,7 +244,7 @@ public class UpdateValuesInPW
         	RunnerClass.driver.findElement(Locators.turnTargetCompletionDate).clear();
         	RunnerClass.driver.findElement(Locators.turnTargetCompletionDate).sendKeys(RunnerClass.turnTargetCompletionDate);
         	RunnerClass.actions.sendKeys(Keys.ESCAPE).build().perform();
-        	
+        	Thread.sleep(500);
         }
         catch(Exception e)
         {
@@ -261,6 +264,7 @@ public class UpdateValuesInPW
         	RunnerClass.actions.sendKeys(Keys.ESCAPE).build().perform();
         	
         	RunnerClass.driver.findElement(By.xpath("//*[text()=\"Turn Actual Completion Date\"]")).click();
+        	Thread.sleep(500);
 
         }
         catch(Exception e)
@@ -284,6 +288,7 @@ public class UpdateValuesInPW
             turnActualCostElement.clear();
             turnActualCostElement.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
             turnActualCostElement.sendKeys(RunnerClass.turnActualCost);
+        	Thread.sleep(500);
 
             
         } catch (Exception e) {
@@ -304,6 +309,7 @@ public class UpdateValuesInPW
         	RunnerClass.driver.findElement(Locators.turnQCCompletedDate).clear();
         	RunnerClass.driver.findElement(Locators.turnQCCompletedDate).sendKeys(RunnerClass.turnQCCompletedDate);
         	RunnerClass.actions.sendKeys(Keys.ESCAPE).build().perform();
+        	Thread.sleep(500);
         	
         }
         catch(Exception e)
@@ -321,6 +327,7 @@ public class UpdateValuesInPW
         	RunnerClass.driver.findElement(Locators.codeBoxActive).click();
         	RunnerClass.driver.findElement(Locators.codeBoxActive).clear();
         	RunnerClass.driver.findElement(Locators.codeBoxActive).sendKeys(RunnerClass.lockBoxCode);
+        	Thread.sleep(500);
         	
         }
         catch(Exception e)
@@ -338,6 +345,7 @@ public class UpdateValuesInPW
         	RunnerClass.driver.findElement(Locators.lastVacantVisit).click();
         	RunnerClass.driver.findElement(Locators.lastVacantVisit).clear();
         	RunnerClass.driver.findElement(Locators.lastVacantVisit).sendKeys(RunnerClass.lastVacantVisit);
+        	Thread.sleep(500);
         	
         }
         catch(Exception e)
@@ -352,11 +360,13 @@ public class UpdateValuesInPW
 		{
 			 RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.cancelBuilding)).build().perform();
 			 RunnerClass.driver.findElement(Locators.cancelBuilding).click();
+				Thread.sleep(500);
 		}
 		else 
 		{
 			RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.saveBuilding)).build().perform();
 			 RunnerClass.driver.findElement(Locators.saveBuilding).click();
+				Thread.sleep(500);
 			 
 			 try
 			 {
