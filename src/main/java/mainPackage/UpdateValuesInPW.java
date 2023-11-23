@@ -63,15 +63,7 @@ public class UpdateValuesInPW
 			        Thread.sleep(2000);
 			 }
 			 catch(Exception e) {}
-			 try
-			 {
-			 /*if(RunnerClass.driver.findElement(Locators.saveLease).isDisplayed())
-			 {
-				 RunnerClass.failedReason = RunnerClass.failedReason + ", Lease Fields Could not get updated";
-				 return false;
-			 }*/
-			 }
-			 catch(Exception e) {}
+			 
 		}
         return true;
 		}
