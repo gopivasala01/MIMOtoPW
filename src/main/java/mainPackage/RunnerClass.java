@@ -201,6 +201,8 @@ public class RunnerClass
 			}
 			DataBase.updateTable(query);
 
+			 RunnerClass.driver.navigate().refresh();
+		     Thread.sleep(2000);
 			
 			}
 			catch(Exception e)
