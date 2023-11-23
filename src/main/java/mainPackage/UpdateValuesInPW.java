@@ -47,12 +47,13 @@ public class UpdateValuesInPW
 		{
 			 RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.cancelLease)).build().perform();
 			 RunnerClass.driver.findElement(Locators.cancelLease).click();
+			 Thread.sleep(2000);
 		}
 		else 
 		{
 			RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.saveLease)).build().perform();
 			 RunnerClass.driver.findElement(Locators.saveLease).click();
-			 Thread.sleep(500);
+			 Thread.sleep(2000);
 			 try
 			 {
 				 handleAlerts();
