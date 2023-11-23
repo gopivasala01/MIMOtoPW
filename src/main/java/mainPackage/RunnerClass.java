@@ -103,13 +103,14 @@ public class RunnerClass
 				turnQCCompletedDate = RunnerClass.pendingLeases[i][19].trim().split(" ")[0].replaceAll("[a-zA-Z]", "");
 				lockBoxCode = RunnerClass.pendingLeases[i][20];
 				lastVacantVisit = RunnerClass.pendingLeases[i][21].trim().split(" ")[0].replaceAll("[a-zA-Z]", "");
-
-				
 				switch(company) 
 				{
 				case "OH":
 				   company= "Ohio";
 				    break;
+				case "Columbus":
+					company= "Ohio";
+					break;
 				case "Colombus":
 					company= "Ohio";
 					break;
@@ -126,14 +127,18 @@ public class RunnerClass
 					company = "Columbia - St Louis";
 					break;
 				case "California PFW":
-					company = "California pfw";
+					company = "California pfw"; 
 					break;
 				case "Chicago PFW":
 					company = "Chicago pfw";
 					break;
-				
+
+				case "Kansas CIty":
+					company = "Kansas City";
+					break;
+
 				}
-						 
+			
 			//Convert Dates
 			MOIInspectionDate = CommonMethods.convertDate(MOIInspectionDate);
 			turnEstimateSubmissionDate = CommonMethods.convertDate(turnEstimateSubmissionDate);
@@ -143,8 +148,6 @@ public class RunnerClass
 			turnActualCompletionDate = CommonMethods.convertDate(turnActualCompletionDate);
 			turnQCCompletedDate = CommonMethods.convertDate(turnQCCompletedDate);
 			lastVacantVisit = CommonMethods.convertDate(lastVacantVisit);
-			
-			
 			
 			System.out.println(ID+" | "+company+" | "+unitEntityID+" | "+address+" | "+current_Resident_FirstName+" | "+Current_Resident_LastName+" | "+Utility_ConnectionRequest+" | "+lockBoxCode+" | "+filter_Other+" | "+MOIInspectionDate+" | "+turnOverHandledBy+" | "+turnEstimateSubmissionDate+" | "+turnEstimateCost+" | "+turnApprovalDate+" | "+turnStartDate+" | "+turnTargetCompletionDate+" | "+turnActualCompletionDate+" | "+turnActualCost+" | "+turnQCCompletedDate+" | "+codeBoxActive+" | "+lastVacantVisit);
 			System.out.println(ID+" | "+company+" | "+unitEntityID+" | "+address);
@@ -197,8 +200,9 @@ public class RunnerClass
 			    query = "UPDATE Automation.MIMOToPw_Prod SET AutomationStatus='Review', Note='" + failedReason + "' WHERE ID = '" + ID + "'";
 			}
 			DataBase.updateTable(query);
+
 			 RunnerClass.driver.navigate().refresh();
-		        Thread.sleep(2000);
+		     Thread.sleep(2000);
 			
 			}
 			catch(Exception e)
