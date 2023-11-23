@@ -26,9 +26,9 @@ public class AppConfig
 	  // public static String leaseFetchQuery  = "Select Company, Building,leaseName from Automation.InitialRentsUpdate where Status ='Pending' and Company ='Georgia'";
 
 	   //  "EXEC Automation_MIMOtoPWListPull 1";
-	   public static String pendingLeasesQuery =   "EXEC Automation_MIMOtoPWListPull 1";
+	   public static String pendingLeasesQuery =  
 			   
-			   /*"Select ID,\r\n"
+			   "Select ID,\r\n"
 			   + "    Unit_Entity_ID,\r\n"
 			   + "    Vacating_Resident_Lease_Entity_ID,\r\n"
 			   + "    Status,\r\n"
@@ -65,7 +65,7 @@ public class AppConfig
 			   + "    AND Vacating_Resident_Lease_Entity_ID IS NOT NULL\r\n"
 			   + "    AND Last_vacant_visit IS NOT NULL \r\n"
 			   + "	--AND Asofdate = '2023-11-21 13:01:07' \r\n"
-			   + "	AND Asofdate = (Select MAX(ASofdate) from Automation.MIMOToPw_Prod)"  ;  */                        
+			   + "	AND Asofdate = (Select MAX(ASofdate) from Automation.MIMOToPw_Prod)"  ;                        
 				    
 
 	   
