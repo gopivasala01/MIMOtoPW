@@ -197,7 +197,8 @@ public class RunnerClass
 			    query = "UPDATE Automation.MIMOToPw_Prod SET AutomationStatus='Review', Note='" + failedReason + "' WHERE ID = '" + ID + "'";
 			}
 			DataBase.updateTable(query);
-
+			 RunnerClass.driver.navigate().refresh();
+		        Thread.sleep(2000);
 			
 			}
 			catch(Exception e)
