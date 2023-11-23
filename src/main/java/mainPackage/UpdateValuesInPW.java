@@ -98,7 +98,7 @@ public class UpdateValuesInPW
         	RunnerClass.driver.findElement(Locators.lockBoxCode).clear();
         	RunnerClass.driver.findElement(Locators.lockBoxCode).sendKeys(RunnerClass.codeBoxActive);
         	Thread.sleep(500);
-        	
+
         }
         catch(Exception e)
         {
@@ -264,7 +264,7 @@ public class UpdateValuesInPW
         	RunnerClass.driver.findElement(Locators.turnActualCompletionDate).clear();
         	RunnerClass.driver.findElement(Locators.turnActualCompletionDate).sendKeys(RunnerClass.turnActualCompletionDate);
         	RunnerClass.actions.sendKeys(Keys.ESCAPE).build().perform();
-        	
+        	Thread.sleep(500);
         	RunnerClass.driver.findElement(By.xpath("//*[text()=\"Turn Actual Completion Date\"]")).click();
         	Thread.sleep(500);
         }
@@ -289,8 +289,10 @@ public class UpdateValuesInPW
             turnActualCostElement.clear();
             turnActualCostElement.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
             turnActualCostElement.sendKeys(RunnerClass.turnActualCost);
+
             Thread.sleep(500);
-            
+           
+
         } catch (Exception e) {
             e.printStackTrace();
             RunnerClass.failedReason = RunnerClass.failedReason + ", Turn Actual Cost";

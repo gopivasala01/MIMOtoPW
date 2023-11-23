@@ -24,6 +24,7 @@ public class AppConfig
 	   public static String connectionUrl = "jdbc:sqlserver://azrsrv001.database.windows.net;databaseName=HomeRiverDB;user=service_sql02;password=xzqcoK7T;encrypt=true;trustServerCertificate=true;";
 	   
 	  // public static String leaseFetchQuery  = "Select Company, Building,leaseName from Automation.InitialRentsUpdate where Status ='Pending' and Company ='Georgia'";
+
 	   //  "EXEC Automation_MIMOtoPWListPull 1";
 	   public static String pendingLeasesQuery =   "EXEC Automation_MIMOtoPWListPull 1";
 			   
@@ -66,6 +67,10 @@ public class AppConfig
 			   + "	--AND Asofdate = '2023-11-21 13:01:07' \r\n"
 			   + "	AND Asofdate = (Select MAX(ASofdate) from Automation.MIMOToPw_Prod)"  ;  */                        
 				    
+
+	   
+
+
 			   
 
 

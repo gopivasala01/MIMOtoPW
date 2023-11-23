@@ -111,6 +111,9 @@ public class RunnerClass
 				case "Columbus":
 					company= "Ohio";
 					break;
+				case "Colombus":
+					company= "Ohio";
+					break;
 				case "Missouri":
 				    company = "Columbia - St Louis";
 				    break;
@@ -129,9 +132,11 @@ public class RunnerClass
 				case "Chicago PFW":
 					company = "Chicago pfw";
 					break;
+
 				case "Kansas CIty":
 					company = "Kansas City";
 					break;
+
 				}
 			
 			//Convert Dates
