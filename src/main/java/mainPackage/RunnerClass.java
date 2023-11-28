@@ -214,7 +214,8 @@ public class RunnerClass
 		
 		}
 		//Create Excel File 
-		//MailActivities.createExcelFileWithProcessedData();
+		MailActivities.processAndSendEmail();
+		
 		
 	}
 }
