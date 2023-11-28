@@ -195,7 +195,8 @@ public class PropertyWare
 					RunnerClass.driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
 			        RunnerClass.wait = new WebDriverWait(RunnerClass.driver, Duration.ofSeconds(5));
 				}
-				catch(Exception e) {}
+				catch(Exception e) {
+					e.printStackTrace();}
 			
 	}
 	

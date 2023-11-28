@@ -9,7 +9,7 @@ public class Locators
 	public static By signMeIn = By.xpath("//*[@value='Sign Me In']");
 	public static By loginError = By.xpath("//*[@class='toast toast-error']");
 	
-	public static By marketDropdown = By.name("switchAccountSelect");
+	public static By marketDropdown = By.id("switchAccountSelect");
 	public static By buildingTitle = By.id("summaryTitleBuilding");
 	public static By buildingDeactivatedMessage = By.xpath("//*[text()='This Building has been deactivated']");
 	public static By leasesTab = By.xpath("//*[@class='tabbedSection']/a[4]");	

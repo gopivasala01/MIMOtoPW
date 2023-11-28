@@ -137,6 +137,9 @@ public class RunnerClass
 					company = "Kansas City";
 					break;
 
+				case "Dallas/Ft Worth":
+					company= "Dallas/Fort Worth";
+					break;
 				}
 			
 			//Convert Dates
@@ -162,7 +165,9 @@ public class RunnerClass
 			
 			//Check if Permission Denied page appears
 			//PropertyWare.permissionDeniedPage();
-			
+			RunnerClass.driver.navigate().refresh();
+		     Thread.sleep(2000);
+		     
 			if (PropertyWare.selectBuilding() == false) 
 			{
 			    String query = "UPDATE Automation.MIMOToPw_Prod SET AutomationStatus='Failed', Note='" + failedReason + "' WHERE ID = '" + ID + "'";
@@ -223,7 +228,8 @@ public class RunnerClass
 		
 		}
 		//Create Excel File 
-		//MailActivities.createExcelFileWithProcessedData();
+		MailActivities.processAndSendEmail();
+
 		
 	}
 }
