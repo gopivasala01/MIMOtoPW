@@ -28,44 +28,7 @@ public class AppConfig
 	   //  "EXEC Automation_MIMOtoPWListPull 1";
 	   public static String pendingLeasesQuery = "EXEC Automation_MIMOtoPWListPull 3";
 			   
-			/*  "		SELECT ID,\r\n"
-			  + "    Unit_Entity_ID,\r\n"
-			  + "    Vacating_Resident_Lease_Entity_ID,\r\n"
-			  + "    Status,\r\n"
-			  + "    Address,\r\n"
-			  + "    Current_Resident_First_Name,\r\n"
-			  + "    Current_Resident_Last_Name,\r\n"
-			  + "    Company_Name,\r\n"
-			  + "	Last_Chance_Save_Renewal_Call_RC,\r\n"
-			  + "    Utility_Connection_Request_RC,\r\n"
-			  + "    Set_Construction_Lockbox_Code_To_TC,\r\n"
-			  + "    Filter_Size_FI,\r\n"
-			  + "    Possession_Confirmed_Date,\r\n"
-			  + "    Turn_Over_Handled_By_TC,\r\n"
-			  + "    Turn_Estimate_Submission_Date,\r\n"
-			  + "    Turn_Estimated_Cost_TC,\r\n"
-			  + "    Turn_Approval_Date_TC,\r\n"
-			  + "    Turn_Start_Date_TC,\r\n"
-			  + "    Turn_Estimated_Completion_Date_TC,\r\n"
-			  + "    Turn_Actual_Completion_Date_TC,\r\n"
-			  + "    Turn_Actual_Cost_TC,\r\n"
-			  + "	Turn_QC_Completed_Date_FI,\r\n"
-			  + "    Leasing_Lockbox_Serial_Number_FI,\r\n"
-			  + "    Last_vacant_visit,\r\n"
-			  + "    AutomationStatus,\r\n"
-			  + "	AsOfDate,\r\n"
-			  + "	Note\r\n"
-			  + "FROM Automation.MIMOToPw_Prod\r\n"
-			  + "WHERE Company_Name IS NOT NULL\r\n"
-			  + "    AND Company_Name <> ''\r\n"
-			  + "    AND (AutomationStatus = 'Pending' or ( AutomationStatus = 'Failed' And Note = ', Building Fields Could not get updated\r\n"
-			  + "'))\r\n"
-			  + "    AND Company_Name <> 'HomeRiver Group'\r\n"
-			  + "    AND Vacating_Resident_Lease_Entity_ID IS NOT NULL\r\n"
-			  + "    AND Last_vacant_visit IS NOT NULL \r\n"
-			  + "	--AND Asofdate = '2023-11-21 13:01:07' \r\n"
-			  + "    AND Asofdate = (Select MAX(ASofdate) from Automation.MIMOToPw_Prod)" ;    */                
-				    
+			
 
 	   
 
