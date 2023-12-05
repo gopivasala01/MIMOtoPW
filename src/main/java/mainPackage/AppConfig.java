@@ -2,7 +2,7 @@ package mainPackage;
 
 public class AppConfig 
 {
-	 public static boolean saveButtonOnAndOff= false;
+	 public static boolean saveButtonOnAndOff= true;
 		
 	   public static String URL ="https://app.propertyware.com/pw/login.jsp";
 	   public static String username ="mds0418@gmail.com";
@@ -26,9 +26,9 @@ public class AppConfig
 	  // public static String leaseFetchQuery  = "Select Company, Building,leaseName from Automation.InitialRentsUpdate where Status ='Pending' and Company ='Georgia'";
 
 	   //  "EXEC Automation_MIMOtoPWListPull 1";
-	   public static String pendingLeasesQuery = //"EXEC Automation_MIMOtoPWListPull 3";
+	   public static String pendingLeasesQuery = "EXEC Automation_MIMOtoPWListPull 1";
 			   
-			  "SELECT top 1 ID,\r\n"
+			  /*"SELECT top 1 ID,\r\n"
 			  + "    Unit_Entity_ID,\r\n"
 			  + "    Vacating_Resident_Lease_Entity_ID,\r\n"
 			  + "    Status,\r\n"
@@ -64,7 +64,7 @@ public class AppConfig
 			  + "    AND Vacating_Resident_Lease_Entity_ID IS NOT NULL\r\n"
 			  + "    AND Last_vacant_visit IS NOT NULL \r\n"
 			  + "	--AND Asofdate = '2023-11-21 13:01:07' \r\n"
-			  + "	AND Asofdate = (Select MAX(ASofdate) from Automation.MIMOToPw_Prod)" ;                   
+			  + "	AND Asofdate = (Select MAX(ASofdate) from Automation.MIMOToPw_Prod)" ; */                  
 				    
 
 	   
@@ -73,7 +73,7 @@ public class AppConfig
 			   
 
 
-			public static String failedLeasesQuery =   "	SELECT top 1 ID,\r\n"
+			public static String failedLeasesQuery =   "	SELECT  ID,\r\n"
 					+ "    Unit_Entity_ID,\r\n"
 					+ "    Vacating_Resident_Lease_Entity_ID,\r\n"
 					+ "    Status,\r\n"
