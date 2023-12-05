@@ -312,7 +312,7 @@ public class DataBase
 	        {
 	        	String ID = rs.getString("ID");
 	            String company = rs.getString("Company_Name");
-	            String leaseEntityID = rs.getString("Lease_Entity_ID");
+	            String leaseEntityID = rs.getString("Vacating_Resident_Lease_Entity_ID");
 	            String unitEntityID = rs.getString("Unit_Entity_ID");
 	            String address = rs.getString("Address");
 	            String current_Resident_FirstName = rs.getString("Current_Resident_First_Name");

@@ -73,7 +73,7 @@ public class RunnerClass
 		
 		
 		int j=0;
-		while(j<5)
+		while(j<1)
 		{
 		//Loop over leases
 		for(int i=0;i<pendingLeases.length;i++) //pendingLeases.length
@@ -138,6 +138,9 @@ public class RunnerClass
 					break;
 
 				case "Dallas/Ft Worth":
+					company= "Dallas/Fort Worth";
+					break;
+				case "DFW":
 					company= "Dallas/Fort Worth";
 					break;
 				}
