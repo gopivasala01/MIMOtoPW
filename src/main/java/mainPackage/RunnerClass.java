@@ -108,6 +108,9 @@ public class RunnerClass
 				case "OH":
 				   company= "Ohio";
 				    break;
+				case "Columbus":
+					company= "Ohio";
+					break;
 				case "Colombus":
 					company= "Ohio";
 					break;
@@ -129,7 +132,17 @@ public class RunnerClass
 				case "Chicago PFW":
 					company = "Chicago pfw";
 					break;
-				
+
+				case "Kansas CIty":
+					company = "Kansas City";
+					break;
+
+				case "Dallas/Ft Worth":
+					company= "Dallas/Fort Worth";
+					break;
+				case "DFW":
+					company= "Dallas/Fort Worth";
+					break;
 				}
 			
 			//Convert Dates
@@ -155,7 +168,9 @@ public class RunnerClass
 			
 			//Check if Permission Denied page appears
 			//PropertyWare.permissionDeniedPage();
-			
+			RunnerClass.driver.navigate().refresh();
+		     Thread.sleep(2000);
+		     
 			if (PropertyWare.selectBuilding() == false) 
 			{
 			    String query = "UPDATE Automation.MIMOToPw_Prod SET AutomationStatus='Failed', Note='" + failedReason + "' WHERE ID = '" + ID + "'";
@@ -172,7 +187,7 @@ public class RunnerClass
 
 			if (PropertyWare.selectLease() == false) 
 			{
-			    String query = "UPDATE Automation.MIMOToPw_Prod SET AutomationStatus='Failed', Note='" + failedReason + "' WHERE ID = '" + ID + "'";
+			    String query = "UPDATE Automation.MIMOToPw_Prod SET AutomationStatus='Completed', Note='" + failedReason + "' WHERE ID = '" + ID + "'";
 			    DataBase.updateTable(query);
 			    continue;
 			}
@@ -194,6 +209,8 @@ public class RunnerClass
 			}
 			DataBase.updateTable(query);
 
+			 RunnerClass.driver.navigate().refresh();
+		     Thread.sleep(2000);
 			
 			}
 			catch(Exception e)
@@ -214,8 +231,13 @@ public class RunnerClass
 		
 		}
 		//Create Excel File 
-		MailActivities.processAndSendEmail();
 		
+		
+		if(DataBase.getPendingLeases()==true) {
+			MailActivities.processAndSendEmail();
+		}
+		
+
 		
 	}
 }

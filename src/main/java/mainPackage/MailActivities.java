@@ -31,8 +31,18 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 public class MailActivities {
 
     // Constants
-    private static final String SHEET_NAME = "Sheet 1";
-    private static final String[] HEADERS = { /* ... your headers ... */ };
+	private static final String SHEET_NAME = "Sheet 1";
+    private static final String[] HEADERS = {"ID", "Unit_Entity_ID", "Vacating_Resident_Lease_Entity_ID", "Status", "Address",
+            "Current_Resident_First_Name", "Current_Resident_Last_Name", "Company_Name",
+            "Last_Chance_Save_Renewal_Call_RC", "Utility_Connection_Request_RC", "Set_Construction_Lockbox_Code_To_TC",
+            "Filter_Size_FI", "Possession_Confirmed_Date", "Turn_Over_Handled_By_TC",
+            "Turn_Estimate_Submission_Date", "Turn_Estimated_Cost_TC", "Turn_Approval_Date_TC",
+            "Turn_Start_Date_TC", "Turn_Estimated_Completion_Date_TC", "Turn_Actual_Completion_Date_TC",
+            "Turn_Actual_Cost_TC", "Turn_QC_Scheduled_Date_TC", "Turn_QC_Completed_Date_FI",
+            "Leasing_Lockbox_Serial_Number_FI", "Last_vacant_visit", "AutomationStatus",
+            "AsOfDate", "Note"};
+
+
 
     public static void processAndSendEmail() {
         // Get current date for file naming
@@ -49,8 +59,8 @@ public class MailActivities {
 
             // Retrieve data and populate rows
             boolean getBuildings = DataBase.getCompletedBuildingsList();
-            if (getBuildings && RunnerClass.pendingLeases != null) {
-                populateDataRows(sheet1, RunnerClass.pendingLeases);
+            if (getBuildings && RunnerClass.completedLeasesList != null) {
+                populateDataRows(sheet1, RunnerClass.completedLeasesList);
             }
 
             // Write the workbook content to a file
@@ -159,5 +169,3 @@ public class MailActivities {
 
     // Other methods if needed...
 }
-
-
