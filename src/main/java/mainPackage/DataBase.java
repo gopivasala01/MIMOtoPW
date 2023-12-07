@@ -306,59 +306,69 @@ public class DataBase
 	            rs.beforeFirst();
 	        }
 	        System.out.println("No of buildings with status = " + rows);
-	        RunnerClass.completedLeasesList = new String[rows][24];
+	        RunnerClass.completedLeasesList = new String[rows][28];
 	        int i = 0;
 	        while (rs.next()) 
 	        {
 	        	String ID = rs.getString("ID");
-	            String company = rs.getString("Company_Name");
-	            String leaseEntityID = rs.getString("Vacating_Resident_Lease_Entity_ID");
-	            String unitEntityID = rs.getString("Unit_Entity_ID");
-	            String address = rs.getString("Address");
-	            String current_Resident_FirstName = rs.getString("Current_Resident_First_Name");
-	            String current_Resident_LastName = rs.getString("Current_Resident_Last_Name");
-	            String utility_ConnectionRequest = rs.getString("Utility_Connection_Request_RC");
-	            String setConstruction_Codeto = rs.getString("Set_Construction_Lockbox_Code_To_TC");
-	            String filterSize = rs.getString("Filter_Size_FI");
-	            String possesionConfirmedDate = rs.getString("Possession_Confirmed_Date");
-	            String turnOver_HandledBy = rs.getString("Turn_Over_Handled_By_TC");
-	            String turnEstimate_SubmissionDate = rs.getString("Turn_Estimate_Submission_Date");
-	            String turnEstimatedCost = rs.getString("Turn_Estimated_Cost_TC");
-	            String turnApprovalDate = rs.getString("Turn_Approval_Date_TC");
-	            String turnStateDate = rs.getString("Turn_Start_Date_TC");
-	            String turnEstimated_CompletionDate = rs.getString("Turn_Estimated_Completion_Date_TC");
-	            String turnActual_CompletionDate = rs.getString("Turn_Actual_Completion_Date_TC");
-	            String turnActualCost = rs.getString("Turn_Actual_Cost_TC");
-	            String turn_QCCompletedDate = rs.getString("Turn_QC_Completed_Date_FI");
-	            String leasingLockbox_SerialNumber = rs.getString("Leasing_Lockbox_Serial_Number_FI");
-	            String last_vacantVisit = rs.getString("Last_vacant_visit");
-	            String automationStatus = rs.getString("AutomationStatus");
-	            String automation_Notes = rs.getString("Note");
+	        	String unitEntityID = rs.getString("Unit_Entity_ID");
+	        	String leaseEntityID = rs.getString("Vacating_Resident_Lease_Entity_ID");
+	        	String status = rs.getString("Status");
+	        	String address = rs.getString("Address");
+	        	String current_Resident_FirstName = rs.getString("Current_Resident_First_Name");
+	        	String current_Resident_LastName = rs.getString("Current_Resident_Last_Name");
+	        	String company = rs.getString("Company_Name");
+	        	String last_Chance_Save_Renewal_Call_RC = rs.getString("Last_Chance_Save_Renewal_Call_RC");
+	        	String utility_ConnectionRequest = rs.getString("Utility_Connection_Request_RC");
+	        	String setConstruction_Codeto = rs.getString("Set_Construction_Lockbox_Code_To_TC");
+	        	String filterSize = rs.getString("Filter_Size_FI");
+	        	String possesionConfirmedDate = rs.getString("Possession_Confirmed_Date");
+	        	String turnOver_HandledBy = rs.getString("Turn_Over_Handled_By_TC");
+	        	String turnEstimate_SubmissionDate = rs.getString("Turn_Estimate_Submission_Date");
+	        	String turnEstimatedCost = rs.getString("Turn_Estimated_Cost_TC");
+	        	String turnApprovalDate = rs.getString("Turn_Approval_Date_TC");
+	        	String turnStateDate = rs.getString("Turn_Start_Date_TC");
+	        	String turnEstimated_CompletionDate = rs.getString("Turn_Estimated_Completion_Date_TC");
+	        	String turnActual_CompletionDate = rs.getString("Turn_Actual_Completion_Date_TC");
+	        	String turnActualCost = rs.getString("Turn_Actual_Cost_TC");
+	        	String turn_QC_Scheduled_Date_TC = rs.getString("Turn_QC_Scheduled_Date_TC");
+	        	String turn_QCCompletedDate = rs.getString("Turn_QC_Completed_Date_FI");
+	        	String leasingLockbox_SerialNumber = rs.getString("Leasing_Lockbox_Serial_Number_FI");
+	        	String last_vacantVisit = rs.getString("Last_vacant_visit");
+	        	String automationStatus = rs.getString("AutomationStatus");
+	        	String asOfDate = rs.getString("AsOfDate");
+	        	String automation_Notes = rs.getString("Note");
+	        
 
-	            RunnerClass.completedLeasesList[i][0] = ID;
-	            RunnerClass.completedLeasesList[i][1] = company;
-	            RunnerClass.completedLeasesList[i][2] = leaseEntityID;
-	            RunnerClass.completedLeasesList[i][3] = unitEntityID;
-	            RunnerClass.completedLeasesList[i][4] = address;
-	            RunnerClass.completedLeasesList[i][5] = current_Resident_FirstName;
-	            RunnerClass.completedLeasesList[i][6] = current_Resident_LastName;
-	            RunnerClass.completedLeasesList[i][7] = utility_ConnectionRequest;
-	            RunnerClass.completedLeasesList[i][8] = setConstruction_Codeto;
-	            RunnerClass.completedLeasesList[i][9] = filterSize;
-	            RunnerClass.completedLeasesList[i][10] = possesionConfirmedDate;
-	            RunnerClass.completedLeasesList[i][11] = turnOver_HandledBy;
-	            RunnerClass.completedLeasesList[i][12] = turnEstimate_SubmissionDate;
-	            RunnerClass.completedLeasesList[i][13] = turnEstimatedCost;
-	            RunnerClass.completedLeasesList[i][14] = turnApprovalDate;
-	            RunnerClass.completedLeasesList[i][15] = turnStateDate;
-	            RunnerClass.completedLeasesList[i][16] = turnEstimated_CompletionDate;
-	            RunnerClass.completedLeasesList[i][17] = turnActual_CompletionDate;
-	            RunnerClass.completedLeasesList[i][18] = turnActualCost;
-	            RunnerClass.completedLeasesList[i][19] = turn_QCCompletedDate;
-	            RunnerClass.completedLeasesList[i][20] = leasingLockbox_SerialNumber;
-	            RunnerClass.completedLeasesList[i][21] = last_vacantVisit;
-	            RunnerClass.completedLeasesList[i][22] = automationStatus;
-	            RunnerClass.completedLeasesList[i][23] = automation_Notes;
+	        	// Populate the array
+	        	RunnerClass.completedLeasesList[i][0] = ID;
+	        	RunnerClass.completedLeasesList[i][1] = unitEntityID;
+	        	RunnerClass.completedLeasesList[i][2] = leaseEntityID;
+	        	RunnerClass.completedLeasesList[i][3] = status;
+	        	RunnerClass.completedLeasesList[i][4] = address;
+	        	RunnerClass.completedLeasesList[i][5] = current_Resident_FirstName;
+	        	RunnerClass.completedLeasesList[i][6] = current_Resident_LastName;
+	        	RunnerClass.completedLeasesList[i][7] = company;
+	        	RunnerClass.completedLeasesList[i][8] = last_Chance_Save_Renewal_Call_RC;
+	        	RunnerClass.completedLeasesList[i][9] = utility_ConnectionRequest;
+	        	RunnerClass.completedLeasesList[i][10] = setConstruction_Codeto;
+	        	RunnerClass.completedLeasesList[i][11] = filterSize;
+	        	RunnerClass.completedLeasesList[i][12] = possesionConfirmedDate;
+	        	RunnerClass.completedLeasesList[i][13] = turnOver_HandledBy;
+	        	RunnerClass.completedLeasesList[i][14] = turnEstimate_SubmissionDate;
+	        	RunnerClass.completedLeasesList[i][15] = turnEstimatedCost;
+	        	RunnerClass.completedLeasesList[i][16] = turnApprovalDate;
+	        	RunnerClass.completedLeasesList[i][17] = turnStateDate;
+	        	RunnerClass.completedLeasesList[i][18] = turnEstimated_CompletionDate;
+	        	RunnerClass.completedLeasesList[i][19] = turnActual_CompletionDate;
+	        	RunnerClass.completedLeasesList[i][20] = turnActualCost;
+	        	RunnerClass.completedLeasesList[i][21] = turn_QC_Scheduled_Date_TC;
+	        	RunnerClass.completedLeasesList[i][22] = turn_QCCompletedDate;
+	        	RunnerClass.completedLeasesList[i][23] = leasingLockbox_SerialNumber;
+	        	RunnerClass.completedLeasesList[i][24] = last_vacantVisit;
+	        	RunnerClass.completedLeasesList[i][25] = automationStatus;
+	        	RunnerClass.completedLeasesList[i][26] = asOfDate;
+	        	RunnerClass.completedLeasesList[i][27] = automation_Notes;
 	            i++;
 	        }
 	        rs.close();
@@ -370,6 +380,37 @@ public class DataBase
 	        return false;
 	    }
 	}
-
-
+	
+	
+	public static boolean getPendingLeases() 
+	{
+	    try 
+	    {
+	        Connection con = null;
+	        Statement stmt = null;
+	        ResultSet rs = null;
+	        con = DriverManager.getConnection(AppConfig.connectionUrl);
+	        String SQL = AppConfig.checkAutomationPendingLeases;
+	        stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+	        rs = stmt.executeQuery(SQL);
+	        int rows = 0;
+	        if (rs.last()) 
+	        {
+	            rows = rs.getRow();
+	            // Move to beginning
+	            if(rows == 0) {
+	            	return true;
+	            }
+	            else {
+	            	return false;
+	            }
+	        }
+	        System.out.println("No of Rows = " + rows);
+	    }
+	    catch(Exception e) {
+	    	return false;
+	    }
+		return true;
+		
+	}
 }

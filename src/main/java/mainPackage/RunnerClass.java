@@ -73,7 +73,7 @@ public class RunnerClass
 		
 		
 		int j=0;
-		while(j<1)
+		while(j<5)
 		{
 		//Loop over leases
 		for(int i=0;i<pendingLeases.length;i++) //pendingLeases.length
@@ -187,7 +187,7 @@ public class RunnerClass
 
 			if (PropertyWare.selectLease() == false) 
 			{
-			    String query = "UPDATE Automation.MIMOToPw_Prod SET AutomationStatus='Failed', Note='" + failedReason + "' WHERE ID = '" + ID + "'";
+			    String query = "UPDATE Automation.MIMOToPw_Prod SET AutomationStatus='Completed', Note='" + failedReason + "' WHERE ID = '" + ID + "'";
 			    DataBase.updateTable(query);
 			    continue;
 			}
@@ -231,7 +231,12 @@ public class RunnerClass
 		
 		}
 		//Create Excel File 
-		MailActivities.processAndSendEmail();
+		
+		
+		if(DataBase.getPendingLeases()==true) {
+			MailActivities.processAndSendEmail();
+		}
+		
 
 		
 	}

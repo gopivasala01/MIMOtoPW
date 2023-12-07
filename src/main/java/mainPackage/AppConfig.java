@@ -8,13 +8,13 @@ public class AppConfig
 	   public static String username ="mds0418@gmail.com";
 	   public static String password ="KRm#V39fecMDGg#";
 	   
-	   public static String excelFileLocation = "C:\\SantoshMurthyP\\MIMOTOPW";
+	   public static String excelFileLocation = "C:\\Users\\gopi\\Documents\\BaseRent Update Files\\LogsFolder";
 	   public static String downloadFilePath = "C:\\SantoshMurthyP\\Initial Rents Update";
 	   //Mail credentials
 	   public static String fromEmail = "bireports@beetlerim.com";
 	   public static String fromEmailPassword = "Welcome@123";
 	   
-	   public static String toEmail = "gopi.v@beetlerim.com";
+	   public static String toEmail = "naveen.p@beetlerim.com";
 	   public static String CCEmail = "santosh.p@beetlerim.com";
 	   
 	   public static String mailSubject = "MIMO to PW Report  ";
@@ -28,7 +28,7 @@ public class AppConfig
 	   //  "EXEC Automation_MIMOtoPWListPull 1";
 	   public static String pendingLeasesQuery = "EXEC Automation_MIMOtoPWListPull 1";
 			   
-			  /*"SELECT top 1 ID,\r\n"
+			 /* "SELECT top 1 ID,\r\n"
 			  + "    Unit_Entity_ID,\r\n"
 			  + "    Vacating_Resident_Lease_Entity_ID,\r\n"
 			  + "    Status,\r\n"
@@ -63,8 +63,8 @@ public class AppConfig
 			  + "    AND Company_Name <> 'HomeRiver Group'\r\n"
 			  + "    AND Vacating_Resident_Lease_Entity_ID IS NOT NULL\r\n"
 			  + "    AND Last_vacant_visit IS NOT NULL \r\n"
-			  + "	--AND Asofdate = '2023-11-21 13:01:07' \r\n"
-			  + "	AND Asofdate = (Select MAX(ASofdate) from Automation.MIMOToPw_Prod)" ; */                  
+			  + "	AND Asofdate = '2023-12-05 13:00:54' \r\n"
+			  + "	--AND Asofdate = (Select MAX(ASofdate) from Automation.MIMOToPw_Prod)" ; */              
 				    
 
 	   
@@ -108,8 +108,8 @@ public class AppConfig
 					+ "    AND Company_Name <> 'HomeRiver Group'\r\n"
 					+ "    AND Vacating_Resident_Lease_Entity_ID IS NOT NULL\r\n"
 					+ "    AND Last_vacant_visit IS NOT NULL \r\n"
-					+ "	--AND Asofdate = '2023-11-26 13:01:13' \r\n"
-					+ "	AND Asofdate = (Select MAX(ASofdate) from Automation.MIMOToPw_Prod)"  ;
+					+ "	AND Asofdate = '2023-12-05 13:00:54' \r\n"
+					+ "	--AND Asofdate = (Select MAX(ASofdate) from Automation.MIMOToPw_Prod)"  ;
 
 			public static String getLeasesWithStatusforCurrentDay = "SELECT ID,\r\n"
 					+ "    Unit_Entity_ID,\r\n"
@@ -146,10 +146,23 @@ public class AppConfig
 					+ "    AND Company_Name <> 'HomeRiver Group'\r\n"
 					+ "    AND Vacating_Resident_Lease_Entity_ID IS NOT NULL\r\n"
 					+ "    AND Last_vacant_visit IS NOT NULL\r\n"
-					+ "    AND Asofdate = (SELECT MAX(Asofdate) FROM Automation.MIMOToPw_Prod);\r\n"
-					
+					+ "    --AND Asofdate = (SELECT MAX(Asofdate) FROM Automation.MIMOToPw_Prod);\r\n"
+					+ "		AND Asofdate = '2023-12-05 13:00:54' \r\n"
 					+ "";
 
+			
+			public static String checkAutomationPendingLeases = //"EXEC Automation_MIMOtoPWListPull 1";
+					   
+					  "SELECT *"
+					  + "	FROM Automation.MIMOToPw_Prod\r\n"
+					  + "	WHERE Company_Name IS NOT NULL\r\n"
+					  + "    AND Company_Name <> ''\r\n"
+					  + "    AND (AutomationStatus = 'Pending' or ( AutomationStatus = 'Failed' And Note = 'Building Not Found'))\r\n"
+					  + "    AND Company_Name <> 'HomeRiver Group'\r\n"
+					  + "    AND Vacating_Resident_Lease_Entity_ID IS NOT NULL\r\n"
+					  + "    AND Last_vacant_visit IS NOT NULL \r\n"
+					  + "	--AND Asofdate = '2023-12-05 13:00:54' \r\n"
+					  + "	AND Asofdate = (Select MAX(ASofdate) from Automation.MIMOToPw_Prod)" ;               
 
 	   
 	   public static String buildingPageURL = "https://app.propertyware.com/pw/properties/building_detail.do?entityID=";

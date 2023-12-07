@@ -40,7 +40,7 @@ public class MailActivities {
             "Turn_Start_Date_TC", "Turn_Estimated_Completion_Date_TC", "Turn_Actual_Completion_Date_TC",
             "Turn_Actual_Cost_TC", "Turn_QC_Scheduled_Date_TC", "Turn_QC_Completed_Date_FI",
             "Leasing_Lockbox_Serial_Number_FI", "Last_vacant_visit", "AutomationStatus",
-            "AsOfDate", "Note", "RowRank"};
+            "AsOfDate", "Note"};
 
 
 
@@ -59,8 +59,8 @@ public class MailActivities {
 
             // Retrieve data and populate rows
             boolean getBuildings = DataBase.getCompletedBuildingsList();
-            if (getBuildings && RunnerClass.pendingLeases != null) {
-                populateDataRows(sheet1, RunnerClass.pendingLeases);
+            if (getBuildings && RunnerClass.completedLeasesList != null) {
+                populateDataRows(sheet1, RunnerClass.completedLeasesList);
             }
 
             // Write the workbook content to a file

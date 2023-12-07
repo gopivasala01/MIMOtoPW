@@ -150,7 +150,7 @@ public class PropertyWare
 	        }
 	        if(leaseAvailibilityCheck == false)
 	        {
-	        	RunnerClass.failedReason = "Lease not Found";
+	        	RunnerClass.failedReason = "Lease not Available";
 	        	
 	        	return false;
 	        }
