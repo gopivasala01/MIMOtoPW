@@ -8,13 +8,13 @@ public class AppConfig
 	   public static String username ="mds0418@gmail.com";
 	   public static String password ="KRm#V39fecMDGg#";
 	   
-	   public static String excelFileLocation = "C:\\Users\\gopi\\Documents\\BaseRent Update Files\\LogsFolder";
+	   public static String excelFileLocation = "C:\\SantoshMurthyP\\MIMOTOPW";
 	   public static String downloadFilePath = "C:\\SantoshMurthyP\\Initial Rents Update";
 	   //Mail credentials
 	   public static String fromEmail = "bireports@beetlerim.com";
 	   public static String fromEmailPassword = "Welcome@123";
 	   
-	   public static String toEmail = "naveen.p@beetlerim.com";
+	   public static String toEmail = "gopi.v@beetlerim.com";
 	   public static String CCEmail = "santosh.p@beetlerim.com";
 	   
 	   public static String mailSubject = "MIMO to PW Report  ";

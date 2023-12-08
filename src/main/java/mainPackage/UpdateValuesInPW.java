@@ -14,7 +14,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class UpdateValuesInPW 
 {
-	public static boolean updateFieldsInLeasePage() throws Exception
+	/*public static boolean updateFieldsInLeasePage() throws Exception
 	{
 		try
 		{
@@ -67,7 +67,7 @@ public class UpdateValuesInPW
 			 {
 				 RunnerClass.failedReason = RunnerClass.failedReason + ", Lease Fields Could not get updated";
 				 return false;
-			 }*/
+			 }
 			 }
 			 catch(Exception e) {}
 		}
@@ -78,7 +78,7 @@ public class UpdateValuesInPW
 			
 			return false;
 		}
-	}
+	}*/
 	
 	public static boolean updateFieldsInBuildingPagePage() throws Exception
 	{

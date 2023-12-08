@@ -193,7 +193,7 @@ public class RunnerClass
 			}
 
 			if (UpdateValuesInPW.updateFieldsInLeasePage() == false) {
-			    String query = "UPDATE Automation.MIMOToPw_Prod SET AutomationStatus='Failed', Note='" + failedReason + "' WHERE ID = '" + ID + "'";
+			    String query = "UPDATE Automation.MIMOToPw_Prod SET AutomationStatus='Completed', Note='" + failedReason + "' WHERE ID = '" + ID + "'";
 			    DataBase.updateTable(query);
 			    continue;
 			}
