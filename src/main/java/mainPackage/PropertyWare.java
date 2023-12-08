@@ -122,7 +122,7 @@ public class PropertyWare
 	}
 
 	
-	public static boolean selectLease()
+	/*public static boolean selectLease()
 	{
 		try
 		{
@@ -161,7 +161,7 @@ public class PropertyWare
 			e.printStackTrace();
 			return false;
 		}
-	}
+	}*/
 	
 	public static void intermittentPopUp()
 	{
