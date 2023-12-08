@@ -185,7 +185,7 @@ public class RunnerClass
 			    continue;
 			}
 
-			if (PropertyWare.selectLease() == false) 
+			/*if (PropertyWare.selectLease() == false) 
 			{
 			    String query = "UPDATE Automation.MIMOToPw_Prod SET AutomationStatus='Completed', Note='" + failedReason + "' WHERE ID = '" + ID + "'";
 			    DataBase.updateTable(query);
@@ -196,7 +196,7 @@ public class RunnerClass
 			    String query = "UPDATE Automation.MIMOToPw_Prod SET AutomationStatus='Completed', Note='" + failedReason + "' WHERE ID = '" + ID + "'";
 			    DataBase.updateTable(query);
 			    continue;
-			}
+			}*/
 
 			String query = "";
 			// Update record as Completed
