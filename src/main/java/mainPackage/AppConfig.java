@@ -14,8 +14,9 @@ public class AppConfig
 	   public static String fromEmail = "bireports@beetlerim.com";
 	   public static String fromEmailPassword = "Welcome@123";
 	   
-	   public static String toEmail = "gopi.v@beetlerim.com";
-	   public static String CCEmail = "santosh.p@beetlerim.com";
+	   public static String toEmail = "cdupre@homeriver.com, jsmith@homeriver.com";
+	   public static String CCEmail = "santosh.p@beetlerim.com, gopi.v@beetlerim.com";
+
 	   
 	   public static String mailSubject = "MIMO to PW Report  ";
 	   
