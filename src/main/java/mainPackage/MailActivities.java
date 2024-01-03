@@ -22,11 +22,13 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
+import java.util.List;
 
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
 
 public class MailActivities {
 
@@ -167,5 +169,68 @@ public class MailActivities {
         }
     }
 
-    // Other methods if needed...
+    public static void sendEmptyEmail() {
+       
+                String subject = "No Data Available";
+                String body = "Dear user,\nThe query returned no data. No buildings are available for pending leases.";
+
+                sendEmail(subject, body);
+            
+        }
+
+        
+
+    private static void sendEmail(String subject, String body) {
+        String host = "smtpout.asia.secureserver.net";
+
+        Properties props = new Properties();
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.host", host);
+        props.put("mail.smtp.port", "587"); // or "25" or "465"
+
+        Session session = Session.getInstance(props, new Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(AppConfig.fromEmail, AppConfig.fromEmailPassword);
+            }
+        });
+
+        try {
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(AppConfig.fromEmail));
+            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(AppConfig.CCEmail));
+            message.setSubject(subject);
+
+            // Create the message body
+            MimeBodyPart messageBodyPart = new MimeBodyPart();
+            messageBodyPart.setText(body);
+
+            // Create the multipart message
+            Multipart multipart = new MimeMultipart();
+            multipart.addBodyPart(messageBodyPart);
+
+            // Attachments can be added here if needed
+            // MimeBodyPart attachmentPart = new MimeBodyPart();
+            // attachmentPart.attachFile((File) attachment);
+            // multipart.addBodyPart(attachmentPart);
+
+            // Set the message content
+            message.setContent(multipart);
+
+            // Send the email
+            Transport.send(message);
+
+            System.out.println("Email sent successfully.");
+
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // Rest of your classes and methods
 }
+
+   
+    	
+
+ 
+

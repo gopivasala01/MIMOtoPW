@@ -68,6 +68,10 @@ public class RunnerClass
 		
 		//Get all Pending Leases
 		DataBase.getBuildingsList(AppConfig.pendingLeasesQuery);
+		if(pendingLeases.length==0)
+		{
+			MailActivities.sendEmptyEmail();
+		}
 		
 		PropertyWare.signIn();
 		
@@ -146,6 +150,18 @@ public class RunnerClass
 				case "Mississppi":
 					company= "Tennessee";
 					break;
+				case "Dallas / Fort Worth":
+					company= "Dallas/Fort Worth";
+					break;
+				case "Oklahoma ":
+					company= "OKC";
+					break;
+				case "Texas ":
+					company= "San Antonio";
+					break;
+					
+					
+			
 				}
 			
 			//Convert Dates

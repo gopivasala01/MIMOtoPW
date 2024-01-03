@@ -2,7 +2,7 @@ package mainPackage;
 
 public class AppConfig 
 {
-	 public static boolean saveButtonOnAndOff= true;
+	 public static boolean saveButtonOnAndOff= false;
 		
 	   public static String URL ="https://app.propertyware.com/pw/login.jsp";
 	   public static String username ="mds0418@gmail.com";
@@ -27,9 +27,9 @@ public class AppConfig
 	  // public static String leaseFetchQuery  = "Select Company, Building,leaseName from Automation.InitialRentsUpdate where Status ='Pending' and Company ='Georgia'";
 
 	   //  "EXEC Automation_MIMOtoPWListPull 1";
-	   public static String pendingLeasesQuery = "EXEC Automation_MIMOtoPWListPull 1";
+	   public static String pendingLeasesQuery = //"EXEC Automation_MIMOtoPWListPull 1";
 			   
-			 /* "SELECT top 1 ID,\r\n"
+			 "SELECT top 1 ID,\r\n"
 			  + "    Unit_Entity_ID,\r\n"
 			  + "    Vacating_Resident_Lease_Entity_ID,\r\n"
 			  + "    Status,\r\n"
@@ -60,12 +60,13 @@ public class AppConfig
 			  + "	FROM Automation.MIMOToPw_Prod\r\n"
 			  + "	WHERE Company_Name IS NOT NULL\r\n"
 			  + "    AND Company_Name <> ''\r\n"
-			  + "    AND (AutomationStatus = 'Pending' or ( AutomationStatus = 'Failed' And Note = 'Building Not Found'))\r\n"
+			  + "    --AND (AutomationStatus = 'Pending' or ( AutomationStatus = 'Failed' And Note = 'Building Not Found'))\r\n"
 			  + "    AND Company_Name <> 'HomeRiver Group'\r\n"
 			  + "    AND Vacating_Resident_Lease_Entity_ID IS NOT NULL\r\n"
 			  + "    AND Last_vacant_visit IS NOT NULL \r\n"
-			  + "	AND Asofdate = '2023-12-05 13:00:54' \r\n"
-			  + "	--AND Asofdate = (Select MAX(ASofdate) from Automation.MIMOToPw_Prod)" ; */              
+			  + "	AND Asofdate = '2023-12-19 13:00:50' \r\n"
+			  + " AND Unit_Entity_ID ='4176510980'"
+			  + "	--AND Asofdate = (Select MAX(ASofdate) from Automation.MIMOToPw_Prod)" ;              
 				    
 
 	   
