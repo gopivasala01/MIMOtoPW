@@ -228,7 +228,7 @@ public class RunnerClass
 			}
 			DataBase.updateTable(query);
 
-			 RunnerClass.driver.navigate().refresh();
+			 RunnerClass.driver.get(AppConfig.homeURL);
 		     Thread.sleep(2000);
 			
 			}

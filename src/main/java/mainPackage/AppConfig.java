@@ -7,7 +7,7 @@ public class AppConfig
 	   public static String URL ="https://app.propertyware.com/pw/login.jsp";
 	   public static String username ="mds0418@gmail.com";
 	   public static String password ="KRm#V39fecMDGg#";
-	   
+	   public static String homeURL = "https://app.propertyware.com/pw/home/home.do";
 	   public static String excelFileLocation = "C:\\SantoshMurthyP\\MIMOTOPW";
 	   public static String downloadFilePath = "C:\\SantoshMurthyP\\Initial Rents Update";
 	   //Mail credentials
