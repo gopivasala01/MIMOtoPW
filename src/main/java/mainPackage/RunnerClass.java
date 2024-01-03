@@ -149,10 +149,10 @@ public class RunnerClass
 				case "Dallas / Fort Worth":
 					company= "Dallas/Fort Worth";
 					break;
-				case "Oklahoma ":
+				case "Oklahoma":
 					company= "OKC";
 					break;
-				case "Texas ":
+				case "Texas":
 					company= "San Antonio";
 					break;
 				}
