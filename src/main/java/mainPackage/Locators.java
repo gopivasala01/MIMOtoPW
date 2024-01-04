@@ -22,6 +22,8 @@ public class Locators
     public static By popupClose = By.xpath("//*[@id='editStickyBtnDiv']/input[2]");
     public static By permissionDenied = By.xpath("//*[contains(text(),'Permission Denied')]");
     
+    public static By buildingName = By.xpath("/html/body/div[3]/div[2]/table/tbody/tr/td[2]/form/div[1]/div[2]/p");
+    
     public static By summaryEditButton = By.xpath("//*[@value='Edit']");
     public static By utilityConnectionRequest = By.xpath("//*[text()='Utility Connection Request']/following::Select[1]");
     public static By lockBoxCode = By.xpath("//*[text()='Lockbox Code']/following::input[1]");

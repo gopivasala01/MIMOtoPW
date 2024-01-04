@@ -109,8 +109,26 @@ public class PropertyWare
 	        PropertyWare.intermittentPopUp();
 	        if(PropertyWare.checkIfBuildingIsDeactivated()==true)
 	        	return false;
+	       
 	        
-	        return true;
+	        RunnerClass.buildingAddress = RunnerClass.driver.findElement(Locators.buildingName).getText();
+	        String[] addressParts = RunnerClass.buildingAddress.split(":", 2);
+
+	        if ((addressParts[1].toLowerCase().trim().contains(RunnerClass.address.toLowerCase().trim())) || (RunnerClass.address.toLowerCase().toLowerCase().trim().contains(addressParts[1].trim()))) {
+	           return true;
+	        }
+
+	        else {
+	        	 System.out.println("Address does not match");
+		            RunnerClass.failedReason = "Address does not match";
+		            return false;
+	        }
+
+	        // Now you can access the parts of the address using addressParts[0] and addressParts[1]
+
+	        
+	        
+	      
 	        /*
 	        String buildingAddress = RunnerClass.driver.findElement(Locators.buildingTitle).getText();
 	        if(buildingAddress.toLowerCase().contains(RunnerClass.address.substring(0,RunnerClass.address.lastIndexOf(" ")).toLowerCase()))
