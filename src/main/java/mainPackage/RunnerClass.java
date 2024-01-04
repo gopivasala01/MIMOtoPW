@@ -22,6 +22,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -229,7 +230,17 @@ public class RunnerClass
 			DataBase.updateTable(query);
 
 			 RunnerClass.driver.get(AppConfig.homeURL);
-		     Thread.sleep(2000);
+			 WebDriverManager.chromedriver().clearDriverCache().setup();
+			 Thread.sleep(2000);
+		        PropertyWare.intermittentPopUp();
+		        
+		        RunnerClass.driver.findElement(Locators.marketDropdown).click();
+		        String marketName = "HomeRiver Group Holdings, LLC (Master)";
+		        Select marketDropdownList = new Select(RunnerClass.driver.findElement(Locators.marketDropdown));
+		        marketDropdownList.selectByVisibleText(marketName);
+		        RunnerClass.driver.navigate().refresh();
+		        Thread.sleep(3000);
+		    
 			
 			}
 			catch(Exception e)
