@@ -135,6 +135,7 @@ public class PropertyWare
 			
 			return false;
 		}
+		return true;
 	}
 	
 	public static boolean selectLease()
