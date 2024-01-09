@@ -110,8 +110,8 @@ public class AppConfig
 					+ "    AND Company_Name <> 'HomeRiver Group'\r\n"
 					+ "    AND Vacating_Resident_Lease_Entity_ID IS NOT NULL\r\n"
 					+ "    AND Last_vacant_visit IS NOT NULL \r\n"
-					+ "	AND Asofdate = '2023-12-05 13:00:54' \r\n"
-					+ "	--AND Asofdate = (Select MAX(ASofdate) from Automation.MIMOToPw_Prod)"  ;
+					+ "	--AND Asofdate = '2023-12-05 13:00:54' \r\n"
+					+ "	AND Asofdate = (Select MAX(ASofdate) from Automation.MIMOToPw_Prod)"  ;
 
 			public static String getLeasesWithStatusforCurrentDay = "SELECT ID,\r\n"
 					+ "    Unit_Entity_ID,\r\n"
@@ -148,8 +148,8 @@ public class AppConfig
 					+ "    AND Company_Name <> 'HomeRiver Group'\r\n"
 					+ "    AND Vacating_Resident_Lease_Entity_ID IS NOT NULL\r\n"
 					+ "    AND Last_vacant_visit IS NOT NULL\r\n"
-					+ "    --AND Asofdate = (SELECT MAX(Asofdate) FROM Automation.MIMOToPw_Prod);\r\n"
-					+ "		AND Asofdate = '2023-12-05 13:00:54' \r\n"
+					+ "    AND Asofdate = (SELECT MAX(Asofdate) FROM Automation.MIMOToPw_Prod);\r\n"
+					+ "		--AND Asofdate = '2023-12-05 13:00:54' \r\n"
 					+ "";
 
 			
