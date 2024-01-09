@@ -63,6 +63,7 @@ public class RunnerClass
 	public static String lastVacantVisit;
 	public static String automationStatus;
 	public static String buildingAddress;
+	public static String buildingAbbreavation;
 	
 	public static String[][] completedLeasesList;
 	public static void main(String args[]) throws Exception
@@ -105,6 +106,9 @@ public class RunnerClass
 				turnQCCompletedDate = RunnerClass.pendingLeases[i][19].trim().split(" ")[0].replaceAll("[a-zA-Z]", "");
 				lockBoxCode = RunnerClass.pendingLeases[i][20];
 				lastVacantVisit = RunnerClass.pendingLeases[i][21].trim().split(" ")[0].replaceAll("[a-zA-Z]", "");
+				automationStatus = RunnerClass.pendingLeases[i][22];
+				buildingAbbreavation = RunnerClass.pendingLeases[i][23];
+				
 				switch(company) 
 				{
 				case "OH":
@@ -173,8 +177,8 @@ public class RunnerClass
 			turnQCCompletedDate = CommonMethods.convertDate(turnQCCompletedDate);
 			lastVacantVisit = CommonMethods.convertDate(lastVacantVisit);
 			
-			System.out.println(ID+" | "+company+" | "+unitEntityID+" | "+address+" | "+current_Resident_FirstName+" | "+Current_Resident_LastName+" | "+Utility_ConnectionRequest+" | "+lockBoxCode+" | "+filter_Other+" | "+MOIInspectionDate+" | "+turnOverHandledBy+" | "+turnEstimateSubmissionDate+" | "+turnEstimateCost+" | "+turnApprovalDate+" | "+turnStartDate+" | "+turnTargetCompletionDate+" | "+turnActualCompletionDate+" | "+turnActualCost+" | "+turnQCCompletedDate+" | "+codeBoxActive+" | "+lastVacantVisit);
-			System.out.println(ID+" | "+company+" | "+unitEntityID+" | "+address);
+			System.out.println(ID+" | "+company+" | "+unitEntityID+" | "+address+" | "+current_Resident_FirstName+" | "+Current_Resident_LastName+" | "+Utility_ConnectionRequest+" | "+lockBoxCode+" | "+filter_Other+" | "+MOIInspectionDate+" | "+turnOverHandledBy+" | "+turnEstimateSubmissionDate+" | "+turnEstimateCost+" | "+turnApprovalDate+" | "+turnStartDate+" | "+turnTargetCompletionDate+" | "+turnActualCompletionDate+" | "+turnActualCost+" | "+turnQCCompletedDate+" | "+codeBoxActive+" | "+lastVacantVisit+" |"+buildingAbbreavation);
+			System.out.println(ID+" | "+company+" | "+unitEntityID+" | "+address+" |"+buildingAbbreavation);
 			 /*uncomment this for production run
 			if(Utility_ConnectionRequest==null&&lockBoxCode==null&&filter_Other==null&&MOIInspectionDate==null&&turnOverHandledBy==null&&turnEstimateSubmissionDate==null&&turnEstimateCost==null&&turnApprovalDate==null&&turnStartDate==null&&turnTargetCompletionDate==null&&turnActualCompletionDate==null&&turnActualCost==null&&turnQCCompletedDate==null&&codeBoxActive==null&&lastVacantVisit==null)
 			{

@@ -111,23 +111,21 @@ public class PropertyWare
 	        	return false;
 	       
 	        
-	        
-
-	        // Now you can access the parts of the address using addressParts[0] and addressParts[1]
-
-	        
-	        
-	      
-	        /*
-	        String buildingAddress = RunnerClass.driver.findElement(Locators.buildingTitle).getText();
-	        if(buildingAddress.toLowerCase().contains(RunnerClass.address.substring(0,RunnerClass.address.lastIndexOf(" ")).toLowerCase()))
+	        String buildingAddress = RunnerClass.driver.findElement(Locators.buildingAbbrevations).getText();
+	        if(buildingAddress.equals(RunnerClass.buildingAbbreavation))
 	        return true;
 	        else
 	        {
-	        	System.out.println("Address it not matched");
-	        	RunnerClass.failedReason = "Address is not matched";
+	        	if(RunnerClass.buildingAbbreavation == ""){
+	        		System.out.println("BuildingAbbreavation is not avaialble in Ware House");
+		        	RunnerClass.failedReason = "BuildingAbbreavation is not avaialble in Ware House";
+		        	return false;
+	        		
+	        	}
+	        	System.out.println("Building Abbreavation it not matched");
+	        	RunnerClass.failedReason = "Building Abbreavation it not matched";
 	        	return false;
-	        }*/
+	        }
 		}
 		catch(Exception e)
 		{
@@ -135,7 +133,7 @@ public class PropertyWare
 			
 			return false;
 		}
-		return true;
+		
 	}
 	
 	public static boolean selectLease()

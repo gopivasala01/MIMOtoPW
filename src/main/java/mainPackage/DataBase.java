@@ -27,7 +27,7 @@ public class DataBase
 	            rs.beforeFirst();
 	        }
 	        System.out.println("No of Rows = " + rows);
-	        RunnerClass.pendingLeases = new String[rows][23];
+	        RunnerClass.pendingLeases = new String[rows][24];
 	        int i = 0;
 	        while (rs.next()) 
 	        {
@@ -54,6 +54,7 @@ public class DataBase
 	            String leasingLockbox_SerialNumber;
 	            String last_vacantVisit;
 	            String automationStatus;
+	            String buildingAbbrevation;
 
 	           
 	            try {
@@ -234,6 +235,14 @@ public class DataBase
 	            {
 	            	automationStatus = "";
 	            }
+	            try 
+	            {
+	            	buildingAbbrevation = rs.getString("BuildingAbbreviation");
+	            } catch (Exception e)
+	            {
+	            	buildingAbbrevation = "";
+	            }
+	            
 
 	            
 	            RunnerClass.pendingLeases[i][0] = ID;
@@ -259,6 +268,8 @@ public class DataBase
 	            RunnerClass.pendingLeases[i][20] = leasingLockbox_SerialNumber;
 	            RunnerClass.pendingLeases[i][21] = last_vacantVisit;
 	            RunnerClass.pendingLeases[i][22] = automationStatus;
+	            RunnerClass.pendingLeases[i][23] = buildingAbbrevation;
+	            
 	            i++;
 	        }
 	        System.out.println("Total Pending Leases = " + RunnerClass.pendingLeases.length);
@@ -338,7 +349,7 @@ public class DataBase
 	        	String automationStatus = rs.getString("AutomationStatus");
 	        	String asOfDate = rs.getString("AsOfDate");
 	        	String automation_Notes = rs.getString("Note");
-	        
+	            String buildingAbbrevation = rs.getString("BuildingAbbreviation");
 
 	        	// Populate the array
 	        	RunnerClass.completedLeasesList[i][0] = ID;
@@ -369,6 +380,7 @@ public class DataBase
 	        	RunnerClass.completedLeasesList[i][25] = automationStatus;
 	        	RunnerClass.completedLeasesList[i][26] = asOfDate;
 	        	RunnerClass.completedLeasesList[i][27] = automation_Notes;
+	        	RunnerClass.completedLeasesList[i][28] = buildingAbbrevation;
 	            i++;
 	        }
 	        rs.close();

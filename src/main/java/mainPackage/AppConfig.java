@@ -40,7 +40,7 @@ public class AppConfig
                "FROM Automation.MIMOToPw_Prod " +
                "WHERE Unit_Entity_ID in ('1661405237','3468558368') AND AsOfDate = '2023-12-19 13:00:50' ORDER BY AsOfDate DESC";*/
 			   
-			 /* "SELECT top 30 ID,\r\n"
+			 /* "SELECT top 1 ID,\r\n"
 			  + "    Unit_Entity_ID,\r\n"
 			  + "    Vacating_Resident_Lease_Entity_ID,\r\n"
 			  + "    Status,\r\n"
@@ -67,16 +67,16 @@ public class AppConfig
 			  + "    Last_vacant_visit,\r\n"
 			  + "    AutomationStatus,\r\n"
 			  + "	AsOfDate,\r\n"
-			  + "	Note,RowRank = ROW_NUMBER() OVER(order by ID ) --INTO #Temp \r\n"
+			  + "	Note,BuildingAbbreviation,RowRank = ROW_NUMBER() OVER(order by ID ) --INTO #Temp \r\n"
 			  + "	FROM Automation.MIMOToPw_Prod\r\n"
 			  + "	WHERE Company_Name IS NOT NULL\r\n"
 			  + "    AND Company_Name <> ''\r\n"
-			  + "    --AND (AutomationStatus = 'Pending' or ( AutomationStatus = 'Failed' And Note = 'Building Not Found'))\r\n"
+			  + "    AND (AutomationStatus = 'Pending' or ( AutomationStatus = 'Failed' And Note = 'Building Not Found'))\r\n"
 			  + "    AND Company_Name <> 'HomeRiver Group'\r\n"
 			  + "    AND Vacating_Resident_Lease_Entity_ID IS NOT NULL\r\n"
 			  + "    AND Last_vacant_visit IS NOT NULL \r\n"
-			  + "	AND Asofdate = '2023-12-05 13:00:54' \r\n"
-			  + "	--AND Asofdate = (Select MAX(ASofdate) from Automation.MIMOToPw_Prod)" ;     */       
+			  + "	AND Asofdate = '2024-01-08 13:01:31' \r\n"
+			  + "	--AND Asofdate = (Select MAX(ASofdate) from Automation.MIMOToPw_Prod)" ;       */    
 				    
 
 	   
