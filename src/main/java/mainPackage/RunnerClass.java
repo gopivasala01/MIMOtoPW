@@ -62,6 +62,7 @@ public class RunnerClass
 	public static String codeBoxActive;
 	public static String lastVacantVisit;
 	public static String automationStatus;
+	public static String buildingAbbreavation;
 	
 	public static String[][] completedLeasesList;
 	public static void main(String args[]) throws Exception
@@ -108,6 +109,8 @@ public class RunnerClass
 				turnQCCompletedDate = RunnerClass.pendingLeases[i][19].trim().split(" ")[0].replaceAll("[a-zA-Z]", "");
 				lockBoxCode = RunnerClass.pendingLeases[i][20];
 				lastVacantVisit = RunnerClass.pendingLeases[i][21].trim().split(" ")[0].replaceAll("[a-zA-Z]", "");
+				automationStatus = RunnerClass.pendingLeases[i][22];
+				buildingAbbreavation = RunnerClass.pendingLeases[i][23];
 				switch(company) 
 				{
 				case "OH":

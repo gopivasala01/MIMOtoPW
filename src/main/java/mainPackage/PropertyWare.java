@@ -112,8 +112,24 @@ public class PropertyWare
 	        if (PropertyWare.checkIfBuildingIsDeactivated()) {
 	            return false;
 	        }
-
+	        
+	        String buildingAddress = RunnerClass.driver.findElement(Locators.buildingAbbrevations).getText();
+	        if(buildingAddress.equals(RunnerClass.buildingAbbreavation))
 	        return true;
+	        else
+	        {
+	        	if(RunnerClass.buildingAbbreavation == ""){
+	        		System.out.println("BuildingAbbreavation is not avaialble in Ware House");
+		        	RunnerClass.failedReason = "BuildingAbbreavation is not avaialble in Ware House";
+		        	return false;
+	        		
+	        	}
+	        	System.out.println("Building Abbreavation it not matched");
+	        	RunnerClass.failedReason = "Building Abbreavation it not matched";
+	        	return false;
+	        }
+
+	      
 	    } catch (Exception e) {
 	        RunnerClass.failedReason = "Building not found";
 	        e.printStackTrace();
@@ -121,6 +137,7 @@ public class PropertyWare
 	    }
 	}
 
+	
 	
 	/*public static boolean selectLease()
 	{
