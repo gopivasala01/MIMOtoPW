@@ -18,6 +18,7 @@ import org.apache.pdfbox.pdmodel.interactive.form.PDTextField;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -235,7 +236,7 @@ public class RunnerClass
 			 WebDriverManager.chromedriver().clearDriverCache().setup();
 			 Thread.sleep(2000);
 		        PropertyWare.intermittentPopUp();
-		        
+		     
 		        RunnerClass.driver.findElement(Locators.marketDropdown).click();
 		        String marketName = "HomeRiver Group Holdings, LLC (Master)";
 		        Select marketDropdownList = new Select(RunnerClass.driver.findElement(Locators.marketDropdown));

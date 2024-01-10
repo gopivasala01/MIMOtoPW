@@ -355,12 +355,14 @@ public class UpdateValuesInPW
 		{
 			 RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.cancelBuilding)).build().perform();
 			 RunnerClass.driver.findElement(Locators.cancelBuilding).click();
+			 RunnerClass.actions.sendKeys(Keys.ESCAPE).build().perform();
 		}
 		else 
 		{
 			RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.saveBuilding)).build().perform();
 			 RunnerClass.driver.findElement(Locators.saveBuilding).click();
 			 Thread.sleep(500);
+			 RunnerClass.actions.sendKeys(Keys.ESCAPE).build().perform();
 			 try
 			 {
 			 if(RunnerClass.driver.findElement(Locators.cancelBuilding).isDisplayed())

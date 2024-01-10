@@ -8,6 +8,8 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -44,6 +46,7 @@ public class PropertyWare
         RunnerClass.driver.findElement(Locators.password).sendKeys(AppConfig.password);
         RunnerClass.driver.findElement(Locators.signMeIn).click();
         RunnerClass.actions = new Actions(RunnerClass.driver);
+      
         RunnerClass.js = (JavascriptExecutor)RunnerClass.driver;
         RunnerClass.driver.manage().timeouts().implicitlyWait(2,TimeUnit.SECONDS);
         RunnerClass.wait = new WebDriverWait(RunnerClass.driver, Duration.ofSeconds(2));
@@ -90,6 +93,7 @@ public class PropertyWare
 	        RunnerClass.wait = new WebDriverWait(RunnerClass.driver, Duration.ofSeconds(100));
 	        RunnerClass.driver.navigate().refresh();
 	        Thread.sleep(2000);
+	        
 	        PropertyWare.intermittentPopUp();
 	        //if(PropertyWare.checkIfBuildingIsDeactivated()==true)
 	        	//return false;
@@ -98,8 +102,10 @@ public class PropertyWare
 	        Select marketDropdownList = new Select(RunnerClass.driver.findElement(Locators.marketDropdown));
 	        marketDropdownList.selectByVisibleText(marketName);
 	        Thread.sleep(3000);
+	     
 	        String buildingPageURL = AppConfig.buildingPageURL+RunnerClass.unitEntityID;
 	        RunnerClass.driver.navigate().to(buildingPageURL);
+	        RunnerClass.actions.sendKeys(Keys.ESCAPE).build().perform();
 	        if(PropertyWare.permissionDeniedPage()==true)
 	        {
 	        	System.out.println("Wrong Unit Entity ID");
@@ -178,10 +184,19 @@ public class PropertyWare
 	public static void intermittentPopUp()
 	{
 		//Pop up after clicking lease name
+		
 				try
 				{
 					RunnerClass.driver.manage().timeouts().implicitlyWait(1,TimeUnit.SECONDS);
 			        RunnerClass.wait = new WebDriverWait(RunnerClass.driver, Duration.ofSeconds(1));
+			        try {
+			        	RunnerClass.driver.switchTo().frame(RunnerClass.driver.findElement(Locators.scheduleMaintananceIFrame));
+			        	if(RunnerClass.driver.findElement(Locators.scheduleMaintanancePopUp2).isDisplayed()) {
+			        		RunnerClass.driver.findElement(Locators.maintananceCloseButton).click();
+			        	}
+			        	RunnerClass.driver.switchTo().defaultContent();
+			        }
+			        catch(Exception e) {}
 			        try
 			        {
 					if(RunnerClass.driver.findElement(Locators.popUpAfterClickingLeaseName).isDisplayed())
@@ -189,21 +204,32 @@ public class PropertyWare
 						RunnerClass.driver.findElement(Locators.popupClose).click();
 					}
 			        }
-			        catch(Exception e) {}
+			        catch(Exception e) {
+			        	
+			        }
 			        try
 			        {
 					if(RunnerClass.driver.findElement(Locators.scheduledMaintanancePopUp).isDisplayed())
 					{
 						RunnerClass.driver.findElement(Locators.scheduledMaintanancePopUpOkButton).click();
 					}
+					else {
+						RunnerClass.actions.sendKeys(Keys.ESCAPE).build().perform();
+					}
 			        }
 			        catch(Exception e) {}
 			        try
 			        {
-			        if(RunnerClass.driver.findElement(Locators.scheduledMaintanancePopUpOkButton).isDisplayed())
+			        if(RunnerClass.driver.findElement(Locators.scheduledMaintanancePopUpOkButton).isDisplayed()) {
 			        	RunnerClass.driver.findElement(Locators.scheduledMaintanancePopUpOkButton).click();
 			        }
-			        catch(Exception e) {}
+			       
+			        }
+			        catch(Exception  e) {
+			        	
+			        }
+			       
+					
 					RunnerClass.driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
 			        RunnerClass.wait = new WebDriverWait(RunnerClass.driver, Duration.ofSeconds(5));
 				}
