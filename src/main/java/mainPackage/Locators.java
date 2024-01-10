@@ -25,7 +25,7 @@ public class Locators
     
     public static By scheduleMaintananceIFrame = By.xpath("//iframe[@srcdoc='<meta name=\"referrer\" content=\"origin\" />']");
     public static By scheduleMaintanancePopUp2 = By.xpath("//section[@role='dialog']");
-    public static By maintananceCloseButton = By.xpath("//a[normalize-space()='×']");
+    public static By maintananceCloseButton = By.xpath("//a[@aria-label='Close modal']");
     
     public static By summaryEditButton = By.xpath("//*[@value='Edit']");
     public static By utilityConnectionRequest = By.xpath("//*[text()='Utility Connection Request']/following::Select[1]");
