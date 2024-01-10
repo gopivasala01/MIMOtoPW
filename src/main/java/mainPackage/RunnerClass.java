@@ -166,6 +166,9 @@ public class RunnerClass
 				case "Kentucky":
 					company= "Ohio";
 					break;
+				case "ALVAR X1 LLC":
+					company= "Georgia";
+					break;
 					
 					
 			
