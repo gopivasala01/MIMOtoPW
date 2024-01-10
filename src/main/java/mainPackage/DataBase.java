@@ -242,6 +242,7 @@ public class DataBase
 	            {
 	            	buildingAbbrevation = "";
 	            }
+	            
 
 	            
 	            RunnerClass.pendingLeases[i][0] = ID;
@@ -348,8 +349,7 @@ public class DataBase
 	        	String automationStatus = rs.getString("AutomationStatus");
 	        	String asOfDate = rs.getString("AsOfDate");
 	        	String automation_Notes = rs.getString("Note");
-	        	String buildingAbbrevation = rs.getString("BuildingAbbreviation");
-	        
+	            String buildingAbbrevation = rs.getString("BuildingAbbreviation");
 
 	        	// Populate the array
 	        	RunnerClass.completedLeasesList[i][0] = ID;

@@ -9,6 +9,7 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -45,6 +46,7 @@ public class PropertyWare
         RunnerClass.driver.findElement(Locators.password).sendKeys(AppConfig.password);
         RunnerClass.driver.findElement(Locators.signMeIn).click();
         RunnerClass.actions = new Actions(RunnerClass.driver);
+      
         RunnerClass.js = (JavascriptExecutor)RunnerClass.driver;
         RunnerClass.driver.manage().timeouts().implicitlyWait(2,TimeUnit.SECONDS);
         RunnerClass.wait = new WebDriverWait(RunnerClass.driver, Duration.ofSeconds(2));
@@ -70,49 +72,50 @@ public class PropertyWare
 		}
 	}
 	
-	public static boolean selectBuilding() {
-	    try {
-	        // Check company name contains HomeRiver Group Prefix
-	        if (RunnerClass.company.toLowerCase().contains("home")) {
-	            for (String companyName : AppConfig.companyNames) {
-	                if (RunnerClass.company.contains(companyName)) {
-	                    RunnerClass.company = companyName.trim();
-	                    break;
-	                }
-	            }
-	        }
-
-	        // Set up implicit wait and WebDriverWait
-	        RunnerClass.driver.manage().timeouts().implicitlyWait(100, TimeUnit.SECONDS);
+	public static boolean selectBuilding()
+	{
+		//Check company name contains HomeRiver Group Prefix
+		if(RunnerClass.company.toLowerCase().contains("home"))
+		{
+			for(int i=0;i<AppConfig.companyNames.length;i++)
+			{
+				if(RunnerClass.company.contains(AppConfig.companyNames[i]))
+				{
+					RunnerClass.company = AppConfig.companyNames[i].trim();
+					break;
+				}
+			}
+		}
+		
+		try
+		{
+			RunnerClass.driver.manage().timeouts().implicitlyWait(100,TimeUnit.SECONDS);
 	        RunnerClass.wait = new WebDriverWait(RunnerClass.driver, Duration.ofSeconds(100));
-
-	        // Refresh the page and handle intermittent pop-ups
-	       // RunnerClass.driver.navigate().refresh();
+	        RunnerClass.driver.navigate().refresh();
 	        Thread.sleep(2000);
+	        
 	        PropertyWare.intermittentPopUp();
-
-	        // Click on the market dropdown and select market
+	        //if(PropertyWare.checkIfBuildingIsDeactivated()==true)
+	        	//return false;
 	        RunnerClass.driver.findElement(Locators.marketDropdown).click();
-	        String marketName = "HomeRiver Group - " + RunnerClass.company;
-	        new Select(RunnerClass.driver.findElement(Locators.marketDropdown)).selectByVisibleText(marketName);
+	        String marketName = "HomeRiver Group - "+RunnerClass.company;
+	        Select marketDropdownList = new Select(RunnerClass.driver.findElement(Locators.marketDropdown));
+	        marketDropdownList.selectByVisibleText(marketName);
 	        Thread.sleep(3000);
-
-	        // Navigate to the building page URL
-	        String buildingPageURL = AppConfig.buildingPageURL + RunnerClass.unitEntityID;
+	     
+	        String buildingPageURL = AppConfig.buildingPageURL+RunnerClass.unitEntityID;
 	        RunnerClass.driver.navigate().to(buildingPageURL);
-
-	        // Check for permission denied page
-	        if (PropertyWare.permissionDeniedPage()) {
-	            System.out.println("Wrong Unit Entity ID");
-	            RunnerClass.failedReason = "Wrong Unit Entity ID";
-	            return false;
+	        RunnerClass.actions.sendKeys(Keys.ESCAPE).build().perform();
+	        if(PropertyWare.permissionDeniedPage()==true)
+	        {
+	        	System.out.println("Wrong Unit Entity ID");
+	        	RunnerClass.failedReason = "Wrong Unit Entity ID";
+	        	return false;
 	        }
-
-	        // Handle intermittent pop-ups and check if building is deactivated
 	        PropertyWare.intermittentPopUp();
-	        if (PropertyWare.checkIfBuildingIsDeactivated()) {
-	            return false;
-	        }
+	        if(PropertyWare.checkIfBuildingIsDeactivated()==true)
+	        	return false;
+	       
 	        
 	        String buildingAddress = RunnerClass.driver.findElement(Locators.buildingAbbrevations).getText();
 	        if(buildingAddress.equals(RunnerClass.buildingAbbreavation))
@@ -129,18 +132,17 @@ public class PropertyWare
 	        	RunnerClass.failedReason = "Building Abbreavation it not matched";
 	        	return false;
 	        }
-
-	      
-	    } catch (Exception e) {
-	        RunnerClass.failedReason = "Building not found";
-	        e.printStackTrace();
-	        return false;
-	    }
+		}
+		catch(Exception e)
+		{
+			RunnerClass.failedReason= "Building not found";
+			
+			return false;
+		}
+		
 	}
-
 	
-	
-	/*public static boolean selectLease()
+	public static boolean selectLease()
 	{
 		try
 		{
@@ -169,17 +171,15 @@ public class PropertyWare
 	        if(leaseAvailibilityCheck == false)
 	        {
 	        	RunnerClass.failedReason = "Lease not Available";
-	        	
 	        	return false;
 	        }
 			return true;
 		}
 		catch(Exception e)
 		{
-			e.printStackTrace();
 			return false;
 		}
-	}*/
+	}
 	
 	public static void intermittentPopUp()
 	{
