@@ -164,7 +164,7 @@ public class RunnerClass
 					company= "San Antonio";
 					break;
 				case "Kentucky":
-					company= "San Antonio";
+					company= "Ohio";
 					break;
 					
 					
