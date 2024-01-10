@@ -23,6 +23,10 @@ public class Locators
     public static By permissionDenied = By.xpath("//*[contains(text(),'Permission Denied')]");
     public static By buildingAbbrevations = By.xpath("/html/body/div[3]/div[2]/table/tbody/tr/td[2]/form/div[6]/div[1]/table[1]/tbody/tr[2]/td[2]");
     
+    public static By scheduleMaintananceIFrame = By.xpath("//iframe[@srcdoc='<meta name=\"referrer\" content=\"origin\" />']");
+    public static By scheduleMaintanancePopUp2 = By.xpath("//section[@role='dialog']");
+    public static By maintananceCloseButton = By.xpath("//a[normalize-space()='×']");
+    
     public static By summaryEditButton = By.xpath("//*[@value='Edit']");
     public static By utilityConnectionRequest = By.xpath("//*[text()='Utility Connection Request']/following::Select[1]");
     public static By lockBoxCode = By.xpath("//*[text()='Lockbox Code']/following::input[1]");

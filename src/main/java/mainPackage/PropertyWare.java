@@ -8,6 +8,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -183,10 +184,19 @@ public class PropertyWare
 	public static void intermittentPopUp()
 	{
 		//Pop up after clicking lease name
+		
 				try
 				{
 					RunnerClass.driver.manage().timeouts().implicitlyWait(1,TimeUnit.SECONDS);
 			        RunnerClass.wait = new WebDriverWait(RunnerClass.driver, Duration.ofSeconds(1));
+			        try {
+			        	RunnerClass.driver.switchTo().frame(RunnerClass.driver.findElement(Locators.scheduleMaintananceIFrame));
+			        	if(RunnerClass.driver.findElement(Locators.scheduleMaintanancePopUp2).isDisplayed()) {
+			        		RunnerClass.driver.findElement(Locators.maintananceCloseButton).click();
+			        	}
+			        	RunnerClass.driver.switchTo().defaultContent();
+			        }
+			        catch(Exception e) {}
 			        try
 			        {
 					if(RunnerClass.driver.findElement(Locators.popUpAfterClickingLeaseName).isDisplayed())
@@ -194,26 +204,36 @@ public class PropertyWare
 						RunnerClass.driver.findElement(Locators.popupClose).click();
 					}
 			        }
-			        catch(Exception e) {}
+			        catch(Exception e) {
+			        	
+			        }
 			        try
 			        {
 					if(RunnerClass.driver.findElement(Locators.scheduledMaintanancePopUp).isDisplayed())
 					{
 						RunnerClass.driver.findElement(Locators.scheduledMaintanancePopUpOkButton).click();
 					}
+					else {
+						RunnerClass.actions.sendKeys(Keys.ESCAPE).build().perform();
+					}
 			        }
 			        catch(Exception e) {}
 			        try
 			        {
-			        if(RunnerClass.driver.findElement(Locators.scheduledMaintanancePopUpOkButton).isDisplayed())
+			        if(RunnerClass.driver.findElement(Locators.scheduledMaintanancePopUpOkButton).isDisplayed()) {
 			        	RunnerClass.driver.findElement(Locators.scheduledMaintanancePopUpOkButton).click();
 			        }
-			        catch(Exception e) {}
+			       
+			        }
+			        catch(Exception  e) {
+			        	
+			        }
+			       
+					
 					RunnerClass.driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
 			        RunnerClass.wait = new WebDriverWait(RunnerClass.driver, Duration.ofSeconds(5));
 				}
-				catch(Exception e) {
-					e.printStackTrace();}
+				catch(Exception e) {}
 			
 	}
 	
