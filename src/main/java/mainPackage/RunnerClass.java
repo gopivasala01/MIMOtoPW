@@ -160,10 +160,10 @@ public class RunnerClass
 					company= "OKC";
 					break;
 				case "Kentucky":
-					company= "San Antonio";
+					company= "Ohio";
 					break;
 				case "Texas":
-					company= "Ohio";
+					company= "San Antonio";
 					break;
 					
 				}
