@@ -190,6 +190,7 @@ public class PropertyWare
 					RunnerClass.driver.manage().timeouts().implicitlyWait(1,TimeUnit.SECONDS);
 			        RunnerClass.wait = new WebDriverWait(RunnerClass.driver, Duration.ofSeconds(1));
 			        try {
+			        	Thread.sleep(2000);
 			        	RunnerClass.driver.switchTo().frame(RunnerClass.driver.findElement(Locators.scheduleMaintananceIFrame));
 			        	if(RunnerClass.driver.findElement(Locators.scheduleMaintanancePopUp2).isDisplayed()) {
 			        		RunnerClass.driver.findElement(Locators.maintananceCloseButton).click();
