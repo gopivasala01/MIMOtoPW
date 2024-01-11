@@ -116,7 +116,7 @@ public class AppConfig
 					+ "FROM Automation.MIMOToPw_Prod\r\n"
 					+ "WHERE Company_Name IS NOT NULL\r\n"
 					+ "    AND Company_Name <> ''\r\n"
-					+ "    AND (AutomationStatus = 'Pending' or ( AutomationStatus = 'Failed' And Note = 'Building Not Found'))\r\n"
+					+ "    AND AutomationStatus =  'Failed' \r\n"
 					+ "    AND Company_Name <> 'HomeRiver Group'\r\n"
 					+ "    AND Vacating_Resident_Lease_Entity_ID IS NOT NULL\r\n"
 					+ "    AND Last_vacant_visit IS NOT NULL \r\n"
