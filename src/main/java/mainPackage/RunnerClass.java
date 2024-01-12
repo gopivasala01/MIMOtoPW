@@ -168,7 +168,30 @@ public class RunnerClass
 				case "ALVAR X1 LLC":
 					company= "Georgia";
 					break;
-					
+				case "OHIO":
+					   company= "Ohio";
+					    break;
+				case "Hero Homes JV 2 LLC":
+					   company= "Ohio";
+					    break;
+					    
+				case "Dallas/Forth Worth":
+					   company= "Dallas/Fort Worth";
+					    break;
+				case "Hero Homes JV 1 Arbor LLC":
+					   company= "Ohio";
+					    break;
+				case "TCA13 Homes LLC":
+					   company= "Ohio";
+					    break;
+				case "RS Rental III-A LLC":
+					   company= "Tennessee";
+					    break;
+				case "HOH.Hero Homes JV 2 LLC":
+					   company= "Ohio";
+					    break;
+					    
+					   
 				}
 			
 			//Convert Dates
