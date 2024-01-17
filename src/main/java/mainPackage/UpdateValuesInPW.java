@@ -14,7 +14,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class UpdateValuesInPW 
 {
-	public static boolean updateFieldsInLeasePage() throws Exception
+	/*public static boolean updateFieldsInLeasePage() throws Exception
 	{
 		try
 		{
@@ -74,7 +74,7 @@ public class UpdateValuesInPW
 			 }
 			 catch(Exception e) {
 				 e.printStackTrace();
-			 }*/
+			 }
 		}
         return true;
 		}
@@ -83,7 +83,7 @@ public class UpdateValuesInPW
 			
 			return false;
 		}
-	}
+	}*/
 	
 	public static boolean updateFieldsInBuildingPagePage() throws Exception
 	{

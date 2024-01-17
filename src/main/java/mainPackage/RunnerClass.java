@@ -18,10 +18,12 @@ import org.apache.pdfbox.pdmodel.interactive.form.PDTextField;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -61,6 +63,8 @@ public class RunnerClass
 	public static String codeBoxActive;
 	public static String lastVacantVisit;
 	public static String automationStatus;
+	public static String buildingAddress;
+	public static String buildingAbbreavation;
 	
 	public static String[][] completedLeasesList;
 	public static void main(String args[]) throws Exception
@@ -103,6 +107,9 @@ public class RunnerClass
 				turnQCCompletedDate = RunnerClass.pendingLeases[i][19].trim().split(" ")[0].replaceAll("[a-zA-Z]", "");
 				lockBoxCode = RunnerClass.pendingLeases[i][20];
 				lastVacantVisit = RunnerClass.pendingLeases[i][21].trim().split(" ")[0].replaceAll("[a-zA-Z]", "");
+				automationStatus = RunnerClass.pendingLeases[i][22];
+				buildingAbbreavation = RunnerClass.pendingLeases[i][23];
+				
 				switch(company) 
 				{
 				case "OH":
@@ -140,6 +147,51 @@ public class RunnerClass
 				case "Dallas/Ft Worth":
 					company= "Dallas/Fort Worth";
 					break;
+				case "DFW":
+					company= "Dallas/Fort Worth";
+					break;
+				case "Mississppi":
+					company= "Tennessee";
+					break;
+				case "Dallas / Fort Worth":
+					company= "Dallas/Fort Worth";
+					break;
+				case "Oklahoma":
+					company= "OKC";
+					break;
+				case "Kentucky":
+					company= "Ohio";
+					break;
+				case "Texas":
+					company= "San Antonio";
+					break;
+				case "ALVAR X1 LLC":
+					company= "Georgia";
+					break;
+				case "OHIO":
+					   company= "Ohio";
+					    break;
+				case "Hero Homes JV 2 LLC":
+					   company= "Ohio";
+					    break;
+					    
+				case "Dallas/Forth Worth":
+					   company= "Dallas/Fort Worth";
+					    break;
+				case "Hero Homes JV 1 Arbor LLC":
+					   company= "Ohio";
+					    break;
+				case "TCA13 Homes LLC":
+					   company= "Ohio";
+					    break;
+				case "RS Rental III-A LLC":
+					   company= "Tennessee";
+					    break;
+				case "HOH.Hero Homes JV 2 LLC":
+					   company= "Ohio";
+					    break;
+					    
+					   
 				}
 			
 			//Convert Dates
@@ -152,8 +204,8 @@ public class RunnerClass
 			turnQCCompletedDate = CommonMethods.convertDate(turnQCCompletedDate);
 			lastVacantVisit = CommonMethods.convertDate(lastVacantVisit);
 			
-			System.out.println(ID+" | "+company+" | "+unitEntityID+" | "+address+" | "+current_Resident_FirstName+" | "+Current_Resident_LastName+" | "+Utility_ConnectionRequest+" | "+lockBoxCode+" | "+filter_Other+" | "+MOIInspectionDate+" | "+turnOverHandledBy+" | "+turnEstimateSubmissionDate+" | "+turnEstimateCost+" | "+turnApprovalDate+" | "+turnStartDate+" | "+turnTargetCompletionDate+" | "+turnActualCompletionDate+" | "+turnActualCost+" | "+turnQCCompletedDate+" | "+codeBoxActive+" | "+lastVacantVisit);
-			System.out.println(ID+" | "+company+" | "+unitEntityID+" | "+address);
+			System.out.println(ID+" | "+company+" | "+unitEntityID+" | "+address+" | "+current_Resident_FirstName+" | "+Current_Resident_LastName+" | "+Utility_ConnectionRequest+" | "+lockBoxCode+" | "+filter_Other+" | "+MOIInspectionDate+" | "+turnOverHandledBy+" | "+turnEstimateSubmissionDate+" | "+turnEstimateCost+" | "+turnApprovalDate+" | "+turnStartDate+" | "+turnTargetCompletionDate+" | "+turnActualCompletionDate+" | "+turnActualCost+" | "+turnQCCompletedDate+" | "+codeBoxActive+" | "+lastVacantVisit+" |"+buildingAbbreavation);
+			System.out.println(ID+" | "+company+" | "+unitEntityID+" | "+address+" |"+buildingAbbreavation);
 			 /*uncomment this for production run
 			if(Utility_ConnectionRequest==null&&lockBoxCode==null&&filter_Other==null&&MOIInspectionDate==null&&turnOverHandledBy==null&&turnEstimateSubmissionDate==null&&turnEstimateCost==null&&turnApprovalDate==null&&turnStartDate==null&&turnTargetCompletionDate==null&&turnActualCompletionDate==null&&turnActualCost==null&&turnQCCompletedDate==null&&codeBoxActive==null&&lastVacantVisit==null)
 			{
@@ -165,7 +217,7 @@ public class RunnerClass
 			
 			//Check if Permission Denied page appears
 			//PropertyWare.permissionDeniedPage();
-			RunnerClass.driver.navigate().refresh();
+		
 		     Thread.sleep(2000);
 		     
 			if (PropertyWare.selectBuilding() == false) 
@@ -182,18 +234,18 @@ public class RunnerClass
 			    continue;
 			}
 
-			if (PropertyWare.selectLease() == false) 
+			/*if (PropertyWare.selectLease() == false) 
 			{
-			    String query = "UPDATE Automation.MIMOToPw_Prod SET AutomationStatus='Failed', Note='" + failedReason + "' WHERE ID = '" + ID + "'";
+			    String query = "UPDATE Automation.MIMOToPw_Prod SET AutomationStatus='Completed', Note='" + failedReason + "' WHERE ID = '" + ID + "'";
 			    DataBase.updateTable(query);
 			    continue;
 			}
 
 			if (UpdateValuesInPW.updateFieldsInLeasePage() == false) {
-			    String query = "UPDATE Automation.MIMOToPw_Prod SET AutomationStatus='Failed', Note='" + failedReason + "' WHERE ID = '" + ID + "'";
+			    String query = "UPDATE Automation.MIMOToPw_Prod SET AutomationStatus='Completed', Note='" + failedReason + "' WHERE ID = '" + ID + "'";
 			    DataBase.updateTable(query);
 			    continue;
-			}
+			}*/
 
 			String query = "";
 			// Update record as Completed
@@ -206,8 +258,18 @@ public class RunnerClass
 			}
 			DataBase.updateTable(query);
 
-			 RunnerClass.driver.navigate().refresh();
-		     Thread.sleep(2000);
+			 RunnerClass.driver.get(AppConfig.homeURL);
+			 WebDriverManager.chromedriver().clearDriverCache().setup();
+			 Thread.sleep(2000);
+		        PropertyWare.intermittentPopUp();
+		     
+		        RunnerClass.driver.findElement(Locators.marketDropdown).click();
+		        String marketName = "HomeRiver Group Holdings, LLC (Master)";
+		        Select marketDropdownList = new Select(RunnerClass.driver.findElement(Locators.marketDropdown));
+		        marketDropdownList.selectByVisibleText(marketName);
+		        RunnerClass.driver.navigate().refresh();
+		        Thread.sleep(3000);
+		        
 			
 			}
 			catch(Exception e)
@@ -228,7 +290,12 @@ public class RunnerClass
 		
 		}
 		//Create Excel File 
-		MailActivities.processAndSendEmail();
+		
+		
+		if(DataBase.getPendingLeases()==true) {
+			MailActivities.processAndSendEmail();
+		}
+		
 
 		
 	}
