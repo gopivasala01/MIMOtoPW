@@ -82,6 +82,18 @@ public class RunnerClass
 		//Loop over leases
 		for(int i=0;i<pendingLeases.length;i++) //pendingLeases.length
 		{
+			try {
+				String expiredURL = RunnerClass.driver.getCurrentUrl();
+				if(expiredURL.contains("https://app.propertyware.com/pw/expired.jsp") || expiredURL.equalsIgnoreCase("https://app.propertyware.com/pw/expired.jsp?cookie") || expiredURL.contains(AppConfig.URL)) {
+					RunnerClass.driver.navigate().to(AppConfig.URL);
+					RunnerClass.driver.findElement(Locators.userName).sendKeys(AppConfig.username); 
+				    RunnerClass.driver.findElement(Locators.password).sendKeys(AppConfig.password);
+				    Thread.sleep(2000);
+				    RunnerClass.driver.findElement(Locators.signMeIn).click();
+				    Thread.sleep(3000);
+				}
+			}
+			catch(Exception e) {}
 			System.out.println("Lease ---- "+(i+1));
 			try
 			{
