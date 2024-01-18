@@ -202,6 +202,9 @@ public class RunnerClass
 				case "HOH.Hero Homes JV 2 LLC":
 					   company= "Ohio";
 					    break;
+				case "AINO NC LLC":
+					   company= "North Carolina";
+					    break;
 					    
 					   
 				}
