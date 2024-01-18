@@ -200,12 +200,23 @@ public class RunnerClass
 					   company= "Tennessee";
 					    break;
 				case "HOH.Hero Homes JV 2 LLC":
-					   company= "Ohio";
+					   company= "Ohio"; 
 					    break;
 				case "AINO NC LLC":
 					   company= "North Carolina";
 					    break;
-					    
+				case "Kansas":
+					company = "Kansas City";
+					break;
+				case "RCGA LLC":
+					   company= "Dallas/Fort Worth";
+					    break;
+				case "TH Properties CL LLC":
+					   company= "Ohio";
+					    break; 
+				case "Hero Homes Solutions LLC":
+					   company= "Ohio";
+					    break;
 					   
 				}
 			
@@ -307,11 +318,11 @@ public class RunnerClass
 		//Create Excel File 
 		
 		
-		//if(DataBase.getPendingLeases()==true) {
-			//MailActivities.processAndSendEmail();
+		if(DataBase.getPendingLeases()==true) {
+			MailActivities.processAndSendEmail();
 		}
 		
-
+	}
 		
 	}
 //}
