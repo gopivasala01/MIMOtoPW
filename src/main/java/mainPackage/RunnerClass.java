@@ -205,6 +205,18 @@ public class RunnerClass
 				case "AINO NC LLC":
 					   company= "North Carolina";
 					    break;
+				case "Kansas":
+					company = "Kansas City";
+					break;
+				case "RCGA LLC":
+					   company= "Dallas/Fort Worth";
+					    break;
+				case "TH Properties CL LLC":
+					   company= "Ohio";
+					    break; 
+				case "Hero Homes Solutions LLC":
+					   company= "Ohio";
+					    break;
 					    
 					   
 				}
