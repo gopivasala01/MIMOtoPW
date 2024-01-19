@@ -11,6 +11,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.PageLoadStrategy;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -71,7 +72,32 @@ public class PropertyWare
 			return false;
 		}
 	}
-	
+	public static boolean navigateToBuilding() throws InterruptedException {
+	    try {
+	    	 RunnerClass.driver.get(AppConfig.homeURL);
+	        Thread.sleep(2000);
+
+	        PropertyWare.intermittentPopUp();
+	        // if(PropertyWare.checkIfBuildingIsDeactivated()==true)
+	        // return false;
+	        RunnerClass.driver.findElement(Locators.marketDropdown).click();
+	        String marketName = "HomeRiver Group - " + RunnerClass.company;
+	        Select marketDropdownList = new Select(RunnerClass.driver.findElement(Locators.marketDropdown));
+	        marketDropdownList.selectByVisibleText(marketName);
+	        Thread.sleep(3000);
+
+	        String buildingPageURL = AppConfig.buildingPageURL + RunnerClass.unitEntityID;
+	        RunnerClass.driver.navigate().to(buildingPageURL);
+	        RunnerClass.actions.sendKeys(Keys.ESCAPE).build().perform();
+
+	        return true;
+	    } catch (Exception e) {
+	        // Handle the exception or log it
+	        e.printStackTrace(); // Print the exception stack trace for debugging
+	        return false; // Or handle it in a way that makes sense for your application
+	    }
+	}
+
 	public static boolean selectBuilding()
 	{
 		//Check company name contains HomeRiver Group Prefix
@@ -95,22 +121,25 @@ public class PropertyWare
 	        Thread.sleep(2000);
 	        
 	        PropertyWare.intermittentPopUp();
-	        //if(PropertyWare.checkIfBuildingIsDeactivated()==true)
+	         //if(PropertyWare.checkIfBuildingIsDeactivated()==true)
 	        	//return false;
-	        RunnerClass.driver.findElement(Locators.marketDropdown).click();
-	        String marketName = "HomeRiver Group - "+RunnerClass.company;
-	        Select marketDropdownList = new Select(RunnerClass.driver.findElement(Locators.marketDropdown));
-	        marketDropdownList.selectByVisibleText(marketName);
-	        Thread.sleep(3000);
-	     
-	        String buildingPageURL = AppConfig.buildingPageURL+RunnerClass.unitEntityID;
-	        RunnerClass.driver.navigate().to(buildingPageURL);
-	        RunnerClass.actions.sendKeys(Keys.ESCAPE).build().perform();
+	       if( navigateToBuilding()== true) {	    	   
+	       }
 	        if(PropertyWare.permissionDeniedPage()==true)
 	        {
-	        	System.out.println("Wrong Unit Entity ID");
-	        	RunnerClass.failedReason = "Wrong Unit Entity ID";
-	        	return false;
+	        	if(getCompanyNameFromUnitTable(RunnerClass.unitEntityID)== true) {
+	        		RunnerClass.company = DataBase.ComPanyNameFronUNitFactTable;
+	        		 if( navigateToBuilding()== true) {
+	      	    	   
+	        		 }
+	        	}
+	        	else {
+	        		System.out.println("Wrong Unit Entity ID");
+		        	RunnerClass.failedReason = "Wrong Unit Entity ID";
+	                return false;
+	        	
+	        	}
+	      
 	        }
 	        PropertyWare.intermittentPopUp();
 	        if(PropertyWare.checkIfBuildingIsDeactivated()==true)
@@ -190,6 +219,7 @@ public class PropertyWare
 					RunnerClass.driver.manage().timeouts().implicitlyWait(1,TimeUnit.SECONDS);
 			        RunnerClass.wait = new WebDriverWait(RunnerClass.driver, Duration.ofSeconds(1));
 			        try {
+			        	Thread.sleep(2000);
 			        	RunnerClass.driver.switchTo().frame(RunnerClass.driver.findElement(Locators.scheduleMaintananceIFrame));
 			        	if(RunnerClass.driver.findElement(Locators.scheduleMaintanancePopUp2).isDisplayed()) {
 			        		RunnerClass.driver.findElement(Locators.maintananceCloseButton).click();
@@ -285,5 +315,28 @@ public class PropertyWare
 		}
 		return false;
 	}
+	public static boolean getCompanyNameFromUnitTable(String unitEntityID) {
+	    try {
+	        String Query = "SELECT TOP 1 Company FROM Units_Fact_Dashboard WHERE UnitEntityID = '" + unitEntityID + "'";
+	        
+	        if (DataBase.getCompanyName(Query)) {
+	            if (DataBase.ComPanyNameFronUNitFactTable == null || DataBase.ComPanyNameFronUNitFactTable.equals("")) {
+	                // RunnerClass.failedReason = "Building Not Available";
+	            	System.out.println("Wrong Unit Entity ID");
+		        	RunnerClass.failedReason = "Wrong Unit Entity ID";
+	                return false;
+	            }
+	        }
+
+	        // Add any additional logic here if needed
+	        System.out.println(DataBase.ComPanyNameFronUNitFactTable);
+	        return true; // Return true if everything is successful
+	    } catch (Exception e) {
+	        // Handle exceptions if any
+	        e.printStackTrace();
+	        return false;
+	    }
+	}
+
 
 }
