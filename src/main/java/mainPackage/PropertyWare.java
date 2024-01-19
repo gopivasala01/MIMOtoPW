@@ -134,7 +134,10 @@ public class PropertyWare
 	        		 }
 	        	}
 	        	else {
-	        	return false; 
+	        		System.out.println("Wrong Unit Entity ID");
+		        	RunnerClass.failedReason = "Wrong Unit Entity ID";
+	                return false;
+	        	
 	        	}
 	      
 	        }
