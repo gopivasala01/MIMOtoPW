@@ -6,8 +6,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+
+
 public class DataBase 
 {
+	public static String[][] companyNamefromUnitFact;
+	public static String ComPanyNameFronUNitFactTable;
+
 	public static boolean getBuildingsList(String pendingLeasesQuery) 
 	{
 	    try 
@@ -425,4 +430,62 @@ public class DataBase
 		return true;
 		
 	}
+	public static boolean getCompanyName(String query)
+	{
+	try
+	{
+	        Connection con = null;
+	        Statement stmt = null;
+	        ResultSet rs = null;
+	            //Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+	            con = DriverManager.getConnection(AppConfig.connectionUrl);
+	            String SQL = query;
+	            stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+	           // stmt = con.createStatement();
+	            stmt.setQueryTimeout(60);
+	            rs = stmt.executeQuery(SQL);
+	            int rows =0;
+	            if (rs.last()) 
+	            {
+	            	rows = rs.getRow();
+	            	// Move to beginning
+	            	rs.beforeFirst();
+	            }
+	            if(rows>1 || rows == 0) {
+	            	return false;
+	            	
+	            }
+	            
+	            companyNamefromUnitFact = new String[rows][1];
+	           int  i=0;
+	            while(rs.next())
+	            {
+	  
+	            	String 	CompanyName = rs.getObject(1).toString();
+	            	
+	              //stateCode
+	                try 
+	                {
+	                	if(CompanyName==null)
+	                		companyNamefromUnitFact[i][0] = "";
+	                	else
+	                	{
+	                		companyNamefromUnitFact[i][0] = CompanyName;
+	                		ComPanyNameFronUNitFactTable = companyNamefromUnitFact[i][0];
+	                		
+	                	}
+	                }
+	                catch(Exception e)
+	                {
+	                	companyNamefromUnitFact[i][0] = "";
+	                }
+	            }
+	}
+	catch(Exception e)
+	{
+		e.printStackTrace();
+		return false;
+	}
+	return true;
+}
 }

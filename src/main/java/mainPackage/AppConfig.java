@@ -27,9 +27,9 @@ public class AppConfig
 	  // public static String leaseFetchQuery  = "Select Company, Building,leaseName from Automation.InitialRentsUpdate where Status ='Pending' and Company ='Georgia'";
 
 	   //  "EXEC Automation_MIMOtoPWListPull 1";
-	   public static String pendingLeasesQuery = "EXEC Automation_MIMOtoPWListPull 1";
+	   public static String pendingLeasesQuery = //"EXEC Automation_MIMOtoPWListPull 1";
 			   
-			/* "SELECT top 1 ID,\r\n"
+			 "SELECT ID,\r\n"
 			  + "    Unit_Entity_ID,\r\n"
 			  + "    Vacating_Resident_Lease_Entity_ID,\r\n"
 			  + "    Status,\r\n"
@@ -56,17 +56,17 @@ public class AppConfig
 			  + "    Last_vacant_visit,\r\n"
 			  + "    AutomationStatus,\r\n"
 			  + "	AsOfDate,\r\n"
-			  + "	Note,RowRank = ROW_NUMBER() OVER(order by ID ) --INTO #Temp \r\n"
+			  + "	Note, BuildingAbbreviation, RowRank = ROW_NUMBER() OVER(order by ID ) --INTO #Temp \r\n"
 			  + "	FROM Automation.MIMOToPw_Prod\r\n"
 			  + "	WHERE Company_Name IS NOT NULL\r\n"
 			  + "    AND Company_Name <> ''\r\n"
-			  + "    --AND (AutomationStatus = 'Pending' or ( AutomationStatus = 'Failed' And Note = 'Building Not Found'))\r\n"
+			  + "    AND (AutomationStatus = 'Pending' or ( AutomationStatus = 'Failed' And Note = 'Wrong Unit Entity ID'))\r\n"
 			  + "    AND Company_Name <> 'HomeRiver Group'\r\n"
 			  + "    AND Vacating_Resident_Lease_Entity_ID IS NOT NULL\r\n"
 			  + "    AND Last_vacant_visit IS NOT NULL \r\n"
-			  + "	AND Asofdate = '2023-12-19 13:00:50' \r\n"
-			  + " AND Unit_Entity_ID ='4176510980'"
-			  + "	--AND Asofdate = (Select MAX(ASofdate) from Automation.MIMOToPw_Prod)" ;   */           
+			  + "  AND Asofdate = '2024-01-18 13:01:33' \r\n"
+			  + "  --AND Unit_Entity_ID ='4178411521'"
+			  + "	-- AND Asofdate = (Select MAX(ASofdate) from Automation.MIMOToPw_Prod)" ;              
 				    
 
 	   
@@ -172,6 +172,93 @@ public class AppConfig
 	   
 	   public static String[] companyNames = {"Alabama","Arizona","Arkansas","Austin","Boise","California","California pfw","Chattanooga","Chicago","Chicago pfw","Colorado Springs","Dallas/Fort Worth","Delaware","Florida","Hawaii","Georgia","Houston","Idaho Falls","Indiana","Institutional Accounts","Kansas City","Lake Havasu","Little Rock","Maine","Maryland","Montana","New Jersey","New Mexico","North Carolina","OKC","Ohio","Pennsylvania","Saint Louis","San Antonio","Savannah","South Carolina","Spokane","Tennessee","Tulsa","Utah","Virginia","Washington DC"};
 	   
+	   public static String StateAbbreviations(String state) {
+		    String result = ""; // Initialize an empty string to store the result
 
+		    switch (state) {
+		        case "AL":
+		            result = "Alabama";
+		            break;
+		        case "AR":
+		            result = "Arkansas";
+		            break;
+		        case "AZ":
+		            result = "Arizona";
+		            break;
+		        case "FL":
+		            result = "Florida";
+		            break;
+		        case "GA":
+		            result = "Georgia";
+		            break;
+		        case "IL":
+		            result = "Illinois";
+		            break;
+		        case "IN":
+		            result = "Indiana";
+		            break;
+		        case "KS":
+		            result = "Kansas";
+		            break;
+		        case "KY":
+		            result = "Kentucky";
+		            break;
+		        case "MT":
+		            result = "Montana";
+		            break;
+		        case "MS":
+		            result = "Mississippi";
+		            break;
+		        case "NC":
+		            result = "North Carolina";
+		            break;
+		        case "OH":
+		            result = "Ohio";
+		            break;
+		        case "OK":
+		            result = "Oklahoma";
+		            break;
+		        case "PA":
+		            result = "Pennsylvania";
+		            break;
+		        case "SC":
+		            result = "South Carolina";
+		            break;
+		        case "TN":
+		            result = "Tennessee";
+		            break;
+		        case "TX":
+		            // Sub-cases for Texas
+		            String city = "Dallas/Fort Worth"; // Replace this with the city you want to check
 
+		            switch (city) {
+		                case "Dallas/Fort Worth":
+		                    result = "Dallas/Fort Worth";
+		                    break;
+		                case "Houston":
+		                    result = "Houston";
+		                    break;
+		                case "Austin":
+		                    result = "Austin";
+		                    break;
+		                case "San Antonio":
+		                    result = "San Antonio";
+		                    break;
+		                default:
+		                    result = "Unknown city in Texas";
+		            }
+		            break;
+		        case "UT":
+		            result = "Utah";
+		            break;
+		        default:
+		            result = "Unknown abbreviation";
+		    }
+
+		    return result; // Return the result
+		}
 }
+		
+
+
+
