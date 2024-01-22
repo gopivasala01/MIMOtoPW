@@ -72,14 +72,13 @@ public class PropertyWare
 			return false;
 		}
 	}
-	public static boolean navigateToBuilding() throws InterruptedException {
+	public static boolean navigateToBuilding() {
 	    try {
-	    	 RunnerClass.driver.get(AppConfig.homeURL);
+	        RunnerClass.driver.get(AppConfig.homeURL);
 	        Thread.sleep(2000);
 
 	        PropertyWare.intermittentPopUp();
-	        // if(PropertyWare.checkIfBuildingIsDeactivated()==true)
-	        // return false;
+
 	        RunnerClass.driver.findElement(Locators.marketDropdown).click();
 	        String marketName = "HomeRiver Group - " + RunnerClass.company;
 	        Select marketDropdownList = new Select(RunnerClass.driver.findElement(Locators.marketDropdown));
@@ -92,13 +91,22 @@ public class PropertyWare
 
 	        return true;
 	    } catch (Exception e) {
-	        // Handle the exception or log it
-	        e.printStackTrace(); // Print the exception stack trace for debugging
-	        return false; // Or handle it in a way that makes sense for your application
+	        handleException(e);
+	        return false;
 	    }
 	}
 
-	public static boolean selectBuilding()
+	private static void handleException(Exception e) {
+	    if (getCompanyNameFromUnitTable(RunnerClass.unitEntityID)) {
+	        RunnerClass.company = DataBase.ComPanyNameFronUNitFactTable;
+	        navigateToBuilding(); // Recursive call
+	    } else {
+	        RunnerClass.failedReason = "Building not found";
+	    }
+	}
+
+
+	public static boolean selectBuilding() throws InterruptedException
 	{
 		//Check company name contains HomeRiver Group Prefix
 		if(RunnerClass.company.toLowerCase().contains("home"))
@@ -164,6 +172,12 @@ public class PropertyWare
 		}
 		catch(Exception e)
 		{
+			if(getCompanyNameFromUnitTable(RunnerClass.unitEntityID)== true) {
+        		RunnerClass.company = DataBase.ComPanyNameFronUNitFactTable;
+        		 if( navigateToBuilding()== true) {
+      	    	   return true;
+        		 }
+        	}
 			RunnerClass.failedReason= "Building not found";
 			
 			return false;

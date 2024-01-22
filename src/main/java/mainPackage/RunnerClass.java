@@ -217,6 +217,9 @@ public class RunnerClass
 				case "Hero Homes Solutions LLC":
 					   company= "Ohio";
 					    break;
+				case "510 SFR GA Operations I LLC":
+					   company= "Georgia";
+					    break;
 					    
 					   
 				}
