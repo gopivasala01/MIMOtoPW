@@ -200,7 +200,7 @@ public class RunnerClass
 					   company= "Tennessee";
 					    break;
 				case "HOH.Hero Homes JV 2 LLC":
-					   company= "Ohio"; 
+					   company= "Ohio";
 					    break;
 				case "AINO NC LLC":
 					   company= "North Carolina";
@@ -217,6 +217,10 @@ public class RunnerClass
 				case "Hero Homes Solutions LLC":
 					   company= "Ohio";
 					    break;
+				case "510 SFR GA Operations I LLC":
+					   company= "Georgia";
+					    break;
+					    
 					   
 				}
 			
@@ -302,7 +306,7 @@ public class RunnerClass
 			{
 				e.printStackTrace();
 				continue;
-			}
+			} 
 			
 			
 		}
@@ -322,7 +326,7 @@ public class RunnerClass
 			MailActivities.processAndSendEmail();
 		}
 		
-	}
+
 		
 	}
-//}
+}
