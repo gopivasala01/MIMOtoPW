@@ -11,6 +11,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.PageLoadStrategy;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -28,6 +29,7 @@ public class PropertyWare
 	public static boolean signIn() {
 		try
 		{
+			
 		RunnerClass.downloadFilePath = AppConfig.downloadFilePath;
 		Map<String, Object> prefs = new HashMap<String, Object>();
 	    // Use File.separator as it will work on any OS
@@ -73,28 +75,32 @@ public class PropertyWare
 		}
 	}
 	public static boolean navigateToBuilding() {
-	    try {
-	        RunnerClass.driver.get(AppConfig.homeURL);
-	        Thread.sleep(2000);
+        try {
+            RunnerClass.driver.get(AppConfig.homeURL);
+            Thread.sleep(2000);
+            PropertyWare.intermittentPopUp();
 
-	        PropertyWare.intermittentPopUp();
+            RunnerClass.driver.findElement(Locators.marketDropdown).click();
+            String marketName = "HomeRiver Group - " + RunnerClass.company;
+            Select marketDropdownList = new Select(RunnerClass.driver.findElement(Locators.marketDropdown));
+            marketDropdownList.selectByVisibleText(marketName);
+            Thread.sleep(3000);
 
-	        RunnerClass.driver.findElement(Locators.marketDropdown).click();
-	        String marketName = "HomeRiver Group - " + RunnerClass.company;
-	        Select marketDropdownList = new Select(RunnerClass.driver.findElement(Locators.marketDropdown));
-	        marketDropdownList.selectByVisibleText(marketName);
-	        Thread.sleep(3000);
+            String buildingPageURL = AppConfig.buildingPageURL + RunnerClass.unitEntityID;
+            RunnerClass.driver.navigate().to(buildingPageURL);
+            RunnerClass.actions.sendKeys(Keys.ESCAPE).build().perform();
 
-	        String buildingPageURL = AppConfig.buildingPageURL + RunnerClass.unitEntityID;
-	        RunnerClass.driver.navigate().to(buildingPageURL);
-	        RunnerClass.actions.sendKeys(Keys.ESCAPE).build().perform();
-
-	        return true;
-	    } catch (Exception e) {
-	        handleException(e);
-	        return false;
-	    }
-	}
+           
+            return true;
+        } catch (TimeoutException  timeoutEx) {
+            //handleException(timeoutEx);
+        	RunnerClass.timeOutException = true;
+            return false;
+        } catch (Exception e) {
+            handleException(e);
+            return false;
+        }
+    }
 
 	private static void handleException(Exception e) {
 	    if (getCompanyNameFromUnitTable(RunnerClass.unitEntityID)) {
@@ -131,8 +137,8 @@ public class PropertyWare
 	        PropertyWare.intermittentPopUp();
 	         //if(PropertyWare.checkIfBuildingIsDeactivated()==true)
 	        	//return false;
-	       if( navigateToBuilding()== true) {	    	   
-	       }
+	       if(navigateToBuilding()==false)
+	    	   return false;
 	        if(PropertyWare.permissionDeniedPage()==true)
 	        {
 	        	if(getCompanyNameFromUnitTable(RunnerClass.unitEntityID)== true) {

@@ -7,6 +7,7 @@ import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoAlertPresentException;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -266,6 +267,11 @@ public class UpdateValuesInPW
         	RunnerClass.driver.findElement(By.xpath("//*[text()=\"Turn Actual Completion Date\"]")).click();
 
         }
+        catch (TimeoutException  timeoutEx) {
+            //handleException(timeoutEx);
+        	RunnerClass.timeOutException = true;
+            return false;
+        }
         catch(Exception e)
         {
         	e.printStackTrace();
@@ -375,6 +381,7 @@ public class UpdateValuesInPW
 		}
         return true;
         }
+         
         catch(Exception e)
         {
         	RunnerClass.failedReason = RunnerClass.failedReason + ", Building Fields Could not get updated";
