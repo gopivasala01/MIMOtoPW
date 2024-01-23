@@ -65,6 +65,7 @@ public class RunnerClass
 	public static String automationStatus;
 	public static String buildingAddress;
 	public static String buildingAbbreavation;
+	public static boolean timeOutException = false;
 	
 	public static String[][] completedLeasesList;
 	public static void main(String args[]) throws Exception
@@ -82,6 +83,7 @@ public class RunnerClass
 		//Loop over leases
 		for(int i=0;i<pendingLeases.length;i++) //pendingLeases.length
 		{
+			timeOutException = false;
 			try {
 				String expiredURL = RunnerClass.driver.getCurrentUrl();
 				if(expiredURL.contains("https://app.propertyware.com/pw/expired.jsp") || expiredURL.equalsIgnoreCase("https://app.propertyware.com/pw/expired.jsp?cookie") || expiredURL.contains(AppConfig.URL)) {
@@ -93,6 +95,7 @@ public class RunnerClass
 				    Thread.sleep(3000);
 				}
 			}
+			
 			catch(Exception e) {}
 			System.out.println("Lease ---- "+(i+1));
 			try
@@ -252,6 +255,13 @@ public class RunnerClass
 		     
 			if (PropertyWare.selectBuilding() == false) 
 			{
+				if(timeOutException == true) {
+					driver.quit();
+					PropertyWare.signIn();
+					String query = "UPDATE Automation.MIMOToPw_Prod SET AutomationStatus='Failed', Note='TimeOutException' WHERE ID = '" + ID + "'";
+				    DataBase.updateTable(query);
+					continue;
+				}
 			    String query = "UPDATE Automation.MIMOToPw_Prod SET AutomationStatus='Failed', Note='" + failedReason + "' WHERE ID = '" + ID + "'";
 			    DataBase.updateTable(query);
 			    continue;
@@ -259,6 +269,13 @@ public class RunnerClass
 
 			if (UpdateValuesInPW.updateFieldsInBuildingPagePage() == false) 
 			{
+				if(timeOutException == true) {
+					driver.quit();
+					PropertyWare.signIn();
+					String query = "UPDATE Automation.MIMOToPw_Prod SET AutomationStatus='Failed', Note='TimeOutException' WHERE ID = '" + ID + "'";
+				    DataBase.updateTable(query);
+					continue;
+				}
 			    String query = "UPDATE Automation.MIMOToPw_Prod SET AutomationStatus='Failed', Note='" + failedReason + "' WHERE ID = '" + ID + "'";
 			    DataBase.updateTable(query);
 			    continue;

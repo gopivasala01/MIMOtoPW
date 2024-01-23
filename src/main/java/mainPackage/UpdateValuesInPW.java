@@ -7,6 +7,7 @@ import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoAlertPresentException;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -56,25 +57,20 @@ public class UpdateValuesInPW
 			 Thread.sleep(2000);
 			 try
 			 {
-				 
 				 handleAlerts();
-				 //RunnerClass.driver.navigate().refresh();
+				 RunnerClass.driver.navigate().refresh();
 			        Thread.sleep(2000);
 			 }
-			 
-			 catch(Exception e)
-			{e.printStackTrace();}
-			 /*try
+			 catch(Exception e) {}
+			 try
 			 {
-			 if(RunnerClass.driver.findElement(Locators.saveLease).isDisplayed())
+			 /*if(RunnerClass.driver.findElement(Locators.saveLease).isDisplayed())
 			 {
 				 RunnerClass.failedReason = RunnerClass.failedReason + ", Lease Fields Could not get updated";
 				 return false;
 			 }
 			 }
-			 catch(Exception e) {
-				 e.printStackTrace();
-			 }
+			 catch(Exception e) {}
 		}
         return true;
 		}
@@ -102,7 +98,6 @@ public class UpdateValuesInPW
         	RunnerClass.driver.findElement(Locators.lockBoxCode).clear();
         	RunnerClass.driver.findElement(Locators.lockBoxCode).sendKeys(RunnerClass.codeBoxActive);
         	Thread.sleep(500);
-
         }
         catch(Exception e)
         {
@@ -270,7 +265,12 @@ public class UpdateValuesInPW
         	RunnerClass.actions.sendKeys(Keys.ESCAPE).build().perform();
         	Thread.sleep(500);
         	RunnerClass.driver.findElement(By.xpath("//*[text()=\"Turn Actual Completion Date\"]")).click();
-        	Thread.sleep(500);
+
+        }
+        catch (TimeoutException  timeoutEx) {
+            //handleException(timeoutEx);
+        	RunnerClass.timeOutException = true;
+            return false;
         }
         catch(Exception e)
         {
@@ -295,8 +295,6 @@ public class UpdateValuesInPW
             turnActualCostElement.sendKeys(RunnerClass.turnActualCost);
 
             Thread.sleep(500);
-           
-
         } catch (Exception e) {
             e.printStackTrace();
             RunnerClass.failedReason = RunnerClass.failedReason + ", Turn Actual Cost";
@@ -363,13 +361,14 @@ public class UpdateValuesInPW
 		{
 			 RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.cancelBuilding)).build().perform();
 			 RunnerClass.driver.findElement(Locators.cancelBuilding).click();
-			 Thread.sleep(500);
+			 RunnerClass.actions.sendKeys(Keys.ESCAPE).build().perform();
 		}
 		else 
 		{
 			RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.saveBuilding)).build().perform();
 			 RunnerClass.driver.findElement(Locators.saveBuilding).click();
 			 Thread.sleep(500);
+			 RunnerClass.actions.sendKeys(Keys.ESCAPE).build().perform();
 			 try
 			 {
 			 if(RunnerClass.driver.findElement(Locators.cancelBuilding).isDisplayed())
@@ -382,6 +381,7 @@ public class UpdateValuesInPW
 		}
         return true;
         }
+         
         catch(Exception e)
         {
         	RunnerClass.failedReason = RunnerClass.failedReason + ", Building Fields Could not get updated";
