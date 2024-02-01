@@ -1,4 +1,4 @@
-package mainPackage;
+  package mainPackage;
 
 import java.io.File;
 import java.util.HashMap;
@@ -221,6 +221,13 @@ public class RunnerClass
 					   company= "Ohio";
 					    break;
 				case "510 SFR GA Operations I LLC":
+					   company= "Georgia";
+					    break;
+					    
+				case "Mathias Adama":
+					   company= "Indiana";
+					    break;
+				case "YS Avon SFR III Propco LLC":
 					   company= "Georgia";
 					    break;
 					    
