@@ -15,7 +15,7 @@ public class AppConfig
 	   public static String fromEmailPassword = "Welcome@123";
 	   
 	   public static String toEmail = "cdupre@homeriver.com, jsmith@homeriver.com";
-	   public static String CCEmail = "santosh.p@beetlerim.com, gopi.v@beetlerim.com";
+	   public static String CCEmail = "naveen.p@beetlerim.com, gopi.v@beetlerim.com";
 
 	   
 	   public static String mailSubject = "MIMO to PW Report  ";
@@ -27,9 +27,9 @@ public class AppConfig
 	  // public static String leaseFetchQuery  = "Select Company, Building,leaseName from Automation.InitialRentsUpdate where Status ='Pending' and Company ='Georgia'";
 
 	   //  "EXEC Automation_MIMOtoPWListPull 1";
-	   public static String pendingLeasesQuery = "EXEC Automation_MIMOtoPWListPull 1";
+	   public static String pendingLeasesQuery =// "EXEC Automation_MIMOtoPWListPull 1";
 			   
-			  /* "SELECT\r\n"
+			   "SELECT\r\n"
 			    + "    ID,\r\n"
 			    + "    Unit_Entity_ID,\r\n"
 			    + "    Vacating_Resident_Lease_Entity_ID,\r\n"
@@ -65,12 +65,12 @@ public class AppConfig
 			    + "WHERE\r\n"
 			    + "    Company_Name IS NOT NULL\r\n"
 			    + "    AND Company_Name <> ''\r\n"
-			    + "    AND AutomationStatus = 'Failed'\r\n"
-			    + "    AND Note = ''\r\n"
+			    + "    AND AutomationStatus = 'Pending'\r\n"
+			    + "    --AND Note = ''\r\n"
 			    + "    AND Company_Name <> 'HomeRiver Group'\r\n"
 			    + "    AND Vacating_Resident_Lease_Entity_ID IS NOT NULL\r\n"
 			    + "    AND Last_vacant_visit IS NOT NULL\r\n"
-			    + "    AND Asofdate = (SELECT MAX(ASofdate) FROM Automation.MIMOToPw_Prod);\r\n";*/
+			    + "    AND Asofdate = (SELECT MAX(ASofdate) FROM Automation.MIMOToPw_Prod);\r\n";
 				    
 
 	   
