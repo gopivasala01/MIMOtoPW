@@ -33,13 +33,13 @@ public class PropertyWare
 		RunnerClass.downloadFilePath = AppConfig.downloadFilePath;
 		Map<String, Object> prefs = new HashMap<String, Object>();
 	    // Use File.separator as it will work on any OS
+		 WebDriverManager.chromedriver().clearDriverCache().setup();
 	    prefs.put("download.default_directory",
 	    		RunnerClass.downloadFilePath);
         // Adding cpabilities to ChromeOptions
         ChromeOptions options = new ChromeOptions();
         options.setExperimentalOption("prefs", prefs);
         options.addArguments("--remote-allow-origins=*");
-        WebDriverManager.chromedriver().clearDriverCache().setup();
         RunnerClass.driver= new ChromeDriver(options);
         options.setPageLoadStrategy(PageLoadStrategy.NORMAL); // Or PageLoadStrategy.EAGER if needed
         options.setPageLoadTimeout(Duration.ofSeconds(500));
