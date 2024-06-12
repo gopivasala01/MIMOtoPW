@@ -20,9 +20,19 @@
 		    <type>pom</type>
 		</dependency>	
 			<dependency>
-		    <groupId>org.seleniumhq.selenium</groupId>
-		    <artifactId>selenium-java</artifactId>
-		    <version>4.4.0</version>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-java</artifactId>
+			<version>4.11.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-http-jdk-client</artifactId>
+			<version>4.5.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-devtools-v121</artifactId>
+			<version>4.17.0</version>
 		</dependency>
 		<dependency>
     <groupId>org.apache.poi</groupId>
